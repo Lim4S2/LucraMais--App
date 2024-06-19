@@ -10,7 +10,7 @@ Linguagens usadas:
 Node.js
 
 Criadores:
-Felipe Eduardo Bertin
-Gabriel Pedro Ramos
-Pedro Henrique de Lima Silveira
-Vinicius Gabriel Landgraff de Carli
+Felipe Eduardo Bertin;
+Gabriel Pedro Ramos;
+Pedro Henrique de Lima Silveira;
+Vinicius Gabriel Landgraff de Carli;
