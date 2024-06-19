@@ -2,7 +2,7 @@ import React from "react"
 import {View, Text, TouchableOpacity, Image, StyleSheet } from "react-native"
 import styles from "./style"
 
-export default function AbrirCaixa() {
+export default function AbrirCaixa({navigation}) {
     return(
         <View style={styles.container}>
             {/*<View style={styles.header}>

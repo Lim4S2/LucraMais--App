@@ -118,7 +118,7 @@ function Tabs() {
         }
       }}/>
 
-      <Tab.Screen name="Venda" component={Venda} 
+      <Tab.Screen name="AbrirCaixa" component={AbrirCaixa} 
       options={{
         tabBarIcon: ({focused}) => (
           <Image source={require("./src/images/iconVendaFocus.png")} 
