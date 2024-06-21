@@ -1,9 +1,9 @@
-import React, { children } from "react";
-import {View, Text, Image, TouchableOpacity} from "react-native"
+import React, { children } from "react"
+import {View, Image, TouchableOpacity} from "react-native"
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
 import Preload from "./src/pages/preload/index"
 import Cadastro from "./src/pages/cadastro/index"
@@ -16,7 +16,8 @@ import Venda from "./src/pages/venda/"
 import Estoque from "./src/pages/estoque/"
 import Conta from "./src/pages/conta/"
 import styles from "./style"
-import Fechamento from "./src/pages/fechamento";
+import Fechamento from "./src/pages/fechamento"
+import AtualizarProd from "./src/pages/atualizarEstoque"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -216,6 +217,7 @@ export default function App() {
         <Stack.Screen name="AbrirCaixa" component={AbrirCaixa}/>
         <Stack.Screen name="Venda" component={Venda}/>
         <Stack.Screen name="Fechamento" component={Fechamento}/>
+        <Stack.Screen name="AtualizarProd" component={AtualizarProd}/>
         <Stack.Screen name="Home" component={Tabs} 
           options={{
             gestureEnabled: false
