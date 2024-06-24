@@ -7,7 +7,7 @@ export default function Venda({navigation}) {
         <View style={styles.container}>
             <Text style={styles.text}>Tela de venda</Text>
 
-            <Button onPress={() => navigation.navigate("Fechamento")}>Fechar caixa</Button>
+            <Button title="Fechar caixa" onPress={() => navigation.navigate("Fechamento")}/>
         </View>
     )
 }

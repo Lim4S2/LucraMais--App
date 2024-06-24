@@ -48,6 +48,8 @@ const CustomTabBarButton = ({children, onPress}) => (
 function Tabs() {
   return(
     <Tab.Navigator
+      initialRouteName="Home"
+
       screenOptions={{
         //tira a barra em cima de todas as telas
         headerShown: false,
