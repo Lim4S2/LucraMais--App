@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     form: {
-        marginTop: "25%",
-        marginBottom: 20,
+        marginTop: "15%",
+        marginBottom: 15,
         backgroundColor: "white",
         borderRadius: 20,
         alignItems: "center",
-        height: 560,
+        height: 575,
         width: "80%"
     }, 
     textBox: {
@@ -25,10 +25,10 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         color: "#6B983C",
         paddingTop: 15,
-        //paddingBottom: 5
+        paddingBottom: 3
     },
     legend: {
-        fontSize: 16,
+        fontSize: 17,
         fontWeight: "bold",
         color: "#6B983C",
         paddingTop: 15,
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         paddingLeft: 12,
         paddingRight: 12,
         borderRadius: 50,
-        height: 35,
+        height: 37,
         borderColor: "#DBDBDB",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
@@ -70,9 +70,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     img: {
-        width: "63%",
-        height: "15%",
-        marginTop: 15
+        flex: 2,
+        width: "90%",
+        height: "8%",
+        marginTop: "7%"
     }
 
 })
