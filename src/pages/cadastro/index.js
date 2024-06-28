@@ -50,7 +50,7 @@ export default function Cadastro({navigation}) {
                 <Text onPress={() => navigation.navigate("#")} style={styles.plus}>Suporte?</Text>
             </Pressable>
 
-            <Image source={require("../../images/feirantes.png")} style={styles.img}/>
+            <Image source={require("../../images/feirantes.png")} style={styles.img} resizeMode="contain"/>
         </Pressable>
     )
 }

@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     },
     containerLoading: {
         width: "90%",
-        marginTop: "40%"
+        marginTop: "40%",
     },
     logo: {
         marginTop: "50%",
@@ -17,13 +17,17 @@ const styles = StyleSheet.create({
         height: 178
     },
     terra: {
-        width: "95%", 
-        marginTop: -23,
-        marginLeft: 10
+        width: "100%",
+        height: 6, 
+        marginTop: -30,
+        borderRadius: 50
+        //marginLeft: 10
     },
     trator: {
-        width: "20%",
-        height: 50,
+        width: "25%",
+        height: 85,
+        //marginBottom: 14,
+        zIndex: 1,
     }
 })
 

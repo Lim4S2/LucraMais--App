@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 20,
         alignItems: "center",
-        height: 575,
+        height: 560,
         width: "80%"
     }, 
     textBox: {
@@ -25,10 +25,9 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         color: "#6B983C",
         paddingTop: 15,
-        paddingBottom: 3
     },
     legend: {
-        fontSize: 17,
+        fontSize: 16,
         fontWeight: "bold",
         color: "#6B983C",
         paddingTop: 15,
@@ -41,7 +40,7 @@ const styles = StyleSheet.create({
         paddingLeft: 12,
         paddingRight: 12,
         borderRadius: 50,
-        height: 37,
+        height: 35,
         borderColor: "#DBDBDB",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
@@ -62,8 +61,8 @@ const styles = StyleSheet.create({
         alignItems:"center",
         width: "90%",
         height: 39,
-        marginBottom: 12,
-        marginTop: 33
+        marginBottom: 10,
+        marginTop: 28
     }, textButtom: {
         fontSize: 18,
         color:"white",
@@ -71,9 +70,10 @@ const styles = StyleSheet.create({
     },
     img: {
         flex: 2,
-        width: "90%",
-        height: "8%",
-        marginTop: "7%"
+        //width: "90%",
+        //height: "8%",
+        marginTop: 7,
+        marginBottom: 5
     }
 
 })

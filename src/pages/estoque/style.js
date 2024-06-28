@@ -37,7 +37,10 @@ const styles = StyleSheet.create({
         fontWeight: "semibold",
         color: "white",
     }, 
-    input: {
+    viewInput: {
+        flexDirection: "row-reverse",
+        alignItems: "center",
+        justifyContent: "space-between",
         width: '90%',
         borderRadius: 50,
         borderColor: "#DBDBDB", 
@@ -46,6 +49,10 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         height: 35,
         marginTop: 20
+    },
+    imgPesq: {
+        height: 25,
+        width: 25
     },
     containerTitle: {
         marginLeft: 70,

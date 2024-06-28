@@ -20,9 +20,9 @@ export default function Estoque({navigation}) {
             <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
                 <View style={styles.viewInput}>
                     <Image style={styles.imgPesq} source={require("../../images/search.png")}/>
-                    <TextInput style={{width: "95%", marginRight: 10}}
+                    <TextInput style={{width: "90%", marginRight: 10}}
                         placeholderTextColor={"#808080"}
-                        placeholder="Pesquisar" 
+                        placeholder="Pesquisar"
                         keyboardType="text"
                     />
                 </View>
