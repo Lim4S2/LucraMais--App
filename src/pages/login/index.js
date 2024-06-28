@@ -38,9 +38,9 @@ export default function Login({navigation}) {
                 </View>
                 
                 <View style={styles.senhaCad}>
-                    <Text style={styles.plus}>Esqueceu sua senha?</Text>
+                    <Text style={{...styles.plus, padding: 7}}>Esqueceu sua senha?</Text>
                     {/*cria uma função para pode passar de página*/}
-                    <Text style={styles.plus}>|</Text>
+                    <Text style={{...styles.plus, paddingTop: 5}}>|</Text>
                     <Text style={styles.cad} 
                     onPress={() => navigation.navigate("Cadastro")}
                     >Cadastrar</Text>
@@ -51,7 +51,7 @@ export default function Login({navigation}) {
                     <Text style={styles.textButtom}>Logar</Text>
                 </TouchableOpacity>
 
-                <Text style={styles.plus}>Suporte ?</Text>
+                <Text style={{...styles.plus, padding: 7}}>Suporte ?</Text>
             </Pressable>
         </Pressable>
     )

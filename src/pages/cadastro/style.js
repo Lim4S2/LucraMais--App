@@ -8,12 +8,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     form: {
-        marginTop: "15%",
+        marginTop: "17%",
         marginBottom: 15,
         backgroundColor: "white",
         borderRadius: 20,
         alignItems: "center",
-        height: 560,
+        //height: 583,
+        height: "auto",
         width: "80%"
     }, 
     textBox: {
@@ -47,8 +48,7 @@ const styles = StyleSheet.create({
     }, 
     plus: {
         fontSize: 16,
-        paddingTop: 7,
-        paddingBottom: 7,
+        padding: 8,
         paddingRight: 15,
         paddingLeft: 15,
         fontWeight: "semibold",
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         width: "90%",
         height: 39,
         marginBottom: 10,
-        marginTop: 28
+        marginTop: 30
     }, textButtom: {
         fontSize: 18,
         color:"white",

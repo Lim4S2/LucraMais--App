@@ -7,12 +7,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
     }, 
     form: {
-        marginTop: "18%",
+        marginTop: "15%",
         marginBottom: 20,
         backgroundColor: "white",
         borderRadius: 20,
         alignItems: "center",
-        height: 480,
+        //height: "56%",
+        height: "auto",
         width: "80%"
     }, 
     textBox: {
@@ -45,12 +46,13 @@ const styles = StyleSheet.create({
     plus: {
         fontSize: 16,
         fontWeight: "semibold",
-        color: "#6B983C"
+        color: "#6B983C",
     }, 
     cad: {
         fontSize: 16,
         textDecorationLine: 'underline',
-        color: "#4FA5E4"
+        color: "#4FA5E4",
+        padding: 7
     },
     senhaCad: {
         flexDirection: "row",
@@ -75,8 +77,8 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems:"center",
         width: "90%",
-        marginBottom: 30,
-        marginTop: 20
+        marginBottom: 20,
+        marginTop: 15
 
     }, textButtom: {
         fontSize: 20,

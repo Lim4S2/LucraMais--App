@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         //marginLeft: 10
     },
     trator: {
-        width: "25%",
+        width: 90,
         height: 85,
         //marginBottom: 14,
         zIndex: 1,

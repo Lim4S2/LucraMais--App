@@ -60,7 +60,7 @@ function Tabs() {
           position: "absolute",
           backgroundColor: "#ffffff",
           borderTopWidth: 0,
-          height: 70,
+          height: "7%",
           bottom: 15,
           left: 12,
           right: 12,
