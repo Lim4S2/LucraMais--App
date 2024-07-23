@@ -34,8 +34,8 @@ const CustomTabBarButton = ({children, onPress}) => (
   onPress={onPress}
   >
     <View style={{
-      width: 70,
-      height: 70,
+      width: 60,
+      height: 60,
       borderRadius: 50,
       backgroundColor: '#46D051',
       ...styles.shadow
@@ -48,7 +48,7 @@ const CustomTabBarButton = ({children, onPress}) => (
 function Tabs() {
   return(
     <Tab.Navigator
-      initialRouteName="Home"
+      initialRouteName="Inicio"
 
       screenOptions={{
         //tira a barra em cima de todas as telas
@@ -60,8 +60,8 @@ function Tabs() {
           position: "absolute",
           backgroundColor: "#ffffff",
           borderTopWidth: 0,
-          height: "7%",
-          bottom: 15,
+          height: "6%",
+          bottom: 12,
           left: 12,
           right: 12,
           borderRadius: 12,
@@ -77,8 +77,8 @@ function Tabs() {
           <View>
             <Image source={require("./src/images/iconHomeFocus.png")}
             style={{
-              height: 40,
-              width: 40
+              height: 35,
+              width: 35
             }}/>
           </View>
           )}
@@ -86,8 +86,8 @@ function Tabs() {
           <View>
             <Image source={require("./src/images/iconHome.png")}
             style={{
-              height: 30,
-              width: 30
+              height: 25,
+              width: 25
             }}
             />
           </View>)
@@ -102,8 +102,8 @@ function Tabs() {
           <View>
             <Image source={require("./src/images/iconGraficoFocus.png")}
               style={{
-                height: 48,
-                width: 48,
+                height: 42,
+                width: 42,
                 marginRight: 8
               }}
             />
@@ -113,8 +113,8 @@ function Tabs() {
           <View>
             <Image source={require("./src/images/iconGraficoSemFocus.png")}
             style={{
-              height: 30,
-              width: 30,
+              height: 25,
+              width: 25,
               marginRight: 8
             }}/>
           </View>)
@@ -128,8 +128,8 @@ function Tabs() {
           // ver o que faz essa função
           resizeMode="contain"
           style={{
-            height: 45,
-            width: 45
+            height: 38,
+            width: 38
             }}/>
         ),
         tabBarButton: (props) => (
@@ -145,8 +145,8 @@ function Tabs() {
               <View>
                 <Image source={require("./src/images/iconEstoqueFocus.png")} 
                 style={{
-                  height: 48,
-                  width: 48,
+                  height: 40,
+                  width: 40,
                   marginLeft: 15
                 }}
                 />
@@ -156,8 +156,8 @@ function Tabs() {
             <View>
               <Image source={require("./src/images/iconEstoque.png")}
               style={{
-                height: 30,
-                width: 30,
+                height: 25,
+                width: 25,
                 marginLeft: 15
               }}
               />
@@ -173,8 +173,8 @@ function Tabs() {
               <View>
                 <Image source={require("./src/images/avatarFeirante.png")} 
                 style={{
-                  height: 45,
-                  width: 45
+                  height: 40,
+                  width: 40
                 }}
                 />
               </View>
