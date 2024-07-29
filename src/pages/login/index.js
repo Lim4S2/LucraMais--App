@@ -50,7 +50,7 @@ export default function Login({navigation}) {
                     >Cadastrar</Text>
                 </View>
 
-                <button style={styles.textButtom} onClick={() => navigate('/home')}>Logar</button>
+                <button style={styles.buttom} onClick={() => navigate('/home')}>Logar</button>
 
 
                 <Text style={{...styles.plus, padding: 7}}>Suporte ?</Text>
