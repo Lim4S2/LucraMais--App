@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import {Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler} from "react-native"
 import styles from "./style"
+import { useNavigate } from 'react-router-dom';
 
 export default function Cadastro({navigation}) {
 
@@ -10,6 +11,8 @@ export default function Cadastro({navigation}) {
             return true
         })
     }, [])
+
+    const navigate = useNavigate();
 
     return(
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
@@ -43,7 +46,7 @@ export default function Cadastro({navigation}) {
                     
                 </View>
                 
-                <TouchableOpacity onPress={() => navigation.navigate("Home")} style={styles.buttom}>
+                <TouchableOpacity onPress={() => navigate("/Home")} style={styles.buttom}>
                     <Text style={styles.textButtom}>Logar</Text>
                 </TouchableOpacity>
 

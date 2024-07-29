@@ -46,11 +46,13 @@ export default function Login({navigation}) {
                     {/*cria uma função para pode passar de página*/}
                     <Text style={{...styles.plus, paddingTop: 5}}>|</Text>
                     <Text style={styles.cad} 
-                    onPress={() => navigation.navigate("Cadastro")}
+                    onPress={() => navigate("/Cadastro")}
                     >Cadastrar</Text>
                 </View>
 
-                <button style={styles.buttom} onClick={() => navigate('/home')}>Logar</button>
+                <TouchableOpacity onPress={() => navigate("/Home")} style={styles.buttom}>
+                    <Text style={styles.textButtom}>Logar</Text>
+                </TouchableOpacity>
 
 
                 <Text style={{...styles.plus, padding: 7}}>Suporte ?</Text>
