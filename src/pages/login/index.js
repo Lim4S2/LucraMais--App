@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import {Text, Image, TextInput, View, TouchableOpacity, Pressable, Keyboard, BackHandler} from "react-native"
 import styles from './style'
+import { useNavigate } from 'react-router-dom';
 
 export default function Login({navigation}) {
 
@@ -11,7 +12,10 @@ export default function Login({navigation}) {
         })
     }, [])
 
+    const navigate = useNavigate();
+
     return(
+
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
             
             <Image source={require("../../images/logo.png")} style={styles.logo}/>
@@ -46,10 +50,8 @@ export default function Login({navigation}) {
                     >Cadastrar</Text>
                 </View>
 
-                <TouchableOpacity style={styles.buttom}
-                    onPress={() => navigation.navigate("Home")}>
-                    <Text style={styles.textButtom}>Logar</Text>
-                </TouchableOpacity>
+                <button style={styles.textButtom} onClick={() => navigate('/home')}>Logar</button>
+
 
                 <Text style={{...styles.plus, padding: 7}}>Suporte ?</Text>
             </Pressable>
