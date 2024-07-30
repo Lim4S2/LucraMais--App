@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         bottom: 0
     },
     header:{
-        marginTop: "15%",
+        marginTop: 55,
         width: '100%', 
         flexDirection: 'row',
         alignItems: 'center',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         paddingLeft: 15,
         paddingRight: 15,
-        height: 40,
+        height: 35,
         marginTop: 20
     },
     imgPesq: {

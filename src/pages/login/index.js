@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {Text, Image, TextInput, View, TouchableOpacity, Pressable, Keyboard, BackHandler} from "react-native"
 import styles from './style'
 
@@ -10,6 +10,9 @@ export default function Login({navigation}) {
             return true
         })
     }, [])
+
+    const [emailLogin, setEmailLogin] = useState("")
+    const [senhaLogin, setSenhaLogin] = useState("")
 
     return(
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
@@ -23,6 +26,7 @@ export default function Login({navigation}) {
                 <View style={styles.textBox}>
                     <Text style={styles.legend}>E-mail</Text>
                     <TextInput  style={styles.input}
+                    onChangeText={(val) => setEmailLogin(val)}
                     keyboardType="email-address"
                     keyboard="#6B983C"
                     autoCorrect={false}
@@ -31,6 +35,7 @@ export default function Login({navigation}) {
                 
                     <Text style={styles.legend}>Senha</Text>
                     <TextInput style={styles.input}
+                    onChangeText={(val) => setSenhaLogin(val)}
                     keyboardType="text"
                     secureTextEntry={true}
                     autoCorrect={false}
@@ -39,11 +44,16 @@ export default function Login({navigation}) {
                 
                 <View style={styles.senhaCad}>
                     <Text style={{...styles.plus, padding: 7}}>Esqueceu sua senha?</Text>
-                    {/*cria uma função para pode passar de página*/}
                     <Text style={{...styles.plus, paddingTop: 5}}>|</Text>
                     <Text style={styles.cad} 
+                    /*cria uma função para pode passar de página*/
                     onPress={() => navigation.navigate("Cadastro")}
                     >Cadastrar</Text>
+                </View>
+
+                <View style={styles.senhaCad}>
+                    <Text>Email {emailLogin}</Text>
+                    <Text>Senha {senhaLogin}</Text>
                 </View>
 
                 <TouchableOpacity style={styles.buttom}
