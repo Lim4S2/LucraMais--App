@@ -1,8 +1,8 @@
 import React from "react";
 import {View, Text, TouchableOpacity, TextInput, Keyboard, Image, FlatList } from "react-native"
 import styles from "./style"
-import stylesList from "./styleList"
-//import { getBorderColorAsync } from "expo-navigation-bar";
+import stylesList from "./stylesList.js"
+import { getBorderColorAsync } from "expo-navigation-bar";
 
 export default function Estoque({navigation}) {
 
