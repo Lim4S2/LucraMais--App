@@ -122,7 +122,8 @@ export default function Estoque({navigation}) {
                 }
             }/> 
             </View>
-            <FlatList>            
+
+            {/*<FlatList>            
                 <View style={styles.buttons}>
                     <TouchableOpacity style={{...styles.buttonCadPro, backgroundColor: "gray"}}
                         onPress={() =>navigation.navigate("AtualizarProd")}>
@@ -134,7 +135,7 @@ export default function Estoque({navigation}) {
                         <Text style={{...styles.textCadProd}}>🗑</Text>
                     </TouchableOpacity>
                 </View>
-            </FlatList>
+        </FlatList>*/}
         </View>
     )
 }
