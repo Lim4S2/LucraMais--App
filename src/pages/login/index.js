@@ -51,11 +51,6 @@ export default function Login({navigation}) {
                     >Cadastrar</Text>
                 </View>
 
-                <View style={styles.senhaCad}>
-                    <Text>Email {emailLogin}</Text>
-                    <Text>Senha {senhaLogin}</Text>
-                </View>
-
                 <TouchableOpacity style={styles.buttom}
                     onPress={() => navigation.navigate("Home")}>
                     <Text style={styles.textButtom}>Logar</Text>

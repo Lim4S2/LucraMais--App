@@ -19,9 +19,8 @@ const stylesList = StyleSheet.create({
         width: "60%"
     },
     viewAddCar: {
-        backgroundColor: "blue",
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
         alignItems: "center"
     },
     viewValor: {

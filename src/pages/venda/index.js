@@ -48,11 +48,14 @@ export default function Venda({navigation}) {
     return(
         <View>
             <View style={styles.container}>
-                <Image source={require("../../images/iconCesta.png")}
-                    style={{width: 40, height: 40}}
-                />
+                <TouchableOpacity onPress={() => navigation.navigate("Carrinho")}>
+                    <Image source={require("../../images/iconCesta.png")}
+                        style={{width: 40, height: 40}}
+                    />
+                </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => navigation.navigate("Fechamento")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Fechamento")}
+                    style={styles.btnFechar}>
                     <Text>Fechar caixa</Text>
                 </TouchableOpacity>
             </View>
@@ -76,18 +79,18 @@ export default function Venda({navigation}) {
                                 <Text style={stylesList.titulo}>{item.tittle}</Text>
                                     <View style={stylesList.viewAddCar}>
                                         <TouchableOpacity style={stylesList.btnMenos}>
-                                            <Text style={{color: "white", fontSize: 18, fontWeight: "bold"}}>-</Text>
+                                            <Text style={{color: "white", fontSize: 20, fontWeight: "bold"}}>-</Text>
                                         </TouchableOpacity>
                                     
-                                        <Text>1</Text>
+                                        <Text style={{fontSize: 20, fontWeight: "bold"}}>1</Text>
 
                                         <TouchableOpacity style={{...stylesList.btnMenos, backgroundColor: "#8DEB84"}}>
-                                            <Text style={{color: "white", fontSize: 18, fontWeight: "bold"}}>+</Text>
+                                            <Text style={{color: "white", fontSize: 20, fontWeight: "bold"}}>+</Text>
                                         </TouchableOpacity>
 
                                         <TouchableOpacity>
                                             <Image source={require("../../images/cesta.png")} 
-                                                style={{width: 30, height: 30}}/>
+                                                style={{width: 30, height: 30, marginLeft: 50}}/>
                                         </TouchableOpacity>
                                     </View>
                                 </View>

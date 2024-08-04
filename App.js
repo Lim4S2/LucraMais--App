@@ -18,6 +18,7 @@ import Conta from "./src/pages/conta/"
 import styles from "./style"
 import Fechamento from "./src/pages/fechamento"
 import AtualizarProd from "./src/pages/atualizarEstoque"
+import Carrinho from "./src/pages/carrinho"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -220,6 +221,7 @@ export default function App() {
         <Stack.Screen name="Venda" component={Venda}/>
         <Stack.Screen name="Fechamento" component={Fechamento}/>
         <Stack.Screen name="AtualizarProd" component={AtualizarProd}/>
+        <Stack.Screen name="Carrinho" component={Carrinho}/>
         <Stack.Screen name="Home" component={Tabs} 
           options={{
             gestureEnabled: false
