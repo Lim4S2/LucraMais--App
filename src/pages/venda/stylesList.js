@@ -12,7 +12,7 @@ const stylesList = StyleSheet.create({
         backgroundColor: "white",
         marginLeft: "5%",
         marginBottom: 40,
-        elevation: 15,
+        elevation: 10,
         paddingRight: 10
     },
     viewTittle: {

@@ -78,7 +78,7 @@ export default function Estoque({navigation}) {
                 </View>
             </View>
 
-            <View style={{height: "66%"}}>
+            <View style={{height: "69%", marginTop: 15}}>
             <FlatList style={stylesList.list}
                 contentContainerStyle={{marginTop: 20}}
                 data={DATA}

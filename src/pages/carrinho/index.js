@@ -48,6 +48,12 @@ export default function Carrinho({navigation}) {
     return(
         <View style={{justifyContent: "space-between", height: "100%"}}>
             <View style={styles.container}>
+                <Image source={require("../../images/iconCesta.png")}
+                    style={{width: 40, height: 40, marginRight: 20}}
+                />
+                <Text style={styles.text}>Cesta de compras</Text>
+            </View>
+            {/*<View style={styles.container}>
                 <Text style={styles.text}>Cesta de venda</Text>
                 <TouchableOpacity onPress={() => navigation.navigate("Venda")}
                     style={{
@@ -58,9 +64,12 @@ export default function Carrinho({navigation}) {
                 >
                     <Text>Vender</Text>
                 </TouchableOpacity>
-            </View>
+                </View>*/}
 
-            <View>
+            <View style={{
+                marginTop: 10,
+                height: "60%"
+            }}>
                 <FlatList 
                     data={DATA}
                     contentContainerStyle={{paddingTop: 15, paddingBottom: 20}}
@@ -124,7 +133,7 @@ export default function Carrinho({navigation}) {
                     </View>
                 </View>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate("Venda")}>
                     <Text>Vender</Text>
                 </TouchableOpacity>
             </View>

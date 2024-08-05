@@ -56,14 +56,14 @@ export default function Venda({navigation}) {
 
                 <TouchableOpacity onPress={() => navigation.navigate("Fechamento")}
                     style={styles.btnFechar}>
-                    <Text>Fechar caixa</Text>
+                    <Text style={styles.text}>Fechar caixa</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={{alignItems: "center", marginBottom: 20, marginTop: 15}}>
-                <Text style={styles.text}>Caixa aberto em 
+                <Text style={{...styles.text, color: "#545454"}}>Caixa aberto em 
                     <Text style={{color: "white"}}>_</Text>
-                    <Text>08:33 - 02/08/2024</Text>
+                    <Text style={{...styles.text, color: "#545454"}}>08:33 - 02/08/2024</Text>
                 </Text>
             </View>
 

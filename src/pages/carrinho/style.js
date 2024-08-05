@@ -2,20 +2,23 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 50,
-        backgroundColor: "black",
-        justifyContent: "center",
-        alignItems: 'center'
+        flexDirection: "row",
+        marginTop: 30,
+        alignItems: 'center',
+        paddingLeft: "20%",
+        paddingBottom: 10,
+        borderBottomWidth: 1
     },
     text: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: 'white'
+        color: '#545454'
     },
     venda: {
         backgroundColor: "green",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        height: "30%"
     }
 })
 

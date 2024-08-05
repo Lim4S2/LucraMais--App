@@ -2,17 +2,28 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "green",
         flexDirection: "row",
-        justifyContent: "space-around",
-        marginTop: 50,
+        justifyContent: "space-between",
+        //marginTop: 30,
         alignItems: 'center',
-        marginBottom: 10
+        paddingBottom: 10,
+        paddingLeft: 25,
+        paddingRight: 10,
+        paddingTop: 30,
+        borderBottomWidth: 1
     },
     text: {
         fontSize: 18,
-        fontWeight: 'semibold',
-        //color: 'white'
+        fontWeight: 'bold',
+        color: "white"
+    },
+    btnFechar: {
+        width: "60%",
+        height: 50,
+        backgroundColor: "green",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 20,
     }
 })
 
