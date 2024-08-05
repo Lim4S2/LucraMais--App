@@ -210,9 +210,10 @@ export default function App() {
         <Route path="/venda" element={<Venda />} />
         <Route path="/fechamento" element={<Fechamento />} />
         <Route path="/atualizar-prod" element={<AtualizarProd />} />
+        <Route path="/home" element={<Home />} />
         
-        {/* Rotas de Tabs com navegação */}
-        <Route path="/home" element={<Tabs   />} />
+        {/* Rotas de Tabs com navegação
+        <Route path="/home" element={<Tabs   />} />*/}
       </Routes>
     </Router>
   );
