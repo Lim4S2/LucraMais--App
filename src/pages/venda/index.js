@@ -10,10 +10,8 @@ export default function Venda({navigation}) {
 
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>Tela de venda</Text>
-
         <TouchableOpacity onPress={() => navigate("/Fechamento")} style={styles.buttom}>
-            <Text style={styles.text}>Fechar Caixa</Text>
+            <Text style={styles.text}>Venda</Text>
         </TouchableOpacity>
 
         </View>

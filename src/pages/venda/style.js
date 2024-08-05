@@ -2,13 +2,22 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 50,
-        backgroundColor: "black",
+        backgroundColor: "#6B983C",
+        borderRadius: 50,
         justifyContent: "center",
-        alignItems: 'center'
+        alignItems:"center",
+        width: "40%",
+        height: "10%",
     },
+    
+    buttom:{
+        justifyContent: "center",
+        alignItems:"center",
+  
+    },
+
     text: {
-        fontSize: 20,
+        fontSize: 24,
         fontWeight: 'bold',
         color: 'white'
     }
