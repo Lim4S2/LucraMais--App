@@ -11,6 +11,11 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'white'
+    },
+    venda: {
+        backgroundColor: "green",
+        justifyContent: "center",
+        alignItems: "center"
     }
 })
 
