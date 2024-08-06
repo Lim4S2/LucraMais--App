@@ -1,9 +1,9 @@
 import React from "react"
-import { View, FlatList, Text, TouchableOpacity, Image} from "react-native"
+import { View, FlatList, Text, TouchableOpacity, Image } from "react-native"
 import styles from "./style"
 import stylesList from "../venda/stylesList.js"
 
-export default function Carrinho({navigation}) {
+export default function Carrinho({ navigation }) {
 
     const DATA = [
         {
@@ -45,11 +45,13 @@ export default function Carrinho({navigation}) {
 
     ]
 
-    return(
-        <View style={{justifyContent: "space-between", height: "100%"}}>
+    const [selectedRadio, setSelectedRadio] = React.useState(3)
+
+    return (
+        <View>
             <View style={styles.container}>
                 <Image source={require("../../images/iconCesta.png")}
-                    style={{width: 40, height: 40, marginRight: 20}}
+                    style={{ width: 40, height: 40, marginRight: 20 }}
                 />
                 <Text style={styles.text}>Cesta de compras</Text>
             </View>
@@ -68,73 +70,99 @@ export default function Carrinho({navigation}) {
 
             <View style={{
                 marginTop: 10,
-                height: "60%"
+                height: "50%"
             }}>
-                <FlatList 
+                <FlatList
                     data={DATA}
-                    contentContainerStyle={{paddingTop: 15, paddingBottom: 20}}
-                    renderItem={({item}) => {
-                        return(
+                    contentContainerStyle={{ paddingTop: 15, paddingBottom: 10 }}
+                    renderItem={({ item }) => {
+                        return (
                             <View>
-                            <View style={stylesList.produto}>
-                                <View style={stylesList.viewTittle}>
-                                <Text style={stylesList.titulo}>{item.tittle}</Text>
-                                    <View style={stylesList.viewAddCar}>
-                                        <TouchableOpacity style={stylesList.btnMenos}>
-                                            <Text style={{color: "white", fontSize: 20, fontWeight: "bold"}}>-</Text>
-                                        </TouchableOpacity>
-                                    
-                                        <Text style={{fontSize: 20, fontWeight: "bold"}}>1</Text>
+                                <View style={stylesList.produto}>
+                                    <View style={stylesList.viewTittle}>
+                                        <Text style={stylesList.titulo}>{item.tittle}</Text>
+                                        <View style={stylesList.viewAddCar}>
+                                            <TouchableOpacity style={stylesList.btnMenos}>
+                                                <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>-</Text>
+                                            </TouchableOpacity>
 
-                                        <TouchableOpacity style={{...stylesList.btnMenos, backgroundColor: "#8DEB84"}}>
-                                            <Text style={{color: "white", fontSize: 20, fontWeight: "bold"}}>+</Text>
-                                        </TouchableOpacity>
+                                            <Text style={{ fontSize: 20, fontWeight: "bold" }}>1</Text>
 
-                                        <TouchableOpacity>
-                                            <Image source={require("../../images/iconLixeira.png")} 
-                                                style={{width: 30, height: 30, marginLeft: 50}}/>
-                                        </TouchableOpacity>
+                                            <TouchableOpacity style={{ ...stylesList.btnMenos, backgroundColor: "#8DEB84" }}>
+                                                <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>+</Text>
+                                            </TouchableOpacity>
+
+                                            <TouchableOpacity>
+                                                <Image source={require("../../images/iconLixeira.png")}
+                                                    style={{ width: 30, height: 30, marginLeft: 50 }} />
+                                            </TouchableOpacity>
+                                        </View>
                                     </View>
-                                </View>
-        
+
                                     <View style={stylesList.viewValor}>
                                         <Text style={stylesList.sifrao}>R$
-                                            <Text style={{color: "white"}}>_</Text>
-                                            <Text style={{...stylesList.sifrao, fontSize: 34}}>{item.preco}</Text>
+                                            <Text style={{ color: "white" }}>_</Text>
+                                            <Text style={{ ...stylesList.sifrao, fontSize: 34 }}>{item.preco}</Text>
                                         </Text>
                                     </View>
+                                </View>
                             </View>
-                        </View>
                         )
                     }}
                 />
             </View>
 
             <View style={styles.venda}>
-                <Text style={styles.nomeProd}>Nome do produto</Text>
-                <Text style={styles.nomeProd}>R$ Preço do produto</Text>
-                <Text>R$
-                    <Text>_</Text>
-                    <Text>Preço da compra</Text>
-                </Text>
-                
-                <View>
-                    <Text>Forma de pagamento</Text>
-                    <View accessibilityRole="combobox">
-                        <TouchableOpacity>
-                            <Text>Dinheiro</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text>PIX</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Text>Cartão</Text>
-                        </TouchableOpacity>
+                <Text style={{ ...styles.text, color: "white" }}>Nome do produto</Text>
+
+                <View style={styles.viewCompra}>
+                    <Text style={{ ...styles.textValor, fontWeight: "bold" }}>R$
+                        <Text style={{ color: "#306318" }}>_</Text>
+                        <Text style={{ ...styles.textValor, fontSize: 36, fontWeight: "bold" }}>28,00</Text>
+                    </Text>
+
+                    <View style={{
+                        alignItems: "center"
+                    }}>
+                        <Text style={styles.textValor}>Quantidade de itens</Text>
+                        <Text style={{ ...styles.textValor, fontSize: 30, fontWeight: "bold" }}>5</Text>
                     </View>
                 </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("Venda")}>
-                    <Text>Vender</Text>
+                <Text style={styles.textValor}>Forma de pagamento</Text>
+
+                <View style={styles.formaPg}>
+                    <TouchableOpacity onPress={() => setSelectedRadio(1)}>
+                        <View style={styles.wrapper}>
+                            <View style={styles.radio}>
+                                {selectedRadio == 1 ? <View style={styles.radioBg}></View> : null}
+                            </View>
+                            <Text style={styles.textRadio}>Dinheiro</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => setSelectedRadio(2)}>
+                        <View style={styles.wrapper}>
+                            <View style={styles.radio}>
+                                {selectedRadio == 2 ? <View style={styles.radioBg}></View> : null}
+                            </View>
+                            <Text style={styles.textRadio}>PIX</Text>
+                        </View>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => setSelectedRadio(3)}>
+                        <View style={styles.wrapper}>
+                            <View style={styles.radio}>
+                                {selectedRadio == 3 ? <View style={styles.radioBg}></View> : null}
+                            </View>
+                            <Text style={styles.textRadio}>Cartão</Text>
+                        </View>
+                    </TouchableOpacity>
+                </View>
+
+                <TouchableOpacity style={styles.btnVender} 
+                onPress={() => navigation.navigate("Venda")}>
+                    <Text style={styles.textButton}>Vender</Text>
                 </TouchableOpacity>
             </View>
         </View>

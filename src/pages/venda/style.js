@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         justifyContent: "space-between",
-        //marginTop: 30,
+        marginTop: "6%",
         alignItems: 'center',
         paddingBottom: 10,
         paddingLeft: 25,
