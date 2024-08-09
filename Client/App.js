@@ -1,6 +1,7 @@
 import React, { children } from "react"
 import {View, Image, TouchableOpacity} from "react-native"
-import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom"
+import { NavigationContainer } from '@react-navigation/native';
+
 
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -196,25 +197,20 @@ function Tabs() {
 }
 
 export default function App() {
-  return (
-    <Router>
-      <Routes>
-        {/* Redireciona para /home caso a URL não corresponda a nenhuma das rotas abaixo */}
-        <Route path="*" element={<Navigate to="/preload" />} />
-        
-        <Route path="/preload" element={<Preload />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/cadastro" element={<Cadastro />} />
-        <Route path="/produto" element={<Produto />} />
-        <Route path="/abrir-caixa" element={<AbrirCaixa />} />
-        <Route path="/venda" element={<Venda />} />
-        <Route path="/fechamento" element={<Fechamento />} />
-        <Route path="/atualizar-prod" element={<AtualizarProd />} />
-        <Route path="/home" element={<Home />} />
-        
-        {/* Rotas de Tabs com navegação
-        <Route path="/home" element={<Tabs   />} />*/}
-      </Routes>
-    </Router>
-  );
-}
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Preload">
+          <Stack.Screen name="Preload" component={Preload} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Cadastro" component={Cadastro} />
+          <Stack.Screen name="Produto" component={Produto} />
+          <Stack.Screen name="Abrir Caixa" component={AbrirCaixa} />
+          <Stack.Screen name="Venda" component={Venda} />
+          <Stack.Screen name="Fechamento" component={Fechamento} />
+          <Stack.Screen name="AtualizarProd" component={AtualizarProd} />
+          <Stack.Screen name="Home" component={Home} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  };
+  
