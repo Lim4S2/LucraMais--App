@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
     },
     textValor: {
         color: "white",
-        fontSize: 20,
-        fontWeight: "semibold"
+        fontSize: 24,
+        fontWeight: "bold"
     },
     venda: {
         backgroundColor: "#306318",
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 10
+        marginBottom: 20
     },
     textButton: {
         color: "black",

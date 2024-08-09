@@ -55,18 +55,6 @@ export default function Carrinho({ navigation }) {
                 />
                 <Text style={styles.text}>Cesta de compras</Text>
             </View>
-            {/*<View style={styles.container}>
-                <Text style={styles.text}>Cesta de venda</Text>
-                <TouchableOpacity onPress={() => navigation.navigate("Venda")}
-                    style={{
-                        backgroundColor: "white",
-                        width: "50%",
-                        alignItems: "center"
-                    }}
-                >
-                    <Text>Vender</Text>
-                </TouchableOpacity>
-                </View>*/}
 
             <View style={{
                 marginTop: 10,
@@ -74,7 +62,7 @@ export default function Carrinho({ navigation }) {
             }}>
                 <FlatList
                     data={DATA}
-                    contentContainerStyle={{ paddingTop: 15, paddingBottom: 10 }}
+                    contentContainerStyle={{ paddingTop: 15}}
                     renderItem={({ item }) => {
                         return (
                             <View>
@@ -113,8 +101,6 @@ export default function Carrinho({ navigation }) {
             </View>
 
             <View style={styles.venda}>
-                <Text style={{ ...styles.text, color: "white" }}>Nome do produto</Text>
-
                 <View style={styles.viewCompra}>
                     <Text style={{ ...styles.textValor, fontWeight: "bold" }}>R$
                         <Text style={{ color: "#306318" }}>_</Text>
@@ -124,7 +110,7 @@ export default function Carrinho({ navigation }) {
                     <View style={{
                         alignItems: "center"
                     }}>
-                        <Text style={styles.textValor}>Quantidade de itens</Text>
+                        <Text style={{...styles.textValor, fontWeight: "semibold", fontSize: 22}}>Quantidade de itens</Text>
                         <Text style={{ ...styles.textValor, fontSize: 30, fontWeight: "bold" }}>5</Text>
                     </View>
                 </View>
