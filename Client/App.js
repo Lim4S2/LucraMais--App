@@ -199,7 +199,7 @@ function Tabs() {
 export default function App() {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Preload">
+        <Stack.Navigator  screenOptions={{ headerShown: false}} initialRouteName="Preload">
           <Stack.Screen name="Preload" component={Preload} />
           <Stack.Screen name="Login" component={Login} />
           <Stack.Screen name="Cadastro" component={Cadastro} />
