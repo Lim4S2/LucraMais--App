@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
         height: 100,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 20,
-        marginBottom: 20,
+        marginTop: 25,
+        marginBottom: 30,
         borderRadius: 50,
         backgroundColor: "white",
         elevation: 15
@@ -43,6 +43,15 @@ const styles = StyleSheet.create({
         width: 30,
         height: 30,
         marginRight: 10
+    }, 
+    button: {
+        marginTop: "30%",
+        backgroundColor:"green",
+        borderRadius: 50,
+        width: "80%",
+        height: 50,
+        justifyContent: "center",
+        alignItems: "center"
     }
 })
 
