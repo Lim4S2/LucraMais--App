@@ -1,8 +1,30 @@
 import React from "react"
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native"
+import { View, Text, TouchableOpacity, Image } from "react-native"
 import styles from "./style"
 
+export const Balancete = [
+    
+    {
+        title: 'Despesas',
+        valor: 1123.50,
+        detalhe: [
+            {
+                text: "Transporte",
+                valor: 50
+            }
+        ]
+    },
+    {
+        title: "Produtos estragados",
+        valor: 123.50
+    }
+    
+]
+
 export default function Fechamento({ navigation }) {
+
+    const [maisDetalhe, setMaisDetalhe] = React.useState(-1)
+
     return (
         <View style={{ alignItems: "center" }}>
             <View style={styles.container}>
@@ -38,26 +60,51 @@ export default function Fechamento({ navigation }) {
                 <Text style={{ ...styles.textDetalhe, color: "green" }}>4.693,50</Text>
             </View>
 
-            <View style={styles.viewDetalhamento}>
-                <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-                    <TouchableOpacity>
-                        <Image source={require("../../images/setaDireita.png")}
-                            style={{ width: 15, height: 15, marginRight: 10 }} />
-                    </TouchableOpacity>
-                    <Text style={styles.textDetalhe}>Despesas</Text>
-                </View>
-                <Text style={{ ...styles.textDetalhe, color: "red" }}>1.123,50</Text>
-            </View>
 
-            <View style={styles.viewDetalhamento}>
-                <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-                    <TouchableOpacity>
+            {Despesas.map((item, index) => {
+                return(
+                    <View key={index}>
+                <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>
+                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                         <Image source={require("../../images/setaDireita.png")}
                             style={{ width: 15, height: 15, marginRight: 10 }} />
-                    </TouchableOpacity>
-                    <Text style={styles.textDetalhe}>Qnt. de vendas</Text>
+
+                        <Text style={styles.textDetalhe}>Despesas</Text>
+                    </View>
+                    <Text style={{ ...styles.textDetalhe, color: "red" }}>1.123,50</Text>
+                </TouchableOpacity>
+                
+                <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+                    <Text>Transporte</Text>
+                    <Text>R$
+                        <Text style={{ color: "white" }}>_</Text>
+                        <Text>500</Text>
+                    </Text>
                 </View>
-                <Text style={{ ...styles.textDetalhe, color: "blue" }}>145</Text>
+                
+                <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
+                    <Text>Produtos estragados</Text>
+                    <Text>R$
+                        <Text style={{ color: "white" }}>_</Text>
+                        <Text>123,50</Text>
+                    </Text>
+                </View>
+            </View>
+                )
+            })}
+            
+
+            <View>
+                <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>
+                    <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+                        <TouchableOpacity>
+                            <Image source={require("../../images/setaDireita.png")}
+                                style={{ width: 15, height: 15, marginRight: 10 }} />
+                        </TouchableOpacity>
+                        <Text style={styles.textDetalhe}>Qnt. de vendas</Text>
+                    </View>
+                    <Text style={{ ...styles.textDetalhe, color: "blue" }}>145</Text>
+                </TouchableOpacity>
             </View>
 
             <Text style={{ ...styles.text, fontSize: 22, marginBottom: 15, marginTop: 20 }}>Formas de Pagamento</Text>
