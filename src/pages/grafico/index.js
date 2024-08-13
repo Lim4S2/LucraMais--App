@@ -5,13 +5,6 @@ import { MaterialIcons, MaterialCommunityIcons, AntDesign, FontAwesome } from '@
 const SettingsScreen = () => {
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity style={styles.iconButton}>
-          <MaterialIcons name="arrow-back" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Retornar</Text>
-      </View>
-
       <View style={styles.profileContainer}>
         <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.profileImage} />
         <View style={styles.profileText}>
