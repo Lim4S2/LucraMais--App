@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler, Alert } from "react-native";
-import { registerUser } from '../cadastro/cadApi'; // Certifique-se de que o caminho está correto
+import { registerUser } from '../cadastro/cadApi'; 
 import styles from "./style";
 
 export default function Cadastro({ navigation }) {
@@ -10,7 +10,6 @@ export default function Cadastro({ navigation }) {
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
 
-    // Função para não permitir que o usuário volte para a página anterior
     useEffect(() => {
         const backAction = () => {
             return true;
@@ -20,7 +19,6 @@ export default function Cadastro({ navigation }) {
         return () => BackHandler.removeEventListener("hardwareBackPress", backAction);
     }, []);
 
-    // Função para manipular o envio do formulário
     const handleSubmit = async () => {
         if (senha !== confirmarSenha) {
             Alert.alert("Erro", "As senhas não coincidem.");
@@ -30,7 +28,7 @@ export default function Cadastro({ navigation }) {
         try {
             const result = await registerUser(comercio, email, cpf, senha);
             Alert.alert("Sucesso", result.message);
-            navigation.navigate("Login"); // Navega para a tela de login após o cadastro
+            navigation.navigate("Login"); 
         } catch (error) {
             console.error("Erro ao registrar usuário:", error);
             Alert.alert("Erro", "Não foi possível completar o cadastro.");

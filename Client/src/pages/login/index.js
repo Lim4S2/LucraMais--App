@@ -1,29 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler, Alert } from "react-native";
-import { loginUser } from '../login/logApi'; // Certifique-se de que o caminho está correto
+import { loginUser } from '../login/logApi'; 
 import styles from "./style";
 
 export default function Login({ navigation }) {
-    // Estados para armazenar valores do formulário
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    // Função para não permitir que o usuário volte para a página anterior
     useEffect(() => {
         const backAction = () => {
-            return true; // Impede que o usuário volte para a página anterior
+            return true; 
         };
 
         BackHandler.addEventListener("hardwareBackPress", backAction);
         return () => BackHandler.removeEventListener("hardwareBackPress", backAction);
     }, []);
 
-    // Função para manipular o envio do formulário
     const handleSubmit = async () => {
         try {
             const result = await loginUser(email, senha);
             Alert.alert("Sucesso", "Login realizado com sucesso!");
-            navigation.navigate("Home"); // Navega para a tela principal após o login
+            navigation.navigate("Home"); 
         } catch (error) {
             console.error("Erro ao fazer login:", error);
             Alert.alert("Erro", "Não foi possível realizar o login. Verifique suas credenciais e tente novamente.");
