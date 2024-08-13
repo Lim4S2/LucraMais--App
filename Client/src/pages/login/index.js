@@ -27,39 +27,42 @@ export default function Login({ navigation }) {
         }
     };
 
-    return (
+    return(
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
+            
+            <Image source={require("../../images/logo.png")} style={styles.logo}/>
+
             <Pressable onPress={Keyboard.dismiss} style={styles.form}>
                 <Text style={styles.tittle}>Login</Text>
                 <Text style={styles.text}>É bom ver você novamente👏</Text>
-
+                
                 <View style={styles.textBox}>
-                    <Text style={styles.legend}>Email</Text>
-                    <TextInput
-                        value={email}
-                        onChangeText={setEmail}
-                        keyboardType="email-address"
-                        style={styles.input}
-                        autoCorrect={false}
+                    <Text style={styles.legend}>E-mail</Text>
+                    <TextInput  style={styles.input}
+                    value={email}
+                    onChangeText={setEmail}
+                    keyboardType="email-address"
+                    keyboard="#6B983C"
+                    autoCorrect={false}
+                    blurOnSubmit="true"
                     />
-
+                
                     <Text style={styles.legend}>Senha</Text>
-                    <TextInput
-                        value={senha}
-                        onChangeText={setSenha}
-                        style={styles.input}
-                        autoCorrect={false}
-                        secureTextEntry={true}
+                    <TextInput style={styles.input}
+                    value={senha}
+                    onChangeText={setSenha}
+                    keyboardType="text"
+                    secureTextEntry={true}
+                    autoCorrect={false}
                     />
                 </View>
-
+                
                 <View style={styles.senhaCad}>
-                    <Text style={{ ...styles.plus, padding: 7 }}>Esqueceu sua senha?</Text>
-                    <Text style={{ ...styles.plus, paddingTop: 5 }}>|</Text>
+                    <Text style={{...styles.plus, padding: 7}}>Esqueceu sua senha?</Text>
+                    <Text style={{...styles.plus, paddingTop: 5}}>|</Text>
                     <Text style={styles.cad} 
-                        onPress={() => navigation.navigate("Cadastro")}>
-                        Cadastrar
-                    </Text>
+                    onPress={() => navigation.navigate("Cadastro")}
+                    >Cadastrar</Text>
                 </View>
 
                 <TouchableOpacity onPress={handleSubmit} style={styles.buttom}>
@@ -68,8 +71,6 @@ export default function Login({ navigation }) {
 
                 <Text onPress={() => navigation.navigate("Suporte")} style={styles.plus}>Suporte?</Text>
             </Pressable>
-
-            <Image source={require("../../images/feirantes.png")} style={styles.img} resizeMode="contain" />
         </Pressable>
     );
 }
