@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from "react";
-import { View, Text, BackHandler, StyleSheet, TouchableOpacity, ScrollView, Dimensions, Animated } from "react-native";
+import React, { useState, useRef } from "react";
+import { View, Text, StyleSheet, ScrollView, Dimensions, TouchableOpacity, Image, Animated } from "react-native";
 import { BarChart } from "react-native-chart-kit";
 import Svg, { Path, G } from "react-native-svg";
 
@@ -8,19 +8,19 @@ const screenWidth = Dimensions.get("window").width;
 
 // Dados simulados para gráfico de pizza
 const pieData = [
-  { name: "Coxinha", population: 400, color: "#006400", legendFontColor: "#ffffff", legendFontSize: 15 }, // Verde escuro
-  { name: "Coca-Cola", population: 300, color: "#228B22", legendFontColor: "#ffffff", legendFontSize: 15 }, // Verde floresta
-  { name: "Pizza", population: 300, color: "#32CD32", legendFontColor: "#ffffff", legendFontSize: 15 }, // Verde limão
-  { name: "Hambúrguer", population: 200, color: "#90EE90", legendFontColor: "#ffffff", legendFontSize: 15 }, // Verde claro
+  { name: "Coxinha", population: 400, color: "#006400", legendFontColor: "#ffffff", legendFontSize: 15 },
+  { name: "Coca-Cola", population: 300, color: "#228B22", legendFontColor: "#ffffff", legendFontSize: 15 },
+  { name: "Pizza", population: 300, color: "#32CD32", legendFontColor: "#ffffff", legendFontSize: 15 },
+  { name: "Hambúrguer", population: 200, color: "#90EE90", legendFontColor: "#ffffff", legendFontSize: 15 },
 ];
 
 // Dados do gráfico de barras
-const salesData = [1500, 2000, 1700, 2200, 2500, 2300, 2100, 2400, 2700, 2900, 2800, 3000];
-const expensesData = [1200, 1800, 1600, 2000, 2300, 2100, 1900, 2200, 2500, 2700, 2600, 2800];
+const salesData = [1500, 2000, 1700, 2200];
+const expensesData = [1200, 1800, 1600, 2000];
 const profitData = salesData.map((value, index) => value - expensesData[index]);
 
 const data = {
-  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  labels: ["Jan", "Feb", "Mar", "Abr"], // Ajustado até abril
   datasets: [
     {
       data: salesData,
@@ -43,26 +43,37 @@ const AnimatedLegendItem = ({ color, text, fadeAnim }) => {
   );
 };
 
-const AnimatedPieChart = () => {
+const App = () => {
+  const [selectedFilter, setSelectedFilter] = useState("Vendas");
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [selectedData, setSelectedData] = useState(null);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  // Função para iniciar a animação da legenda
-  const animateLegend = (index) => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 500,
-      useNativeDriver: true,
-    }).start();
+  const getFilteredData = () => {
+    switch (selectedFilter) {
+      case "Despesas":
+        return expensesData;
+      case "Lucro":
+        return profitData;
+      default:
+        return salesData;
+    }
   };
 
-  // Função para obter o gráfico de pizza
+  const filteredData = {
+    ...data,
+    datasets: [
+      {
+        data: getFilteredData(),
+      },
+    ],
+  };
+
   const getPieChart = () => {
     const total = pieData.reduce((sum, item) => sum + item.population, 0);
 
     return (
-      <Svg width={screenWidth - 30} height={220} viewBox="0 0 220 220">
+      <Svg width={screenWidth / 2 - 30} height={220} viewBox="0 0 220 220">
         <G x="10" y="20">
           {pieData.map((slice, index) => {
             const startAngle =
@@ -86,12 +97,20 @@ const AnimatedPieChart = () => {
                 onPress={() => {
                   setSelectedIndex(index);
                   setSelectedData(slice);
-                  animateLegend(index);
+                  Animated.timing(fadeAnim, {
+                    toValue: 1,
+                    duration: 500,
+                    useNativeDriver: true,
+                  }).start();
                 }}
                 onMouseEnter={() => {
                   setSelectedIndex(index);
                   setSelectedData(slice);
-                  animateLegend(index);
+                  Animated.timing(fadeAnim, {
+                    toValue: 1,
+                    duration: 500,
+                    useNativeDriver: true,
+                  }).start();
                 }}
                 onMouseLeave={() => {
                   setSelectedIndex(null);
@@ -107,76 +126,22 @@ const AnimatedPieChart = () => {
   };
 
   return (
-    <View style={styles.pieChartContainer}>
-      {getPieChart()}
-      <View style={styles.legendContainer}>
-        {pieData.map((slice, index) => (
-          <AnimatedLegendItem key={index} color={slice.color} text={slice.name} fadeAnim={fadeAnim} />
-        ))}
-      </View>
-      {selectedData && (
-        <View style={styles.infoBox}>
-          <Text style={styles.infoText}>{selectedData.name}</Text>
-          <Text style={styles.infoText}>
-            {((selectedData.population / pieData.reduce((sum, item) => sum + item.population, 0)) * 100).toFixed(1)}% das
-            vendas
-          </Text>
-        </View>
-      )}
-    </View>
-  );
-};
-
-const Home = ({ navigation }) => {
-  // Função para que o usuário não volte para a página anterior
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener("hardwareBackPress", () => {
-      return true;
-    });
-
-    return () => backHandler.remove();
-  }, []);
-
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Tela inicial</Text>
-    </View>
-  );
-};
-
-const App = () => {
-  const [selectedFilter, setSelectedFilter] = useState("Vendas");
-
-  // Função para obter dados filtrados com base na escolha do usuário
-  const getFilteredData = () => {
-    switch (selectedFilter) {
-      case "Despesas":
-        return expensesData;
-      case "Lucro":
-        return profitData;
-      default:
-        return salesData;
-    }
-  };
-
-  const filteredData = {
-    ...data,
-    datasets: [
-      {
-        data: getFilteredData(),
-      },
-    ],
-  };
-
-  return (
     <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.headerContainer}>
+        <Image source={require('../../../assets/usuu.png')} style={styles.icon} />
+        <Text style={styles.companyName}>Agro Smart</Text>
+      </View>
+      <View style={styles.balanceContainer}>
+        <Text style={styles.balanceTitle}>Saldo do Mês</Text>
+        <Text style={styles.balanceAmount}>Saldo: R$ 1.500,90</Text>
+        <Text style={styles.balanceDate}>Sexta-Feira 17 de maio</Text>
+      </View>
       <Text style={styles.title}>Gráfico de {selectedFilter}</Text>
-
       <BarChart
         data={filteredData}
         width={screenWidth - 30}
         height={220}
-        yAxisLabel="$"
+        yAxisLabel="R$"
         chartConfig={{
           backgroundGradientFrom: "#ffffff",
           backgroundGradientTo: "#ffffff",
@@ -184,27 +149,38 @@ const App = () => {
           color: (opacity = 1) => {
             switch (selectedFilter) {
               case "Despesas":
-                return `rgba(255, 99, 71, ${opacity})`; // Vermelho para despesas
+                return `rgba(255, 99, 71, 1)`; // Vermelho sólido para despesas
               case "Lucro":
-                return `rgba(50, 205, 50, ${opacity})`; // Verde para lucro
+                return `rgba(50, 205, 50, 1)`; // Verde sólido para lucro
               default:
-                return `rgba(70, 130, 180, ${opacity})`; // Azul para vendas
+                return `rgba(70, 130, 180, 1)`; // Azul sólido para vendas
             }
           },
-          labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, // Cor do rótulo
           style: {
             borderRadius: 16,
           },
           propsForBackgroundLines: {
-            strokeDasharray: "", // solid background lines
+            strokeDasharray: "", // Linhas de fundo sólidas
           },
         }}
         style={styles.chart}
-        onDataPointClick={({ value, index }) => {
-          alert(`Dados para ${data.labels[index]}: R$${value}`);
+        fromZero={true} // Começa do zero
+        showBarTops={false} // Remove o topo dos gráficos de barras
+        yAxisSuffix="R$" // Adiciona o sufixo R$ no eixo Y
+        propsForBars={{
+          fill: (opacity = 1) => {
+            switch (selectedFilter) {
+              case "Despesas":
+                return `rgba(255, 99, 71, 1)`; // Vermelho sólido para despesas
+              case "Lucro":
+                return `rgba(50, 205, 50, 1)`; // Verde sólido para lucro
+              default:
+                return `rgba(70, 130, 180, 1)`; // Azul sólido para vendas
+            }
+          },
         }}
       />
-
       <View style={styles.legendContainer}>
         {filters.map((filter) => (
           <TouchableOpacity
@@ -220,18 +196,88 @@ const App = () => {
           </TouchableOpacity>
         ))}
       </View>
-
-      <Text style={styles.title}>Gráfico de Pizza Interativo</Text>
-      <AnimatedPieChart />
+      <View style={styles.chartContainer}>
+        <View style={styles.pieChartContainer}>
+          <Text style={styles.title}>Gráfico de Pizza Interativo</Text>
+          {getPieChart()}
+        </View>
+        <View style={styles.pieLegendContainer}>
+          {pieData.map((slice, index) => (
+            <AnimatedLegendItem
+              key={index}
+              color={slice.color}
+              text={slice.name}
+              fadeAnim={fadeAnim}
+            />
+          ))}
+        </View>
+      </View>
+      {selectedData && (
+        <View style={styles.infoBox}>
+          <Text style={styles.infoText}>{selectedData.name}</Text>
+          <Text style={styles.infoText}>
+            {((selectedData.population / pieData.reduce((sum, item) => sum + item.population, 0)) * 100).toFixed(1)}% das vendas
+          </Text>
+        </View>
+      )}
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 15,
+    flexGrow: 1,
+    padding: 20,
     backgroundColor: "#f5f5f5",
+  },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center", // Centraliza horizontalmente
+    marginBottom: 20,
+  },
+  icon: {
+    width: 40,
+    height: 40,
+    marginRight: 10,
+  },
+  companyName: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#104E8B", // Azul escuro
+    textAlign: "center", // Centraliza o texto
+  },
+  balanceContainer: {
+    backgroundColor: "#4CAF50", // Verde
+    borderColor: "#000000", // Borda preta
+    borderWidth: 1,
+    borderRadius: 67, // Bordas mais arredondadas para formar um círculo
+    padding: 20, // Ajustado para que o texto tenha mais espaço dentro do círculo
+    width: 360, // Define a largura e altura para controlar o tamanho do container
+    height: 140,
+    justifyContent: "space-between", // Espaça o conteúdo verticalmente
+    marginBottom: 20,
+    alignItems: "center", // Centraliza o conteúdo horizontalmente
+  },
+  balanceTitle: {
+    color: "#000000", // Preto para o título
+    fontSize: 20,
+    textAlign: "center", // Centraliza o título
+    marginTop: 10, // Ajusta a posição para cima dentro do container
+  },
+  balanceAmount: {
+    color: "#000000", // Preto para o saldo
+    fontSize: 32, // Tamanho da fonte aumentado
+    fontWeight: "bold",
+    textAlign: "center", // Centraliza o saldo
+    marginBottom: 5, // Espaçamento abaixo do saldo
+  },
+  balanceDate: {
+    color: "#ffffff",
+    fontSize: 14,
+    position: "absolute",
+    bottom: 10, // Ajusta a posição do fundo
+    right: 35, // Ajusta a posição da direita
   },
   title: {
     fontSize: 20,
@@ -243,12 +289,9 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 10,
   },
-  pieChartContainer: {
-    alignItems: "center",
-    marginTop: 10, // Ajusta o gráfico de pizza para cima
-  },
   legendContainer: {
     flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "space-around",
     marginTop: 20,
   },
@@ -260,11 +303,12 @@ const styles = StyleSheet.create({
   legendColor: {
     width: 20,
     height: 20,
-    borderRadius: 10,
+    borderRadius: 5,
     marginRight: 10,
   },
   legendText: {
     fontSize: 16,
+    color: "#000",
   },
   filterButton: {
     padding: 10,
@@ -278,20 +322,27 @@ const styles = StyleSheet.create({
     color: "#000",
   },
   infoBox: {
-    marginTop: 20,
     padding: 10,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#fff",
     borderRadius: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
+    marginTop: 20,
+    alignItems: "center",
   },
   infoText: {
     fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
+    color: "#000",
+  },
+  chartContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 20,
+  },
+  pieChartContainer: {
+    flex: 1,
+  },
+  pieLegendContainer: {
+    flex: 1,
+    justifyContent: "center",
   },
 });
 
