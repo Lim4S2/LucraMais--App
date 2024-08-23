@@ -54,13 +54,13 @@ function Tabs() {
         //tira a barra em cima de todas as telas
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarActiveTintColor: "#4DEF5A",
-        tabBarInactiveTintColor: "",
         tabBarStyle: {
-          position: "absolute",
+          marginLeft: "100",
+          position: "relative",
           backgroundColor: "#ffffff",
           borderTopWidth: 0,
           height: "6%",
+          width: "70%",
           bottom: 12,
           left: 12,
           right: 12,
@@ -90,33 +90,6 @@ function Tabs() {
               width: 25
             }}
             />
-          </View>)
-        }
-      }}/>
-
-      <Tab.Screen name="Gráfico" component={Grafico} 
-      options={{
-        tabBarIcon: ({focused}) => {
-          if (focused) {
-            return(
-          <View>
-            <Image source={require("./src/images/iconGraficoFocus.png")}
-              style={{
-                height: 42,
-                width: 42,
-                marginRight: 8
-              }}
-            />
-          </View>
-          )}
-          return (
-          <View>
-            <Image source={require("./src/images/iconGraficoSemFocus.png")}
-            style={{
-              height: 25,
-              width: 25,
-              marginRight: 8
-            }}/>
           </View>)
         }
       }}/>
@@ -165,32 +138,6 @@ function Tabs() {
           }
       }}/>
 
-      <Tab.Screen name="Conta" component={Conta} 
-      options={{
-        tabBarIcon: ({focused}) => {
-          if(focused) {
-            return(
-              <View>
-                <Image source={require("./src/images/avatarFeirante.png")} 
-                style={{
-                  height: 40,
-                  width: 40
-                }}
-                />
-              </View>
-            )}
-          return(
-            <View>
-              <Image source={require("./src/images/avatarFeirante.png")}
-              style={{
-                height: 30,
-                width: 30
-              }}
-              />
-            </View>)
-          }
-      }}/>
-
     </Tab.Navigator>
   )
 }
@@ -220,6 +167,7 @@ export default function App() {
         <Stack.Screen name="Venda" component={Venda}/>
         <Stack.Screen name="Fechamento" component={Fechamento}/>
         <Stack.Screen name="AtualizarProd" component={AtualizarProd}/>
+        <Stack.Screen name="Conta" component={Conta}/>
         <Stack.Screen name="Home" component={Tabs} 
           options={{
             gestureEnabled: false

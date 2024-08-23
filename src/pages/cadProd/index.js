@@ -1,8 +1,9 @@
-import React from "react"
+import React, {useState} from "react"
 import {Pressable, Text, TextInput, View, Keyboard, TouchableOpacity} from "react-native"
 import styles from "./style"
 
 export default function Produto({navigation}) {
+
     return(
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
             <View style={styles.header}>
