@@ -14,14 +14,14 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-
 const dbConfig = {
-  host: 'localhost',  
-  user: 'root',        
+  host: 'localhost',
+  user: 'root',
   password: '',
-  database: 'agroclient' 
+  database: 'agroclient'
 };
 
+// Registro de Usuário
 app.post('/api/register', async (req, res) => {
   const { comercio, email, cpf, senha } = req.body;
 
@@ -50,6 +50,7 @@ app.post('/api/register', async (req, res) => {
   }
 });
 
+// Login
 app.post('/api/login', async (req, res) => {
   const { email, senha } = req.body;
 
@@ -78,6 +79,37 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ message: 'Erro no servidor' });
   }
 });
+
+// Cadastro de Produto
+app.post('/api/products', async (req, res) => {
+  const { name, description, quantity, price, saleType, category } = req.body;
+  
+  console.log('Recebido:', { name, description, quantity, price, saleType, category });
+
+  if (!name || !quantity || !price) {
+    console.log('Dados inválidos');
+    return res.status(400).json({ message: 'Nome, quantidade e preço são obrigatórios.' });
+  }
+
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+    console.log('Conectado ao banco de dados');
+
+    const [result] = await connection.execute(
+      'INSERT INTO produtos (name, description, quantity, price, saleType, category) VALUES (?, ?, ?, ?, ?, ?)',
+      [name, description, quantity, price, saleType, category]
+    );
+
+    console.log('Produto inserido:', result);
+    await connection.end();
+
+    res.status(201).json({ message: 'Produto cadastrado com sucesso' });
+  } catch (error) {
+    console.error('Erro ao cadastrar produto:', error);
+    res.status(500).json({ message: 'Erro no servidor' });
+  }
+});
+
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);

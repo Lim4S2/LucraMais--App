@@ -208,7 +208,7 @@ export default function App() {
           <Stack.Screen name="Venda" component={Venda} />
           <Stack.Screen name="Fechamento" component={Fechamento} />
           <Stack.Screen name="AtualizarProd" component={AtualizarProd} />
-          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Home" component={Tabs} />
         </Stack.Navigator>
       </NavigationContainer>
     );
