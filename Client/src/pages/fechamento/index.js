@@ -3,10 +3,13 @@ import {View, Text, Button} from "react-native"
 import styles from "./style"
 
 export default function Fechamento({navigation}) {
+
+    const navigate = useNavigate();
+
     return(
         <View style={styles.container}>
             <Text style={styles.text}>Tela de fechamento</Text>
-            <Button title="Voltar para a tela Inicial" onPress={() => navigation.navigate("Home")}/>
+            <Button title="Voltar para a tela Inicial" onPress={() => navigation.navigate("/Home")}/>
         </View>
     )
 }

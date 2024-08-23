@@ -1,18 +1,31 @@
-import React, {useEffect, useState} from "react"
-import {Text, Image, TextInput, View, TouchableOpacity, Pressable, Keyboard, BackHandler} from "react-native"
-import styles from './style'
+import React, { useState, useEffect } from "react";
+import { Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler, Alert } from "react-native";
+import { loginUser } from '../login/logApi'; 
+import styles from "./style";
 
-export default function Login({navigation}) {
+export default function Login({ navigation }) {
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
 
-    //função para que o usuário não volte para a página
     useEffect(() => {
-        BackHandler.addEventListener("hardwareBackPress", () => {
-            return true
-        })
-    }, [])
+        const backAction = () => {
+            return true; 
+        };
 
-    const [emailLogin, setEmailLogin] = useState("")
-    const [senhaLogin, setSenhaLogin] = useState("")
+        BackHandler.addEventListener("hardwareBackPress", backAction);
+        return () => BackHandler.removeEventListener("hardwareBackPress", backAction);
+    }, []);
+
+    const handleSubmit = async () => {
+        try {
+            const result = await loginUser(email, senha);
+            Alert.alert("Sucesso", "Login realizado com sucesso!");
+            navigation.navigate("Home"); 
+        } catch (error) {
+            console.error("Erro ao fazer login:", error);
+            Alert.alert("Erro", "Não foi possível realizar o login. Verifique suas credenciais e tente novamente.");
+        }
+    };
 
     return(
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
@@ -26,7 +39,8 @@ export default function Login({navigation}) {
                 <View style={styles.textBox}>
                     <Text style={styles.legend}>E-mail</Text>
                     <TextInput  style={styles.input}
-                    onChangeText={(val) => setEmailLogin(val)}
+                    value={email}
+                    onChangeText={setEmail}
                     keyboardType="email-address"
                     keyboard="#6B983C"
                     autoCorrect={false}
@@ -35,7 +49,8 @@ export default function Login({navigation}) {
                 
                     <Text style={styles.legend}>Senha</Text>
                     <TextInput style={styles.input}
-                    onChangeText={(val) => setSenhaLogin(val)}
+                    value={senha}
+                    onChangeText={setSenha}
                     keyboardType="text"
                     secureTextEntry={true}
                     autoCorrect={false}
@@ -46,23 +61,16 @@ export default function Login({navigation}) {
                     <Text style={{...styles.plus, padding: 7}}>Esqueceu sua senha?</Text>
                     <Text style={{...styles.plus, paddingTop: 5}}>|</Text>
                     <Text style={styles.cad} 
-                    /*cria uma função para pode passar de página*/
                     onPress={() => navigation.navigate("Cadastro")}
                     >Cadastrar</Text>
                 </View>
 
-                <View style={styles.senhaCad}>
-                    <Text>Email {emailLogin}</Text>
-                    <Text>Senha {senhaLogin}</Text>
-                </View>
-
-                <TouchableOpacity style={styles.buttom}
-                    onPress={() => navigation.navigate("Home")}>
+                <TouchableOpacity onPress={handleSubmit} style={styles.buttom}>
                     <Text style={styles.textButtom}>Logar</Text>
                 </TouchableOpacity>
 
-                <Text style={{...styles.plus, padding: 7}}>Suporte ?</Text>
+                <Text onPress={() => navigation.navigate("Suporte")} style={styles.plus}>Suporte?</Text>
             </Pressable>
         </Pressable>
-    )
+    );
 }
