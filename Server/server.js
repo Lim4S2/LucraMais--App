@@ -114,3 +114,14 @@ app.post('/api/products', async (req, res) => {
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
+
+
+{/*CREATE TABLE produtos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  description VARCHAR(255)NOT NULL,
+  quantity INT NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  saleType VARCHAR(50),
+  category VARCHAR(100)
+); */}
