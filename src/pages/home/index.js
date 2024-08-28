@@ -14,6 +14,9 @@ export default function Home({navigation}) {
     return(
         <View style={styles.container}>
             <Text style={styles.text}>Tela inicial</Text>
+            <View>
+                
+            </View>
         </View>
     )
 }
