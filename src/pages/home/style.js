@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start", // Centraliza horizontalmente
         marginBottom: 20,
-        gap: "10%"
+        gap: 10
     },
     icon: {
       width: 30,
