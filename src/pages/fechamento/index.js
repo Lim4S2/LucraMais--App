@@ -1,5 +1,5 @@
 import React from "react"
-import { View, Text, TouchableOpacity, Image } from "react-native"
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native"
 import styles from "./style"
 
 export const Balancete = [
@@ -17,6 +17,10 @@ export const Balancete = [
     {
         title: "Produtos estragados",
         valor: 123.50
+    },
+    {
+        title: "Teste",
+        valor: 5000
     }
     
 ]
@@ -34,36 +38,33 @@ export default function Fechamento({ navigation }) {
             </View>
 
             <Text style={{ fontSize: 18, marginTop: 20 }}>Caixa aberto -
-                <Text style={{ color: "white" }}>_</Text>
+                <Text style={{ color: "#f6f6f6" }}>_</Text>
                 <Text style={{ fontSize: 18, marginTop: 10 }}>08:33</Text>
             </Text>
             <Text style={{ fontSize: 18, marginTop: 10 }}>Fechou caixa -
-                <Text style={{ color: "white" }}>_</Text>
+                <Text style={{ color: "#f6f6f6" }}>_</Text>
                 <Text style={{ fontSize: 18, marginTop: 10 }}>11:40</Text>
             </Text>
             <Text style={{ fontSize: 18, marginTop: 10 }}>Horas trabalhadas -
-                <Text style={{ color: "white" }}>_</Text>
+                <Text style={{ color: "#f6f6f6" }}>_</Text>
                 <Text style={{ fontSize: 18, marginTop: 10 }}>03:07</Text>
             </Text>
 
             <View style={styles.viewLucro}>
-                <Text style={{ ...styles.text, fontSize: 20 }}>Lucro do dia</Text>
+                <Text style={{ ...styles.text, fontSize: 20 }}>Receita do Dia</Text>
                 <Text style={{ ...styles.text, fontSize: 30, color: "green" }}>R$
-                    <Text style={{ color: "white" }}>_</Text>
-                    <Text style={{ ...styles.text, fontSize: 48, color: "green" }}>3.570,00</Text>
+                    <Text style={{ color: "#f6f6f6" }}>_</Text>
+                    <Text style={{ ...styles.text, fontSize: 48, color: "green" }}>4.693,50</Text>
                 </Text>
             </View>
 
 
             <View style={styles.viewDetalhamento}>
-                <Text style={styles.textDetalhe}>Receita do dia</Text>
-                <Text style={{ ...styles.textDetalhe, color: "green" }}>4.693,50</Text>
+                <Text style={styles.textDetalhe}>Lucro do dia</Text>
+                <Text style={{ ...styles.textDetalhe, color: "green" }}>3.570,00</Text>     
             </View>
 
-
-            {Despesas.map((item, index) => {
-                return(
-                    <View key={index}>
+                <View>
                 <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>
                     <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
                         <Image source={require("../../images/setaDireita.png")}
@@ -77,7 +78,7 @@ export default function Fechamento({ navigation }) {
                 <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
                     <Text>Transporte</Text>
                     <Text>R$
-                        <Text style={{ color: "white" }}>_</Text>
+                        <Text style={{ color: "#f6f6f6" }}>_</Text>
                         <Text>500</Text>
                     </Text>
                 </View>
@@ -85,14 +86,11 @@ export default function Fechamento({ navigation }) {
                 <View style={{ flexDirection: "row", justifyContent: 'space-between' }}>
                     <Text>Produtos estragados</Text>
                     <Text>R$
-                        <Text style={{ color: "white" }}>_</Text>
+                        <Text style={{ color: "#f6f6f6" }}>_</Text>
                         <Text>123,50</Text>
                     </Text>
                 </View>
             </View>
-                )
-            })}
-            
 
             <View>
                 <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>

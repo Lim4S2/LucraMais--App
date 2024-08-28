@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#306318",
-        justifyContent: "center",
+        justifyContent: "space-around",
         alignItems: "center",
     },
     containerLoading: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         marginTop: "40%",
     },
     logo: {
-        marginTop: "50%",
+        marginTop: "65%",
         width: "95%",
         height: 178
     },
@@ -28,6 +28,12 @@ const styles = StyleSheet.create({
         height: 85,
         //marginBottom: 14,
         zIndex: 1,
+    }, 
+    carregamento: {
+        width: "100%", 
+        marginBottom: "20%",
+        justifyContent: "center",
+        alignItems: "center"
     }
 })
 

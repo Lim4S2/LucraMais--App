@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: '#545454'
+        color: "#545454"
     },
     textValor: {
         color: "white",
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     venda: {
-        backgroundColor: "#306318",
+        backgroundColor: "#65c03b",
         justifyContent: "space-evenly",
         alignItems: "center",
         height: "40%",
