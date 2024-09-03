@@ -1,11 +1,15 @@
-import React from "react"
+import React, { useRef, useCallback, useMemo} from "react"
 import { View, FlatList, Text, TouchableOpacity, Image } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
-import BotomSheet from "@gorhom/bottom-sheet"
+import BottomSheet from "@gorhom/bottom-sheet"
 import styles from "./style"
 import stylesList from "../venda/stylesList.js"
 
 export default function Carrinho({ navigation }) {
+
+    const bottomSheetRef = useRef(null)
+    const snapPoints = useMemo(() => ["20%", "40%"], [])
+
 
     const DATA = [
         {
@@ -103,7 +107,12 @@ export default function Carrinho({ navigation }) {
                     />
                 </View>
 
-                <BotomSheet>
+                <BottomSheet
+                    ref={bottomSheetRef}
+                    snapPoints={snapPoints}
+                    index={0}
+                    backgroundStyle={{backgroundColor: "#65c03b"}}
+                >
                     <View style={styles.venda}>
                         <View style={styles.viewCompra}>
                             <Text style={{ ...styles.textValor, fontWeight: "bold" }}>R$
@@ -155,7 +164,7 @@ export default function Carrinho({ navigation }) {
                             <Text style={styles.textButton}>Vender</Text>
                         </TouchableOpacity>
                     </View>
-                </BotomSheet>
+                </BottomSheet>
             </View>
         </GestureHandlerRootView>
     )
