@@ -55,7 +55,7 @@ export default function Carrinho({ navigation }) {
 
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <View>
+            <View style={{height: "100%"}}>
                 <View style={styles.container}>
                     <Image source={require("../../images/iconCesta.png")}
                         style={{ width: 40, height: 40, marginRight: 20 }}

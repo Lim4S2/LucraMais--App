@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         flexDirection: "row-reverse",
         width: "100%",
         justifyContent: "space-around",
-        alignItems: "center"
+        alignItems: "center",
     },
     text: {
         fontSize: 24,
@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
     textValor: {
         color: "white",
         fontSize: 24,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        margin: 20
     },
     venda: {
         backgroundColor: "#65c03b",
@@ -33,12 +34,13 @@ const styles = StyleSheet.create({
         height: "40%",
         padding: 10,
         borderTopLeftRadius: 20,
-        borderTopRightRadius: 20
+        borderTopRightRadius: 20,
     },
     formaPg: {
         flexDirection: "row",
         justifyContent: "space-around",
         width: "100%",
+        marginBottom: 20
     },
     btnVender: {
         width: "95%",
