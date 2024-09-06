@@ -41,11 +41,11 @@ export default function Preload({navigation}) {
                     source={require("../../images/terra.png")} style={{...styles.terra, width: terra}}/>
             </Animatable.View> */}
 
-            {/*<Text onPress={() => navigation.navigate("Login")}
+            <Text onPress={() => navigation.navigate("Login")}
                 style={{
                     padding: 10
                 }}
-            >Próxima página</Text>*/}
+            >Próxima página</Text>
         </View>
     )
 }
