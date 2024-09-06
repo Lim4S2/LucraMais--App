@@ -1,125 +1,114 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    container: {
-      flexGrow: 1,
-      alignItems: "center"
-    },
-    headerContainer: {
-        width: "95%",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-start", // Centraliza horizontalmente
-        marginBottom: 20,
-        gap: 10
-    },
-    icon: {
-      width: 30,
-      height: 30
-    },
-    companyName: {
-      fontSize: 28,
-      fontWeight: "bold",
-      color: "#3BAF09", // Azul escuro
-      textAlign: "center", // Centraliza o texto
-    },
-    balanceContainer: {
-      backgroundColor: "#4CAF50", // Verde
-      borderColor: "#000000", // Borda preta
-      borderWidth: 1,
-      borderRadius: 67, // Bordas mais arredondadas para formar um círculo
-      padding: 20, // Ajustado para que o texto tenha mais espaço dentro do círculo
-      width: 360, // Define a largura e altura para controlar o tamanho do container
-      height: 140,
-      justifyContent: "space-between", // Espaça o conteúdo verticalmente
-      marginBottom: 20,
-      alignItems: "center", // Centraliza o conteúdo horizontalmente
-    },
-    balanceTitle: {
-      color: "#000000", // Preto para o título
-      fontSize: 20,
-      textAlign: "center", // Centraliza o título
-      marginTop: 10, // Ajusta a posição para cima dentro do container
-    },
-    balanceAmount: {
-      color: "#000000", // Preto para o saldo
-      fontSize: 32, // Tamanho da fonte aumentado
-      fontWeight: "bold",
-      textAlign: "center", // Centraliza o saldo
-      marginBottom: 5, // Espaçamento abaixo do saldo
-    },
-    balanceDate: {
-      color: "#ffffff",
-      fontSize: 14,
-      position: "absolute",
-      bottom: 10, // Ajusta a posição do fundo
-      right: 35, // Ajusta a posição da direita
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: "bold",
-      marginBottom: 15,
-    },
-    chart: {
-      borderRadius: 16,
-      marginVertical: 8,
-      marginHorizontal: 10,
-    },
-    legendContainer: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-around",
-      marginTop: 20,
-    },
-    legendItem: {
-      flexDirection: "row",
-      alignItems: "center",
-      margin: 5,
-    },
-    legendColor: {
-      width: 20,
-      height: 20,
-      borderRadius: 5,
-      marginRight: 10,
-    },
-    legendText: {
-      fontSize: 16,
-      color: "#000",
-    },
-    filterButton: {
-      padding: 10,
-      borderRadius: 5,
-      backgroundColor: "#e0e0e0",
-    },
-    selectedFilter: {
-      backgroundColor: "#ffffff",
-    },
-    filterText: {
-      color: "#000",
-    },
-    infoBox: {
-      padding: 10,
-      backgroundColor: "#fff",
-      borderRadius: 5,
-      marginTop: 20,
-      alignItems: "center",
-    },
-    infoText: {
-      fontSize: 16,
-      color: "#000",
-    },
-    chartContainer: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      marginTop: 20,
-    },
-    pieChartContainer: {
-      flex: 1,
-    },
-    pieLegendContainer: {
-      flex: 1,
-      justifyContent: "center",
-    },
-  });
+  container: {
+    flexGrow: 1,
+    backgroundColor: '#f0f0f0',
+    padding: 10, // Adicionei padding para dar algum espaçamento interno
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 10, // Borda arredondada
+    backgroundColor: '#fff', // Fundo branco para destacar
+    marginBottom: 20, // Espaçamento inferior
+  },
+  icon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20, // Borda arredondada para o ícone
+  },
+  companyName: {
+    marginLeft: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  balanceContainer: {
+    padding: 20,
+    backgroundColor: 'green',
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  balanceTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff', // Cor do texto
+  },
+  balanceAmount: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 10,
+    color: '#fff', // Cor do texto
+  },
+  balanceDate: {
+    fontSize: 14,
+    color: '#eee', // Cor do texto
+  },
+  chartContainer: {
+    padding: 20,
+    borderRadius: 20
+  },
+  chartBackground: {
+    //backgroundColor: '#fff', // Fundo branco para o gráfico
+    borderRadius: 16, // Borda arredondada
+    overflow: 'hidden', // Garante que o gráfico de barras não ultrapasse os limites
+    padding: 10,
+  },
+  chartDescription: {
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  legendContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+  filterButton: {
+    padding: 10,
+    borderRadius: 20, // Borda arredondada para o botão do filtro
+  },
+  selectedFilter: {
+    borderWidth: 2,
+    borderColor: '#000',
+  },
+  filterText: {
+    color: '#fff',
+  },
+  pieChartContainer: {
+    alignItems: 'center',
+    //backgroundColor: 'red', // Fundo branco para o gráfico de pizza
+    borderRadius: 16, // Borda arredondada
+    padding: 10,
+    marginVertical: 20, // Espaçamento vertical
+  },
+  pieLegendContainer: {
+    marginTop: 10,
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  legendColor: {
+    width: 20,
+    height: 20,
+    borderRadius: 10, // Borda arredondada para o quadrado de cor
+    marginRight: 10,
+  },
+  legendText: {
+    fontSize: 16,
+  },
+  infoBox: {
+    padding: 10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  infoText: {
+    fontSize: 16,
+  },
+});
 
-export default styles
+export default styles;

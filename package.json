@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/stack": "^6.3.29",
     "chart.js": "^4.4.3",
+    "d3-shape": "^3.2.0",
     "expo": "~51.0.9",
     "expo-navigation-bar": "~3.0.4",
     "expo-status-bar": "~1.12.1",
@@ -34,7 +35,7 @@
     "react-native-svg-charts": "^5.4.0",
     "react-native-web": "~0.19.10",
     "react-native-webview": "^13.10.5",
-    "victory-native": "^41.0.2"
+    "victory-native": "^41.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
