@@ -10,7 +10,7 @@ const port = 5000;
 app.use(bodyParser.json());
 app.use(cors({
   origin: '*',
-  methods: ['GET', 'POST', 'DELETE'],
+  methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type']
 }));
 
@@ -130,6 +130,30 @@ app.delete('/produtos/:id', async (req, res) => {
   } catch (error) {
     console.error('Erro ao excluir produto:', error);
     res.status(500).json({ message: 'Erro no servidor' });
+  }
+});
+
+// EDITA O PRODUTO LÁ DO ESTOQUE
+app.put('/produtos/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, description, quantity, price, category } = req.body;
+
+  try {
+      const connection = await mysql.createConnection(dbConfig);
+      const [result] = await connection.execute(
+          'UPDATE produtos SET name = ?, description = ?, quantity = ?, price = ?, category = ? WHERE id = ?',
+          [name, description, quantity, price, category, id]
+      );
+      await connection.end();
+
+      if (result.affectedRows === 0) {
+          return res.status(404).json({ message: 'Produto não encontrado' });
+      }
+
+      res.status(200).json({ message: 'Produto atualizado com sucesso' });
+  } catch (error) {
+      console.error('Erro ao atualizar produto:', error);
+      res.status(500).json({ message: 'Erro no servidor' });
   }
 });
 //FIM DO ESTOQUE

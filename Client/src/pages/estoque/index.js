@@ -123,7 +123,7 @@ export default function Estoque({ navigation }) {
                                 <View style={stylesList.viewButtons}>
                                     <TouchableOpacity 
                                         style={{...styles.buttonCadPro, backgroundColor: "#8DEB84"}}
-                                        onPress={() => navigation.navigate("AtualizarProd")}
+                                        onPress={() => navigation.navigate("AtualizarProd", { produto: item })}
                                     >
                                         <Text style={{...stylesList.textCadProd}}>🖊</Text>
                                     </TouchableOpacity>
