@@ -133,7 +133,7 @@ const AnimatedLegendItem = ({ color, text, fadeAnim }) => {
       <TouchableOpacity style={styles.headerContainer}
         onPress={() => navigation.navigate("Conta")}>
         <Image source={require('../../images/avatarFeirante.png')} style={styles.icon} />
-        <Text style={styles.companyName}>Nome do comércio</Text>
+        <Text style={styles.companyName}>AgroSmart</Text>
       </TouchableOpacity>
       <View style={styles.balanceContainer}>
         <Text style={styles.balanceTitle}>Saldo do Mês</Text>
