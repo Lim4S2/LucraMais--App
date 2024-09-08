@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     header:{
-        marginTop: 30,
+        marginTop: 20,
         height: 50,
         width: '100%', 
         flexDirection: 'row',
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
         transform: [{rotate: '180deg'}] 
     },
     form: {
-        marginTop: 120,
+        marginTop: "34%",
         marginBottom: 20,
         backgroundColor: "white",
         borderRadius: 20,
@@ -43,18 +43,23 @@ const styles = StyleSheet.create({
         // sombra - shadow
         elevation: 30
     }, 
+    label: {
+        position: "absolute",
+        paddingHorizontal: 5,
+        marginLeft: 22
+    },
     textBox: {
         alignItems: "center",
-        width: "100%",
+        width: "90%",
     },
     input: {
-        width: "90%",
+        width: "100%",
+        height: 44,
         paddingLeft: 12,
         paddingRight: 12,
         marginTop: 10,
         marginBottom: 10,
         borderRadius: 50,
-        height: 35,
         borderColor: "#79F146",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
@@ -87,6 +92,31 @@ const styles = StyleSheet.create({
         color: "#D47A7A",
         fontWeight: "bold",
         fontSize: 18, 
+    },
+    viewPreTip: {
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 10
+    },
+
+    // Dropdow
+    dropdow: {
+        width: "45%",
+        paddingHorizontal: 15,
+        height: 40,
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: "#79F146"
+    },
+    placeholderStyle: {
+        color: "#0B1C10",
+        fontSize: 14
+    },
+    selectedTextStyle: {
+        color: "#0B1C10",
+        fontSize: 14
     }
 })
 

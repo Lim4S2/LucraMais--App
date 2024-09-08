@@ -47,25 +47,6 @@ export default function Carrinho({ navigation }) {
     
     const [selectedRadio, setSelectedRadio] = React.useState(3)
 
-    const [dinheiro, setDinheiro] = React.useState(0)
-    const [pix, setPix] = React.useState(0)
-    const [cartao, setCartao] = React.useState(0)
-
-    const formaPagamento = () => {
-        if (selectedRadio == 1) {
-            setDinheiro++
-            console.log(dinheiro)
-        }
-        if (selectedRadio == 2) {
-            setPix = setPix + 1
-            console.log(pix)
-        }
-        if (selectedRadio == 3) {
-            setCartao = setCartao + 1
-            console.log(cartao)
-        }
-    }
-
     return (
         <View style={{ height: "100%" }}>
             <View style={styles.container}>
@@ -160,9 +141,6 @@ export default function Carrinho({ navigation }) {
                 <TouchableOpacity style={styles.btnVender}
                     onPress={() => navigation.navigate("Venda")}>
                     <Text style={styles.textButton}>Vender</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={formaPagamento}>
-                    <Text>Teste</Text>
                 </TouchableOpacity>
             </View>
         </View>
