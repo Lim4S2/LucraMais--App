@@ -39,13 +39,13 @@ export default function AtualizarProd({ route, navigation }) {
                 <Text style={styles.titleText}>Atualizar Produto</Text>
             </View>
             
-            <View style={styles.inputContainer}>
+            <View style={styles.form}>
                 <Text style={styles.label}>Nome do Produto</Text>
                 <TextInput
                     value={name}
                     onChangeText={setName}
                     placeholder="Nome do Produto"
-                    style={styles.textInput}
+                    style={styles.input}
                 />
             </View>
             
@@ -55,7 +55,7 @@ export default function AtualizarProd({ route, navigation }) {
                     value={description}
                     onChangeText={setDescription}
                     placeholder="Descrição"
-                    style={styles.textInput}
+                    style={styles.input}
                 />
             </View>
             
@@ -66,7 +66,7 @@ export default function AtualizarProd({ route, navigation }) {
                     onChangeText={setQuantity}
                     placeholder="Quantidade"
                     keyboardType="numeric"
-                    style={styles.textInput}
+                    style={styles.input}
                 />
             </View>
             
@@ -77,7 +77,7 @@ export default function AtualizarProd({ route, navigation }) {
                     onChangeText={setPrice}
                     placeholder="Preço"
                     keyboardType="numeric"
-                    style={styles.textInput}
+                    style={styles.input}
                 />
             </View>
             
@@ -87,15 +87,15 @@ export default function AtualizarProd({ route, navigation }) {
                     value={category}
                     onChangeText={setCategory}
                     placeholder="Categoria"
-                    style={styles.textInput}
+                    style={styles.input}
                 />
             </View>
             
-            <View style={styles.buttonContainer}>
-                <View style={styles.buttonUpdate}>
+            <View style={styles.buttons}>
+                <View style={styles.btnCad}>
                     <Button title="Atualizar" onPress={handleUpdateProduct} color="#FFF" />
                 </View>
-                <View style={styles.buttonCancel}>
+                <View style={styles.btnCancel}>
                     <Button title="Cancelar" onPress={() => navigation.goBack()} color="#FFF" />
                 </View>
             </View>
