@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 20,
         alignItems: "center",
-        height: 380,
+        height: "auto",
         width: "80%",
         justifyContent: "center",
         // sombra - shadow
@@ -47,11 +47,17 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: "100%",
     },
+    label: {
+        fontSize: 16,
+        fontWeight: "bold",
+        color: "#6B983C",
+        marginTop: 8
+    },
     input: {
         width: "90%",
         paddingLeft: 12,
         paddingRight: 12,
-        marginTop: 10,
+        marginTop: 5,
         marginBottom: 10,
         borderRadius: 50,
         height: 35,

@@ -172,4 +172,14 @@ app.listen(port, () => {
   price DECIMAL(10, 2) NOT NULL,
   saleType VARCHAR(50),
   category VARCHAR(100)
-); */}
+); 
+
+  CREATE TABLE users (
+      id        INT AUTO_INCREMENT PRIMARY KEY,
+      comercio  VARCHAR(50) NOT NULL,
+      email     VARCHAR(100) NOT NULL,
+      cpf       CHAR(11) NOT NULL,
+      senha     VARCHAR(40) NOT NULL
+  );
+
+*/}

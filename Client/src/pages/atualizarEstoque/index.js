@@ -36,59 +36,54 @@ export default function AtualizarProd({ route, navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
+                <Text style={styles.setaEsq} onPress={() => navigation.navigate("Estoque")}>➱</Text>
                 <Text style={styles.titleText}>Atualizar Produto</Text>
             </View>
             
             <View style={styles.form}>
-                <Text style={styles.label}>Nome do Produto</Text>
-                <TextInput
-                    value={name}
-                    onChangeText={setName}
-                    placeholder="Nome do Produto"
-                    style={styles.input}
-                />
-            </View>
+                <View style={styles.textBox}>
+                    <Text style={{...styles.label, marginTop: 20}}>Nome do Produto</Text>
+                    <TextInput
+                        value={name}
+                        onChangeText={setName}
+                        placeholder="Nome do Produto"
+                        style={styles.input}
+                    />
+
+                    <Text style={styles.label}>Descrição</Text>
+                    <TextInput
+                        value={description}
+                        onChangeText={setDescription}
+                        placeholder="Descrição"
+                        style={styles.input}
+                    />
             
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Descrição</Text>
-                <TextInput
-                    value={description}
-                    onChangeText={setDescription}
-                    placeholder="Descrição"
-                    style={styles.input}
-                />
-            </View>
+                    <Text style={styles.label}>Quantidade</Text>
+                    <TextInput
+                        value={quantity}
+                        onChangeText={setQuantity}
+                        placeholder="Quantidade"
+                        keyboardType="numeric"
+                        style={styles.input}
+                    />        
             
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Quantidade</Text>
-                <TextInput
-                    value={quantity}
-                    onChangeText={setQuantity}
-                    placeholder="Quantidade"
-                    keyboardType="numeric"
-                    style={styles.input}
-                />
-            </View>
+                    <Text style={styles.label}>Preço</Text>
+                    <TextInput
+                        value={price}
+                        onChangeText={setPrice}
+                        placeholder="Preço"
+                        keyboardType="numeric"
+                        style={styles.input}
+                    />     
             
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Preço</Text>
-                <TextInput
-                    value={price}
-                    onChangeText={setPrice}
-                    placeholder="Preço"
-                    keyboardType="numeric"
-                    style={styles.input}
-                />
-            </View>
-            
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Categoria</Text>
-                <TextInput
-                    value={category}
-                    onChangeText={setCategory}
-                    placeholder="Categoria"
-                    style={styles.input}
-                />
+                    <Text style={styles.label}>Categoria</Text>
+                    <TextInput
+                        value={category}
+                        onChangeText={setCategory}
+                        placeholder="Categoria"
+                        style={{...styles.input, marginBottom: 20}}
+                    />
+                </View>
             </View>
             
             <View style={styles.buttons}>
