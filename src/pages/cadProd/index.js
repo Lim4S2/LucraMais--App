@@ -149,7 +149,7 @@ export default function Produto({navigation}) {
                         cursorColor={"#79F146"}
                         onChange={text => setDescricao(text)}
                     />
-            
+                    
                     <FloatingLabelInput
                         label="Quantidade"
                         value={quant}
@@ -163,7 +163,7 @@ export default function Produto({navigation}) {
                         labelStyles={{
                             backgroundColor: "#fff",
                             paddingHorizontal: 5,
-                            paddingBottom: 8
+                            //paddingBottom: 8
                         }}
                         keyboardType="numeric"
                         cursorColor={"#79F146"} 

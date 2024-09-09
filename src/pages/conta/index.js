@@ -13,7 +13,7 @@ export default function Conta({navigation}) {
     )
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <TouchableOpacity onPress={() => navigation.navigate("Home")}>
                 <Image source={require("../../images/setaesq.png")}
                     style={{ height: 30, width: 30 }} />
@@ -35,7 +35,7 @@ export default function Conta({navigation}) {
                 <Option icon="google" label="Google" />
                 <Option icon="exit-to-app" label="Sair" />
             </View>
-        </ScrollView>
+        </View>
 
     )
 }

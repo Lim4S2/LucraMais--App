@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     dropdow: {
         width: "45%",
         paddingHorizontal: 15,
-        height: 40,
+        height: 44,
         borderRadius: 50,
         borderWidth: 2,
         borderColor: "#79F146"
