@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { Pressable, Text, View, TextInput, TouchableOpacity, Keyboard, Animated } from "react-native"
+import { Pressable, Text, View, TouchableOpacity, Keyboard, Animated } from "react-native"
 import { FloatingLabelInput } from "react-native-floating-label-input"
 import { TextInputMask } from "react-native-masked-text"
 import { SelectCountry } from "react-native-element-dropdown"
