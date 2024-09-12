@@ -1,10 +1,10 @@
-
 import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingBottom: 100
+      paddingBottom: 100,
+      marginTop: 55
     },
     profileContainer: {
       flexDirection: 'row',
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
       padding: 20,
       borderBottomWidth: 1,
       borderBottomColor: '#eee',
-      marginTop: 10
+      marginTop: 50
     },
     profileImage: {
       width: 70,

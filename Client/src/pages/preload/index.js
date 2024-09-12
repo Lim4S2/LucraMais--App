@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { View, Image, Text, Animated } from "react-native";
 
@@ -10,7 +11,7 @@ export default function Preload({navigation}) {
     const [carregamento, setCarregamento] = useState( new Animated.Value(0))
     const [terra, setTerra] = useState( new Animated.Value(0))
 
-    Animated.sequence([
+    /*Animated.sequence([
         Animated.timing(
             terra, {
                 toValue: 370,
@@ -23,31 +24,29 @@ export default function Preload({navigation}) {
                 duration: 3500
             }
         )
-    ]).start()
+    ]).start()*/
 
     return(
         <View style={styles.container}>
             <Image source={require("../../images/logo.png")} style={styles.logo}/>
-            
-            <Animatable.View style={styles.containerLoading} animation="fadeInLeft">
 
-            <Animated.View style={{ marginLeft: carregamento}}>
+            <View style={styles.carregamento}>
                 <LottieView source={require("../../components/screenSplash/animation.json")} 
                     style={styles.trator}
                     onAnimationFinish={() => navigation.navigate("Login")}
                     autoPlay loop={false}
                 />
-            </Animated.View>
+            </View>
 
-                <Animated.Image
+                {/*<Animated.Image
                     source={require("../../images/terra.png")} style={{...styles.terra, width: terra}}/>
-            </Animatable.View> 
+            </Animatable.View> */}
 
             <Text onPress={() => navigation.navigate("Login")}
                 style={{
                     padding: 10
                 }}
-                >Próxima página</Text>
+            >Próxima página</Text>
         </View>
     )
 }

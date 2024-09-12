@@ -2,24 +2,28 @@ import { StyleSheet } from "react-native"
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#6B983C",
-        borderRadius: 50,
-        justifyContent: "center",
-        alignItems:"center",
-        width: "40%",
-        height: "10%",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginTop: "6%",
+        alignItems: 'center',
+        paddingBottom: 10,
+        paddingLeft: 25,
+        paddingRight: 10,
+        paddingTop: 30,
+        borderBottomWidth: 1
     },
-    
-    buttom:{
-        justifyContent: "center",
-        alignItems:"center",
-  
-    },
-
     text: {
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: 'bold',
-        color: 'white'
+        color: "white"
+    },
+    btnFechar: {
+        width: "60%",
+        height: 50,
+        backgroundColor: "green",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 20,
     }
 })
 
