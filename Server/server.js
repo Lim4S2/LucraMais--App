@@ -156,6 +156,19 @@ app.put('/produtos/:id', async (req, res) => {
       res.status(500).json({ message: 'Erro no servidor' });
   }
 });
+
+app.get('/produtos', async (req, res) => {
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+    const [results] = await connection.execute('SELECT * FROM produtos');
+    await connection.end();
+    res.json(results); // Retorna os produtos em formato JSON
+  } catch (error) {
+    console.error('Erro ao obter produtos:', error);
+    res.status(500).json({ message: 'Erro no servidor' });
+  }
+});
+
 //FIM DO ESTOQUE
 
 
