@@ -28,7 +28,7 @@ export default function Fechamento({ navigation, route }) {
     const abertura = openingMoment ? openingMoment.format('HH:mm - DD/MM/YYYY') : "Não aberto";
     const fechamento = closingMoment ? closingMoment.format('HH:mm') : "Não fechado";
     const horasTrabalhadas = openingMoment && closingMoment
-        ? moment.duration(closingMoment.diff(openingMoment)).humanize()
+        ? `${moment.duration(closingMoment.diff(openingMoment)).hours()}h ${moment.duration(closingMoment.diff(openingMoment)).minutes()}m`
         : "Não disponível";
 
     const paymentMethods = [

@@ -139,38 +139,44 @@ app.put('/produtos/:id', async (req, res) => {
   const { name, description, quantity, price, category } = req.body;
 
   try {
-      const connection = await mysql.createConnection(dbConfig);
-      const [result] = await connection.execute(
-          'UPDATE produtos SET name = ?, description = ?, quantity = ?, price = ?, category = ? WHERE id = ?',
-          [name, description, quantity, price, category, id]
-      );
-      await connection.end();
-
-      if (result.affectedRows === 0) {
-          return res.status(404).json({ message: 'Produto não encontrado' });
-      }
-
-      res.status(200).json({ message: 'Produto atualizado com sucesso' });
-  } catch (error) {
-      console.error('Erro ao atualizar produto:', error);
-      res.status(500).json({ message: 'Erro no servidor' });
-  }
-});
-
-app.get('/produtos', async (req, res) => {
-  try {
     const connection = await mysql.createConnection(dbConfig);
-    const [results] = await connection.execute('SELECT * FROM produtos');
+    const [result] = await connection.execute(
+      'UPDATE produtos SET name = ?, description = ?, quantity = ?, price = ?, category = ? WHERE id = ?',
+      [name, description, quantity, price, category, id]
+    );
     await connection.end();
-    res.json(results); // Retorna os produtos em formato JSON
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'Produto não encontrado' });
+    }
+
+    res.status(200).json({ message: 'Produto atualizado com sucesso' });
   } catch (error) {
-    console.error('Erro ao obter produtos:', error);
+    console.error('Erro ao atualizar produto:', error);
     res.status(500).json({ message: 'Erro no servidor' });
   }
 });
 
-//FIM DO ESTOQUE
-
+// Registrar Venda
+app.post('/api/vendas', async (req, res) => {
+  const { vendas, formaPagamento } = req.body;
+  
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+    
+    const query = 'INSERT INTO vendas (produtoId, quantidade, preco, formaPagamento) VALUES (?, ?, ?, ?)';
+    
+    for (let venda of vendas) {
+      await connection.execute(query, [venda.id, venda.quantidade, venda.price, formaPagamento]);
+    }
+    
+    await connection.end();
+    res.status(200).send('Venda registrada com sucesso!');
+  } catch (error) {
+    console.error('Erro ao registrar venda:', error);
+    res.status(500).send('Erro ao registrar venda.');
+  }
+});
 
 app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
@@ -194,4 +200,24 @@ CREATE TABLE users (
     cpf CHAR(11) NOT NULL,
     senha VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE fechamento (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    openingTime DATETIME NOT NULL,
+    closingTime DATETIME NOT NULL,
+    totalSales DECIMAL(10, 2) NOT NULL,
+    revenue DECIMAL(10, 2) NOT NULL
+);
+
+CREATE TABLE vendas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fechamentoId INT,
+    produtoId INT,
+    quantidade INT NOT NULL,
+    preco DECIMAL(10, 2) NOT NULL,
+    formaPagamento INT,
+    FOREIGN KEY (fechamentoId) REFERENCES fechamento(id),
+    FOREIGN KEY (produtoId) REFERENCES produtos(id)
+);
+
 */}

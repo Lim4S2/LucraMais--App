@@ -8,7 +8,7 @@ import moment from "moment";
 export default function Venda({ navigation, route }) {
     const [produtos, setProdutos] = useState([]);
     const [carrinho, setCarrinho] = useState([]);
-    const [openingTime] = useState(moment().format()); // Obtendo o horário de abertura
+    const [openingTime] = useState(moment()); // Obtendo o horário de abertura
     const { carrinhoAtualizado } = route.params || {}; // Recebendo o carrinho atualizado
 
     useEffect(() => {
@@ -59,13 +59,48 @@ export default function Venda({ navigation, route }) {
         });
     };
 
-    const fecharCaixa = () => {
-        navigation.navigate("Fechamento", {
-            openingTime,
-            carrinho
+    const fecharCaixa = async () => {
+        const totalSales = {
+            quantity: carrinho.reduce((acc, item) => acc + item.quantidade, 0),
+            total: carrinho.reduce((acc, item) => acc + item.price * item.quantidade, 0).toFixed(2)
+        };
+    
+        const receitaTotal = carrinho.reduce((acc, item) => acc + item.price * item.quantidade, 0).toFixed(2);
+    
+        const closingTime = moment(); // Registra o horário de fechamento
+    
+        console.log("Dados para Fechamento:", {
+            carrinho,
+            openingTime: openingTime.format(),
+            closingTime: closingTime.format(),
+            totalSales,
+            revenue: receitaTotal
         });
-    };
+    
+        try {
+            const response = await axios.post('http://10.0.2.2:5000/api/vendas', {
+                vendas: carrinho,
+                openingTime: openingTime.format(),
+                closingTime: closingTime.format(),
+                totalSales,
+                revenue: receitaTotal
+            });
 
+            console.log('Resposta do servidor:', response.data);
+
+            navigation.navigate("Fechamento", {
+                carrinho,
+                openingTime: openingTime.format(),
+                closingTime: closingTime.format(),
+                totalSales,
+                revenue: receitaTotal
+            });
+        } catch (error) {
+            console.error('Erro ao registrar fechamento:', error.response ? error.response.data : error.message);
+            Alert.alert('Erro', 'Não foi possível registrar o fechamento.');
+        }
+    };
+    
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.container}>
