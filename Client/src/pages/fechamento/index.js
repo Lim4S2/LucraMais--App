@@ -1,34 +1,55 @@
-import React from "react";
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, TouchableOpacity, Image, ScrollView, Alert } from "react-native";
+import axios from "axios";
 import styles from "./style";
 import moment from "moment";
 
 export default function Fechamento({ navigation, route }) {
-    const {
-        carrinho = [],
-        openingTime,
-        closingTime,
-        expenses = { total: 0, items: [] },
-        totalSales = { quantity: 0, total: 0 },
-        revenue = 0
-    } = route.params || {};
+    const [dadosVendas, setDadosVendas] = useState([]);
+    const [receitaTotal, setReceitaTotal] = useState("0.00");
+    const [totalSales, setTotalSales] = useState({ quantity: 0, total: "0.00" });
+    const [openingTime, setOpeningTime] = useState(null);
+    const [closingTime, setClosingTime] = useState(null);
+
+    useEffect(() => {
+        const fetchFechamento = async () => {
+            try {
+                const response = await axios.get('http://10.0.2.2:5000/api/vendas'); // Altere a URL conforme necessário
+                const vendas = response.data;
+
+                // Assume-se que os dados incluem openingTime e closingTime
+                setOpeningTime(moment(vendas.openingTime));
+                setClosingTime(moment(vendas.closingTime));
+
+                // Calcular receita total e vendas totais
+                const receita = vendas.vendas.reduce((total, item) => total + item.price * item.quantidade, 0).toFixed(2);
+                const totalSalesData = {
+                    quantity: vendas.vendas.reduce((acc, item) => acc + item.quantidade, 0),
+                    total: receita
+                };
+
+                setDadosVendas(vendas.vendas);
+                setReceitaTotal(receita);
+                setTotalSales(totalSalesData);
+            } catch (error) {
+                console.error('Erro ao buscar dados de fechamento:', error);
+                Alert.alert('Erro', 'Não foi possível carregar os dados de fechamento.');
+            }
+        };
+
+        fetchFechamento();
+    }, []);
 
     // Função para calcular a quantidade total de itens vendidos por forma de pagamento
     const calcularQuantidadePorFormaPagamento = (forma) => {
-        return carrinho.filter(item => item.formaPagamento === forma).reduce((total, item) => total + item.quantidade, 0);
+        return dadosVendas.filter(item => item.formaPagamento === forma).reduce((total, item) => total + item.quantidade, 0);
     };
 
-    // Calcula receita total do dia
-    const receitaTotal = carrinho.reduce((total, item) => total + item.price * item.quantidade, 0).toFixed(2);
-
     // Formata as datas e horas
-    const openingMoment = openingTime ? moment(openingTime) : null;
-    const closingMoment = closingTime ? moment(closingTime) : null;
-
-    const abertura = openingMoment ? openingMoment.format('HH:mm - DD/MM/YYYY') : "Não aberto";
-    const fechamento = closingMoment ? closingMoment.format('HH:mm') : "Não fechado";
-    const horasTrabalhadas = openingMoment && closingMoment
-        ? `${moment.duration(closingMoment.diff(openingMoment)).hours()}h ${moment.duration(closingMoment.diff(openingMoment)).minutes()}m`
+    const abertura = openingTime ? openingTime.format('HH:mm - DD/MM/YYYY') : "Não disponível";
+    const fechamento = closingTime ? closingTime.format('HH:mm') : "Não disponível";
+    const horasTrabalhadas = openingTime && closingTime
+        ? `${moment.duration(closingTime.diff(openingTime)).hours()}h ${moment.duration(closingTime.diff(openingTime)).minutes()}m`
         : "Não disponível";
 
     const paymentMethods = [

@@ -182,8 +182,23 @@ app.listen(port, () => {
   console.log(`Servidor rodando na porta ${port}`);
 });
 
+app.get('/api/vendas', async (req, res) => {
+  try {
+      // Você pode ajustar a lógica para filtrar vendas específicas, se necessário
+      const vendas = await Venda.findOne().sort({ closingTime: -1 }); // Pega a venda mais recente
+      if (!vendas) {
+          return res.status(404).json({ message: 'Nenhuma venda encontrada.' });
+      }
+      res.json(vendas);
+  } catch (error) {
+      console.error('Erro ao buscar vendas:', error);
+      res.status(500).json({ message: 'Erro ao buscar vendas.' });
+  }
+});
 
-{/*CREATE TABLE produtos (
+
+{/*
+CREATE TABLE produtos (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255)NOT NULL,
