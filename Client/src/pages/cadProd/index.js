@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Pressable, Text, TextInput, View, Keyboard, TouchableOpacity, Alert } from "react-native";
+import { TextInputMask } from "react-native-masked-text";
 import axios from "axios";
 import styles from "./style";
 
@@ -81,13 +82,21 @@ export default function Produto({ navigation }) {
                         placeholderTextColor={"#0C1B10"}
                     />
 
-                    <TextInput
+                    <TextInputMask
+                        type={"money"}
                         style={styles.input}
                         value={price}
                         onChangeText={setPrice}
                         keyboardType="numeric"
-                        placeholder="Preço"
-                        placeholderTextColor={"#0C1B10"}
+                        options={{
+                            precision: 2,
+                            separator: ',',
+                            delimiter: '.',
+                            unit: 'R$',
+                            suffixUnit: ''
+                          }}
+                        //placeholder="Preço"
+                        //placeholderTextColor={"#0C1B10"}
                     />
 
                     <TextInput

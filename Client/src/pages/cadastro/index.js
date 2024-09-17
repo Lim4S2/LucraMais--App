@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler, Alert } from "react-native";
+import { TextInputMask } from "react-native-masked-text"
 import { registerUser } from '../cadastro/cadApi'; 
 import styles from "./style";
 
@@ -9,6 +10,8 @@ export default function Cadastro({ navigation }) {
     const [cpf, setCpf] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
+
+    const cpfRef = useRef(null)
 
     useEffect(() => {
         const backAction = () => {
@@ -20,13 +23,19 @@ export default function Cadastro({ navigation }) {
     }, []);
 
     const handleSubmit = async () => {
+
+        // CPF sem formatação
+        const unmasked = cpfRef?.current.getRawValue()
+        // CPF validação caso quiser colocar
+        const cpfValid = cpfRef?.current.isValid()
+
         if (senha !== confirmarSenha) {
             Alert.alert("Erro", "As senhas não coincidem.");
             return;
         }
 
         try {
-            const result = await registerUser(comercio, email, cpf, senha);
+            const result = await registerUser(comercio, email, unmasked, senha);
             Alert.alert("Sucesso", result.message);
             navigation.navigate("Login"); 
         } catch (error) {
@@ -60,11 +69,13 @@ export default function Cadastro({ navigation }) {
                     />
 
                     <Text style={styles.legend}>CPF</Text>
-                    <TextInput
+                    <TextInputMask
+                        type={"cpf"}
                         value={cpf}
                         onChangeText={setCpf}
                         keyboardType="numeric"
                         style={styles.input}
+                        ref={cpfRef}
                     />
 
                     <Text style={styles.legend}>Senha</Text>
