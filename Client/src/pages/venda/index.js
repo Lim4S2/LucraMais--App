@@ -60,13 +60,8 @@ export default function Venda({ navigation, route }) {
     };
 
     const fecharCaixa = async () => {
-        const totalSales = {
-            quantity: carrinho.reduce((acc, item) => acc + item.quantidade, 0),
-            total: carrinho.reduce((acc, item) => acc + item.price * item.quantidade, 0).toFixed(2)
-        };
-    
+        const totalSales = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
         const receitaTotal = carrinho.reduce((acc, item) => acc + item.price * item.quantidade, 0).toFixed(2);
-    
         const closingTime = moment(); // Registra o horário de fechamento
     
         console.log("Dados para Fechamento:", {
@@ -78,29 +73,30 @@ export default function Venda({ navigation, route }) {
         });
     
         try {
-            const response = await axios.post('http://10.0.2.2:5000/api/vendas', {
-                vendas: carrinho,
+            const response = await axios.post('http://10.0.2.2:5000/api/fechamento', {
                 openingTime: openingTime.format(),
                 closingTime: closingTime.format(),
-                totalSales,
+                totalSales, // Total de itens vendidos
                 revenue: receitaTotal
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             });
-
+    
             console.log('Resposta do servidor:', response.data);
-
+    
+            // Navegar para a tela de fechamento
             navigation.navigate("Fechamento", {
-                carrinho,
                 openingTime: openingTime.format(),
-                closingTime: closingTime.format(),
-                totalSales,
-                revenue: receitaTotal
+                closingTime: closingTime.format()
             });
         } catch (error) {
             console.error('Erro ao registrar fechamento:', error.response ? error.response.data : error.message);
             Alert.alert('Erro', 'Não foi possível registrar o fechamento.');
         }
     };
-    
+
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.container}>

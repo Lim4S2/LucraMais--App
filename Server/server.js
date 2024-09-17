@@ -6,6 +6,14 @@ const mysql = require('mysql2/promise');
 const app = express();
 const port = 5000;
 
+// Configurações do banco de dados
+const dbConfig = {
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'agroclient'
+};
+
 // Middleware
 app.use(bodyParser.json());
 app.use(cors({
@@ -14,11 +22,9 @@ app.use(cors({
   allowedHeaders: ['Content-Type']
 }));
 
-const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'agroclient'
+// Conexão com o banco de dados
+const getDbConnection = async () => {
+  return mysql.createConnection(dbConfig);
 };
 
 // Registro de Usuário
@@ -26,7 +32,7 @@ app.post('/api/register', async (req, res) => {
   const { comercio, email, cpf, senha } = req.body;
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await getDbConnection();
     const [existingUser] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
 
     if (existingUser.length > 0) {
@@ -53,7 +59,7 @@ app.post('/api/login', async (req, res) => {
   const { email, senha } = req.body;
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await getDbConnection();
     const [users] = await connection.execute('SELECT * FROM users WHERE email = ?', [email]);
 
     if (users.length === 0) {
@@ -86,7 +92,7 @@ app.post('/api/products', async (req, res) => {
   }
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await getDbConnection();
     await connection.execute(
       'INSERT INTO produtos (name, description, quantity, price, saleType, category) VALUES (?, ?, ?, ?, ?, ?)',
       [name, description, quantity, price, saleType, category]
@@ -103,7 +109,7 @@ app.post('/api/products', async (req, res) => {
 // ESTOQUE DE PRODUTO
 app.get('/produtos', async (req, res) => {
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await getDbConnection();
     const [results] = await connection.execute('SELECT * FROM produtos');
     await connection.end();
     res.json(results);
@@ -118,7 +124,7 @@ app.delete('/produtos/:id', async (req, res) => {
   const productId = req.params.id;
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await getDbConnection();
     const [result] = await connection.execute('DELETE FROM produtos WHERE id = ?', [productId]);
     await connection.end();
 
@@ -139,7 +145,7 @@ app.put('/produtos/:id', async (req, res) => {
   const { name, description, quantity, price, category } = req.body;
 
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await getDbConnection();
     const [result] = await connection.execute(
       'UPDATE produtos SET name = ?, description = ?, quantity = ?, price = ?, category = ? WHERE id = ?',
       [name, description, quantity, price, category, id]
@@ -162,7 +168,7 @@ app.post('/api/vendas', async (req, res) => {
   const { vendas, formaPagamento } = req.body;
   
   try {
-    const connection = await mysql.createConnection(dbConfig);
+    const connection = await getDbConnection();
     
     const query = 'INSERT INTO vendas (produtoId, quantidade, preco, formaPagamento) VALUES (?, ?, ?, ?)';
     
@@ -178,22 +184,87 @@ app.post('/api/vendas', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
+// Registrar Fechamento
+app.post('/api/fechamento', async (req, res) => {
+  try {
+    const connection = await mysql.createConnection(dbConfig);
+
+    // Cria um novo fechamento
+    const [result] = await connection.execute(
+      'INSERT INTO fechamento (openingTime, closingTime, totalSales, revenue) VALUES (NOW(), NOW(), 0, 0)'
+    );
+    const fechamentoId = result.insertId;
+
+    // Atualiza as vendas com o fechamentoId gerado
+    await connection.execute(
+      'UPDATE vendas SET fechamentoId = ? WHERE fechamentoId IS NULL',
+      [fechamentoId]
+    );
+
+    // Recupera as vendas atualizadas para o fechamento
+    const [vendas] = await connection.execute(
+      'SELECT * FROM vendas WHERE fechamentoId = ?',
+      [fechamentoId]
+    );
+
+    // Calcula a receita total e total de vendas
+    const totalSales = vendas.reduce((total, venda) => total + venda.quantidade, 0);
+    const revenue = vendas.reduce((total, venda) => total + parseFloat(venda.preco) * venda.quantidade, 0).toFixed(2);
+
+    // Atualiza o fechamento com os valores calculados
+    await connection.execute(
+      'UPDATE fechamento SET totalSales = ?, revenue = ? WHERE id = ?',
+      [totalSales, revenue, fechamentoId]
+    );
+
+    // Quantidade de itens por forma de pagamento
+    const quantidadePorFormaPagamento = vendas.reduce((acc, venda) => {
+      const formaPagamento = venda.formaPagamento;
+      if (!acc[formaPagamento]) {
+        acc[formaPagamento] = 0;
+      }
+      acc[formaPagamento] += venda.quantidade;
+      return acc;
+    }, {});
+
+    await connection.end();
+
+    res.json({
+      receitaTotal: revenue,
+      quantidadePorFormaPagamento
+    });
+  } catch (error) {
+    console.error('Erro ao registrar fechamento:', error);
+    res.status(500).json({ message: 'Erro ao registrar fechamento.' });
+  }
 });
 
-app.get('/api/vendas', async (req, res) => {
+
+// Buscar Fechamento
+app.get('/api/fechamento', async (req, res) => {
   try {
-      // Você pode ajustar a lógica para filtrar vendas específicas, se necessário
-      const vendas = await Venda.findOne().sort({ closingTime: -1 }); // Pega a venda mais recente
-      if (!vendas) {
-          return res.status(404).json({ message: 'Nenhuma venda encontrada.' });
-      }
-      res.json(vendas);
+    const connection = await getDbConnection();
+    // Consulta para obter o fechamento mais recente
+    const [results] = await connection.execute('SELECT * FROM fechamento ORDER BY id DESC LIMIT 1');
+    await connection.end();
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: 'Nenhum fechamento encontrado' });
+    }
+
+    res.status(200).json(results[0]); // Envia o fechamento mais recente
   } catch (error) {
-      console.error('Erro ao buscar vendas:', error);
-      res.status(500).json({ message: 'Erro ao buscar vendas.' });
+    console.error('Erro ao buscar fechamentos:', error);
+    res.status(500).json({ message: 'Erro no servidor' });
   }
+});
+
+
+//FIM DO ESTOQUE
+
+
+app.listen(port, () => {
+  console.log(`Servidor rodando na porta ${port}`);
 });
 
 
