@@ -12,13 +12,11 @@ export default function Venda({ navigation, route }) {
     const { carrinhoAtualizado } = route.params || {}; // Recebendo o carrinho atualizado
 
     useEffect(() => {
-        // Atualizando o carrinho com os dados recebidos
         if (carrinhoAtualizado) {
             setCarrinho(carrinhoAtualizado);
         }
     }, [carrinhoAtualizado]);
 
-    // Função para buscar os produtos do backend
     const fetchProdutos = async () => {
         try {
             const response = await axios.get('http://10.0.2.2:5000/produtos');
@@ -76,7 +74,7 @@ export default function Venda({ navigation, route }) {
             const response = await axios.post('http://10.0.2.2:5000/api/fechamento', {
                 openingTime: openingTime.format(),
                 closingTime: closingTime.format(),
-                totalSales, // Total de itens vendidos
+                totalSales,
                 revenue: receitaTotal
             }, {
                 headers: {
@@ -95,7 +93,7 @@ export default function Venda({ navigation, route }) {
             console.error('Erro ao registrar fechamento:', error.response ? error.response.data : error.message);
             Alert.alert('Erro', 'Não foi possível registrar o fechamento.');
         }
-    };
+    };    
 
     return (
         <View style={{ flex: 1 }}>

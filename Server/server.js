@@ -107,6 +107,8 @@ app.post('/api/products', async (req, res) => {
 });
 
 // ESTOQUE DE PRODUTO
+
+//requisição dos produtos para tela venda.
 app.get('/produtos', async (req, res) => {
   try {
     const connection = await getDbConnection();
@@ -119,7 +121,7 @@ app.get('/produtos', async (req, res) => {
   }
 });
 
-// Excluir
+// exclusão de produtos
 app.delete('/produtos/:id', async (req, res) => {
   const productId = req.params.id;
 
@@ -139,7 +141,7 @@ app.delete('/produtos/:id', async (req, res) => {
   }
 });
 
-// EDITA O PRODUTO LÁ DO ESTOQUE
+// edição do produto
 app.put('/produtos/:id', async (req, res) => {
   const { id } = req.params;
   const { name, description, quantity, price, category } = req.body;
@@ -165,100 +167,89 @@ app.put('/produtos/:id', async (req, res) => {
 
 // Registrar Venda
 app.post('/api/vendas', async (req, res) => {
-  const { vendas, formaPagamento } = req.body;
-  
+  let connection;
+
   try {
-    const connection = await getDbConnection();
+    const { vendas, formaPagamento } = req.body;
+
+    // Cria uma conexão
+    connection = await getDbConnection();
     
-    const query = 'INSERT INTO vendas (produtoId, quantidade, preco, formaPagamento) VALUES (?, ?, ?, ?)';
-    
-    for (let venda of vendas) {
-      await connection.execute(query, [venda.id, venda.quantidade, venda.price, formaPagamento]);
+    // Início da transação
+    await connection.beginTransaction();
+
+    // Registro das vendas
+    for (const venda of vendas) {
+      const { id, quantidade, price } = venda;
+      await connection.execute(
+        'INSERT INTO vendas (produtoId, quantidade, preco, formaPagamento) VALUES (?, ?, ?, ?)',
+        [id, quantidade, price, formaPagamento]
+      );
     }
-    
-    await connection.end();
-    res.status(200).send('Venda registrada com sucesso!');
+
+    // Finaliza a transação
+    await connection.commit();
+
+    res.status(200).json({ message: 'Venda registrada com sucesso!' });
   } catch (error) {
-    console.error('Erro ao registrar venda:', error);
-    res.status(500).send('Erro ao registrar venda.');
+    // Rollback em caso de erro
+    if (connection) await connection.rollback();
+    console.error('Erro ao registrar a venda:', error);
+    res.status(500).json({ error: 'Erro ao registrar a venda.' });
+  } finally {
+    if (connection) await connection.end();
   }
 });
 
-// Registrar Fechamento
+//Desgraça de fechamento que acabou com a minha vida
+//Cadastro do Fechamento (pegando os dados da tabela vendas)
 app.post('/api/fechamento', async (req, res) => {
+  const connection = await getDbConnection();
+
   try {
-    const connection = await mysql.createConnection(dbConfig);
+      const { openingTime, closingTime } = req.body;
 
-    // Cria um novo fechamento
-    const [result] = await connection.execute(
-      'INSERT INTO fechamento (openingTime, closingTime, totalSales, revenue) VALUES (NOW(), NOW(), 0, 0)'
-    );
-    const fechamentoId = result.insertId;
+      // Calcula totalSales e revenue por forma de pagamento
+      const [results] = await connection.execute(`
+          SELECT 
+              SUM(quantidade) AS totalSales,
+              SUM(preco * quantidade) AS revenue,
+              SUM(CASE WHEN formaPagamento = 1 THEN quantidade ELSE 0 END) AS salesCash,
+              SUM(CASE WHEN formaPagamento = 2 THEN quantidade ELSE 0 END) AS salesPix,
+              SUM(CASE WHEN formaPagamento = 3 THEN quantidade ELSE 0 END) AS salesCard
+          FROM vendas
+          WHERE DATE(vendaData) BETWEEN DATE(?) AND DATE(?)
+      `, [openingTime, closingTime]);
 
-    // Atualiza as vendas com o fechamentoId gerado
-    await connection.execute(
-      'UPDATE vendas SET fechamentoId = ? WHERE fechamentoId IS NULL',
-      [fechamentoId]
-    );
+      const { totalSales, revenue, salesCash, salesPix, salesCard } = results[0];
 
-    // Recupera as vendas atualizadas para o fechamento
-    const [vendas] = await connection.execute(
-      'SELECT * FROM vendas WHERE fechamentoId = ?',
-      [fechamentoId]
-    );
+      // Registro do fechamento
+      await connection.execute(
+          'INSERT INTO fechamento (openingTime, closingTime, totalSales, revenue, salesCash, salesPix, salesCard) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          [openingTime, closingTime, totalSales, revenue, salesCash, salesPix, salesCard]
+      );
 
-    // Calcula a receita total e total de vendas
-    const totalSales = vendas.reduce((total, venda) => total + venda.quantidade, 0);
-    const revenue = vendas.reduce((total, venda) => total + parseFloat(venda.preco) * venda.quantidade, 0).toFixed(2);
-
-    // Atualiza o fechamento com os valores calculados
-    await connection.execute(
-      'UPDATE fechamento SET totalSales = ?, revenue = ? WHERE id = ?',
-      [totalSales, revenue, fechamentoId]
-    );
-
-    // Quantidade de itens por forma de pagamento
-    const quantidadePorFormaPagamento = vendas.reduce((acc, venda) => {
-      const formaPagamento = venda.formaPagamento;
-      if (!acc[formaPagamento]) {
-        acc[formaPagamento] = 0;
-      }
-      acc[formaPagamento] += venda.quantidade;
-      return acc;
-    }, {});
-
-    await connection.end();
-
-    res.json({
-      receitaTotal: revenue,
-      quantidadePorFormaPagamento
-    });
+      res.status(200).json({ message: 'Fechamento registrado com sucesso!' });
   } catch (error) {
-    console.error('Erro ao registrar fechamento:', error);
-    res.status(500).json({ message: 'Erro ao registrar fechamento.' });
+      console.error('Erro ao registrar o fechamento:', error);
+      res.status(500).json({ error: 'Erro ao registrar o fechamento.' });
+  } finally {
+      connection.end();
   }
 });
 
-
-// Buscar Fechamento
+//Coleta de dados do fechamento
 app.get('/api/fechamento', async (req, res) => {
   try {
     const connection = await getDbConnection();
-    // Consulta para obter o fechamento mais recente
-    const [results] = await connection.execute('SELECT * FROM fechamento ORDER BY id DESC LIMIT 1');
+    const [results] = await connection.execute('SELECT * FROM fechamento');
     await connection.end();
-
-    if (results.length === 0) {
-      return res.status(404).json({ message: 'Nenhum fechamento encontrado' });
-    }
-
-    res.status(200).json(results[0]); // Envia o fechamento mais recente
+    res.status(200).json(results);
   } catch (error) {
-    console.error('Erro ao buscar fechamentos:', error);
+    console.error('Erro ao buscar fechamento:', error);
     res.status(500).json({ message: 'Erro no servidor' });
   }
 });
-
 
 //FIM DO ESTOQUE
 
@@ -288,22 +279,24 @@ CREATE TABLE users (
 );
 
 CREATE TABLE fechamento (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
     openingTime DATETIME NOT NULL,
     closingTime DATETIME NOT NULL,
-    totalSales DECIMAL(10, 2) NOT NULL,
-    revenue DECIMAL(10, 2) NOT NULL
+    totalSales INT(11) NOT NULL,
+    revenue DECIMAL(10,2) NOT NULL,
+    salesCash INT(11) NOT NULL DEFAULT 0,
+    salesPix INT(11) NOT NULL DEFAULT 0,
+    salesCard INT(11) NOT NULL DEFAULT 0
 );
 
 CREATE TABLE vendas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fechamentoId INT,
-    produtoId INT,
-    quantidade INT NOT NULL,
-    preco DECIMAL(10, 2) NOT NULL,
-    formaPagamento INT,
-    FOREIGN KEY (fechamentoId) REFERENCES fechamento(id),
-    FOREIGN KEY (produtoId) REFERENCES produtos(id)
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    produtoId INT(11) NOT NULL,
+    quantidade INT(11) NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    formaPagamento ENUM('PIX', 'Cartão', 'Dinheiro') NOT NULL,
+    vendaData DATETIME DEFAULT CURRENT_TIMESTAMP,
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 */}

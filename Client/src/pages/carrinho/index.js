@@ -5,10 +5,15 @@ import stylesList from "../venda/stylesList.js";
 import axios from "axios";
 
 export default function Carrinho({ navigation, route }) {
-    const { carrinho } = route.params || { carrinho: [] };
+    const { carrinho = [] } = route.params || { carrinho: [] }; // Garantir que carrinho não seja undefined
     const [selectedRadio, setSelectedRadio] = useState(null);
 
     const realizarVenda = async () => {
+        if (carrinho.length === 0) {
+            Alert.alert('Atenção', 'O carrinho está vazio.');
+            return;
+        }
+
         if (selectedRadio === null) {
             Alert.alert('Atenção', 'Selecione uma forma de pagamento.');
             return;
@@ -35,13 +40,14 @@ export default function Carrinho({ navigation, route }) {
 
             Alert.alert('Sucesso', 'Venda realizada com sucesso!');
             navigation.navigate("Venda", {
-                carrinhoAtualizado: []
+                carrinhoAtualizado: [] // Resetar o carrinho após a venda
             });
         } catch (error) {
-            console.error('Erro ao realizar a venda:', error);
-            Alert.alert('Erro', 'Não foi possível realizar a venda.');
+            console.error('Erro ao realizar a venda:', error.response?.data || error.message);
+            Alert.alert('Erro', 'Não foi possível realizar a venda. Tente novamente.');
         }
     };
+
 
     return (
         <View style={{ flex: 1 }}>
