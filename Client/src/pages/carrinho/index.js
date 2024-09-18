@@ -99,7 +99,7 @@ export default function Carrinho({ navigation, route }) {
                             <View style={styles.radio}>
                                 {selectedRadio === 1 ? <View style={styles.radioBg}></View> : null}
                             </View>
-                            <Text style={styles.textRadio}>Dinheiro</Text>
+                            <Text style={styles.textRadio}>PIX</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -108,7 +108,7 @@ export default function Carrinho({ navigation, route }) {
                             <View style={styles.radio}>
                                 {selectedRadio === 2 ? <View style={styles.radioBg}></View> : null}
                             </View>
-                            <Text style={styles.textRadio}>PIX</Text>
+                            <Text style={styles.textRadio}>Cartão</Text>
                         </View>
                     </TouchableOpacity>
 
@@ -117,7 +117,7 @@ export default function Carrinho({ navigation, route }) {
                             <View style={styles.radio}>
                                 {selectedRadio === 3 ? <View style={styles.radioBg}></View> : null}
                             </View>
-                            <Text style={styles.textRadio}>Cartão</Text>
+                            <Text style={styles.textRadio}>Dinheiro</Text>
                         </View>
                     </TouchableOpacity>
                 </View>

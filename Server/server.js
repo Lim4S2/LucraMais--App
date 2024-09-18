@@ -214,9 +214,9 @@ app.post('/api/fechamento', async (req, res) => {
           SELECT 
               SUM(quantidade) AS totalSales,
               SUM(preco * quantidade) AS revenue,
-              SUM(CASE WHEN formaPagamento = 1 THEN quantidade ELSE 0 END) AS salesCash,
-              SUM(CASE WHEN formaPagamento = 2 THEN quantidade ELSE 0 END) AS salesPix,
-              SUM(CASE WHEN formaPagamento = 3 THEN quantidade ELSE 0 END) AS salesCard
+              SUM(CASE WHEN formaPagamento = 3 THEN quantidade ELSE 0 END) AS salesCash,
+              SUM(CASE WHEN formaPagamento = 1 THEN quantidade ELSE 0 END) AS salesPix,
+              SUM(CASE WHEN formaPagamento = 2 THEN quantidade ELSE 0 END) AS salesCard
           FROM vendas
           WHERE DATE(vendaData) BETWEEN DATE(?) AND DATE(?)
       `, [openingTime, closingTime]);
@@ -241,15 +241,16 @@ app.post('/api/fechamento', async (req, res) => {
 //Coleta de dados do fechamento
 app.get('/api/fechamento', async (req, res) => {
   try {
-    const connection = await getDbConnection();
-    const [results] = await connection.execute('SELECT * FROM fechamento');
-    await connection.end();
-    res.status(200).json(results);
+    const connection = await getDbConnection(); // Obtém a conexão com o banco de dados
+    const [rows] = await connection.execute('SELECT * FROM fechamento ORDER BY closingTime DESC LIMIT 1');
+    await connection.end(); // Fecha a conexão
+    res.json(rows);
   } catch (error) {
     console.error('Erro ao buscar fechamento:', error);
-    res.status(500).json({ message: 'Erro no servidor' });
+    res.status(500).send('Erro ao buscar fechamento mais recente.');
   }
 });
+
 
 //FIM DO ESTOQUE
 
