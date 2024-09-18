@@ -17,15 +17,15 @@ export default function Produto({ navigation }) {
             Alert.alert('Erro', 'Todos os campos são obrigatórios.');
             return;
         }
-
+    
         const quantityNumber = parseInt(quantity);
-        const priceNumber = parseFloat(price);
-
+        const priceNumber = parseFloat(price.replace(/[R$.\s]/g, '').replace(',', '.'));
+    
         if (isNaN(quantityNumber) || isNaN(priceNumber)) {
             Alert.alert('Erro', 'Quantidade e preço devem ser números válidos.');
             return;
         }
-
+    
         try {
             const response = await axios.post('http://10.0.2.2:5000/api/products', {
                 name,
@@ -35,7 +35,7 @@ export default function Produto({ navigation }) {
                 saleType,
                 category
             });
-
+    
             Alert.alert('Sucesso', 'Produto cadastrado com sucesso!');
             setName('');
             setDescription('');
@@ -48,6 +48,7 @@ export default function Produto({ navigation }) {
             Alert.alert('Erro', 'Não foi possível cadastrar o produto.');
         }
     };
+    
 
     return (
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
@@ -92,11 +93,11 @@ export default function Produto({ navigation }) {
                             precision: 2,
                             separator: ',',
                             delimiter: '.',
-                            unit: 'R$',
+                            unit: 'R$ ',
                             suffixUnit: ''
                           }}
-                        //placeholder="Preço"
-                        //placeholderTextColor={"#0C1B10"}
+                        placeholder="Preço"
+                        placeholderTextColor={"#0C1B10"}
                     />
 
                     <TextInput
@@ -123,5 +124,6 @@ export default function Produto({ navigation }) {
                 </TouchableOpacity>
             </View>
         </Pressable>
+        
     );
 }
