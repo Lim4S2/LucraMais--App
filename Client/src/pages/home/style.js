@@ -1,126 +1,153 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    container: {
-      flexGrow: 1,
-      alignItems: "center"
-    },
-    headerContainer: {
-        width: "95%",
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "flex-start", // Centraliza horizontalmente
-        marginBottom: 20,
-        gap: 100,
-        paddingTop: 50
-    },
-    icon: {
-      width: 30,
-      height: 30
-    },
-    companyName: {
-      fontSize: 28,
-      fontWeight: "bold",
-      color: "#3BAF09", // Azul escuro
-      textAlign: "center", // Centraliza o texto
-    },
-    balanceContainer: {
-      backgroundColor: "#4CAF50", // Verde
-      borderColor: "#000000", // Borda preta
-      borderWidth: 1,
-      borderRadius: 67, // Bordas mais arredondadas para formar um círculo
-      padding: 20, // Ajustado para que o texto tenha mais espaço dentro do círculo
-      width: 360, // Define a largura e altura para controlar o tamanho do container
-      height: 140,
-      justifyContent: "space-between", // Espaça o conteúdo verticalmente
-      marginBottom: 20,
-      alignItems: "center", // Centraliza o conteúdo horizontalmente
-    },
-    balanceTitle: {
-      color: "#000000", // Preto para o título
-      fontSize: 20,
-      textAlign: "center", // Centraliza o título
-      marginTop: 10, // Ajusta a posição para cima dentro do container
-    },
-    balanceAmount: {
-      color: "#000000", // Preto para o saldo
-      fontSize: 32, // Tamanho da fonte aumentado
-      fontWeight: "bold",
-      textAlign: "center", // Centraliza o saldo
-      marginBottom: 5, // Espaçamento abaixo do saldo
-    },
-    balanceDate: {
-      color: "#ffffff",
-      fontSize: 14,
-      position: "absolute",
-      bottom: 10, // Ajusta a posição do fundo
-      right: 35, // Ajusta a posição da direita
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: "bold",
-      marginBottom: 15,
-    },
-    chart: {
-      borderRadius: 16,
-      marginVertical: 8,
-      marginHorizontal: 10,
-    },
-    legendContainer: {
-      flexDirection: "row",
-      flexWrap: "wrap",
-      justifyContent: "space-around",
-      marginTop: 20,
-    },
-    legendItem: {
-      flexDirection: "row",
-      alignItems: "center",
-      margin: 5,
-    },
-    legendColor: {
-      width: 20,
-      height: 20,
-      borderRadius: 5,
-      marginRight: 10,
-    },
-    legendText: {
-      fontSize: 16,
-      color: "#000",
-    },
-    filterButton: {
-      padding: 10,
-      borderRadius: 5,
-      backgroundColor: "#e0e0e0",
-    },
-    selectedFilter: {
-      backgroundColor: "#ffffff",
-    },
-    filterText: {
-      color: "#000",
-    },
-    infoBox: {
-      padding: 10,
-      backgroundColor: "#fff",
-      borderRadius: 5,
-      marginTop: 20,
-      alignItems: "center",
-    },
-    infoText: {
-      fontSize: 16,
-      color: "#000",
-    },
-    chartContainer: {
-      flexDirection: "row",
-      justifyContent: "space-between",
-      marginTop: 20,
-    },
-    pieChartContainer: {
-      flex: 1,
-    },
-    pieLegendContainer: {
-      flex: 1,
-      justifyContent: "center",
-    },
-  });
+  container: {
+    flexGrow: 1,
+    backgroundColor: '#000000',
+    padding: 10,
+  },
+  headerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: '#1c1c1c', 
+    marginBottom: 20,
+  },
+  icon: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+  },
+  companyName: {
+    marginLeft: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#ffffff', 
+  },
+  balanceContainer: {
+    padding: 20,
+    backgroundColor: '#2f4f4f',
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  balanceTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#ffffff', 
+  },
+  balanceAmount: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginVertical: 10,
+    color: '#ffffff',
+  },
+  balanceDate: {
+    fontSize: 14,
+    color: '#ffffff', 
+  },
+  chartContainer: {
+    padding: 20,
+    borderRadius: 20,
+    backgroundColor: '#1a1a1a',
+  },
+  chartBackground: {
+    borderRadius: 16,
+    overflow: 'hidden',
+    padding: 10,
+    backgroundColor: '#2e2e2e', 
+  },
+  chartDescription: {
+    marginTop: 10,
+    alignItems: 'center',
+    color: 'white',
+  },
+  legendContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10,
+    
+  },
+  filterButton: {
+    padding: 10,
+    borderRadius: 20,
+  },
+  selectedFilter: {
+    borderWidth: 2,
+    borderColor: 'white', 
+  },
+  filterText: {
+    color: 'black', //não mudar
+  },
+  pieChartContainer: {
+    alignItems: 'center',
+    borderRadius: 16,
+    padding: 10,
+    marginVertical: 20,
+    backgroundColor: '#2b2b2b',
+  },
+  legendItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 5,
+  },
+  legendColor: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    marginRight: 10,
+    
+  },
+  legendText: {
+    fontSize: 16,
+    color: '#ffffff', // Texto branco
+  },
+  infoBox: {
+    padding: 10,
+    backgroundColor: '#1c1c1c', // Fundo neutro para o box de informação
+    borderRadius: 10,
+    marginTop: 20,
+    alignItems: 'center',
+  },
+  infoText: {
+    fontSize: 16,
+    color: '#ffffff', // Texto branco
+  },
+  averageButtonContainer: {
+    flexDirection: 'row', // Alinha os botões horizontalmente
+    justifyContent: 'space-around',
+    padding: 10,
+  },
+  averageButton: {
+    backgroundColor: '#ffffff', // Fundo branco para o botão
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  averageButtonText: {
+    color: 'white', // Texto preto
+    fontSize: 16,
+  },
+  lucroText: { // Novo estilo para lucro
+    color: 'white', // Texto branco
+    fontSize: 16,
+  },
+  despesaText: { // Novo estilo para despesa
+    color: 'white', // Texto branco
+    fontSize: 16,
+  },
+  vendasText: { // Novo estilo para vendas
+    color: 'white', // Texto branco
+    fontSize: 16,
+  },
+  mediaText: { // Novo estilo para média
+    color: 'white', // Texto branco
+    fontSize: 16,
+  },
+  buttonLabel: { // Novo estilo para labels dentro dos botões
+    color: '#000000', // Texto preto
+    fontSize: 16,
+  },
+});
 
-export default styles
+export default styles;
