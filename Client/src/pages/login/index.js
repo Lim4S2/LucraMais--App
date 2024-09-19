@@ -69,7 +69,7 @@ export default function Login({ navigation }) {
                     <Text style={styles.textButtom}>Logar</Text>
                 </TouchableOpacity>
 
-                <Text onPress={() => navigation.navigate("Suporte")} style={styles.plus}>Suporte?</Text>
+                <Text onPress={() => navigation.navigate("Home")} style={styles.plus}>Suporte?</Text>
             </Pressable>
         </Pressable>
     );

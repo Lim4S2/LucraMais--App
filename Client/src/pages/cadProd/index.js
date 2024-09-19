@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Pressable, Text, TextInput, View, Keyboard, TouchableOpacity, Alert } from "react-native";
+import { TextInputMask } from "react-native-masked-text";
 import axios from "axios";
 import styles from "./style";
 
@@ -16,15 +17,15 @@ export default function Produto({ navigation }) {
             Alert.alert('Erro', 'Todos os campos são obrigatórios.');
             return;
         }
-
+    
         const quantityNumber = parseInt(quantity);
-        const priceNumber = parseFloat(price);
-
+        const priceNumber = parseFloat(price.replace(/[R$.\s]/g, '').replace(',', '.'));
+    
         if (isNaN(quantityNumber) || isNaN(priceNumber)) {
             Alert.alert('Erro', 'Quantidade e preço devem ser números válidos.');
             return;
         }
-
+    
         try {
             const response = await axios.post('http://10.0.2.2:5000/api/products', {
                 name,
@@ -34,7 +35,7 @@ export default function Produto({ navigation }) {
                 saleType,
                 category
             });
-
+    
             Alert.alert('Sucesso', 'Produto cadastrado com sucesso!');
             setName('');
             setDescription('');
@@ -47,6 +48,7 @@ export default function Produto({ navigation }) {
             Alert.alert('Erro', 'Não foi possível cadastrar o produto.');
         }
     };
+    
 
     return (
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
@@ -81,11 +83,19 @@ export default function Produto({ navigation }) {
                         placeholderTextColor={"#0C1B10"}
                     />
 
-                    <TextInput
+                    <TextInputMask
+                        type={"money"}
                         style={styles.input}
                         value={price}
                         onChangeText={setPrice}
                         keyboardType="numeric"
+                        options={{
+                            precision: 2,
+                            separator: ',',
+                            delimiter: '.',
+                            unit: 'R$ ',
+                            suffixUnit: ''
+                          }}
                         placeholder="Preço"
                         placeholderTextColor={"#0C1B10"}
                     />
@@ -114,5 +124,6 @@ export default function Produto({ navigation }) {
                 </TouchableOpacity>
             </View>
         </Pressable>
+        
     );
 }
