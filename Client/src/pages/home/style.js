@@ -3,41 +3,52 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#000000',
-    padding: 10,
+    alignItems: "center"
   },
   headerContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    height: 70,
     padding: 10,
-    borderRadius: 10,
-    backgroundColor: '#1c1c1c', 
+    backgroundColor: '#6294ac', 
     marginBottom: 20,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20
+  },
+  conta: {
+    flexDirection: "row",
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "space-evenly",
+    marginLeft: -35
   },
   icon: {
-    width: 40,
-    height: 40,
+    width: 45,
+    height: 45,
     borderRadius: 20,
   },
   companyName: {
     marginLeft: 10,
-    fontSize: 18,
+    fontSize: 24,
     fontWeight: 'bold',
     color: '#ffffff', 
   },
   balanceContainer: {
+    width: "95%",
     padding: 20,
-    backgroundColor: '#2f4f4f',
-    borderRadius: 10,
+    backgroundColor: '#04414b',
+    borderRadius: 20,
     marginBottom: 20,
+    alignItems: "center", 
+    elevation: 100
   },
   balanceTitle: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#ffffff', 
   },
   balanceAmount: {
-    fontSize: 24,
+    fontSize: 55,
     fontWeight: 'bold',
     marginVertical: 10,
     color: '#ffffff',
@@ -47,26 +58,24 @@ const styles = StyleSheet.create({
     color: '#ffffff', 
   },
   chartContainer: {
+    width: "100%",
     padding: 20,
     borderRadius: 20,
-    backgroundColor: '#1a1a1a',
+    backgroundColor: 'white',
   },
   chartBackground: {
     borderRadius: 16,
     overflow: 'hidden',
     padding: 10,
-    backgroundColor: '#2e2e2e', 
   },
   chartDescription: {
     marginTop: 10,
     alignItems: 'center',
-    color: 'white',
   },
   legendContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     padding: 10,
-    
   },
   filterButton: {
     padding: 10,
@@ -74,7 +83,6 @@ const styles = StyleSheet.create({
   },
   selectedFilter: {
     borderWidth: 2,
-    borderColor: 'white', 
   },
   filterText: {
     color: 'black', //não mudar
@@ -84,7 +92,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 10,
     marginVertical: 20,
-    backgroundColor: '#2b2b2b',
   },
   legendItem: {
     flexDirection: 'row',

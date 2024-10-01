@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler, Alert } from "react-native";
+import { Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler, Alert, StatusBar } from "react-native";
 import { loginUser } from '../login/logApi'; 
 import styles from "./style";
 
@@ -29,7 +29,7 @@ export default function Login({ navigation }) {
 
     return(
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
-            
+            <StatusBar backgroundColor={"#04414b"} barStyle={"light-content"}/>
             <Image source={require("../../images/logo.png")} style={styles.logo}/>
 
             <Pressable onPress={Keyboard.dismiss} style={styles.form}>

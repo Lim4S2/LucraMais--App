@@ -108,7 +108,7 @@ export default function Estoque({ navigation }) {
                                 <View style={stylesList.viewQuant}>
                                     <Text style={stylesList.quant}>{item.quantity}</Text>
                                     <Text style={{...stylesList.quant}}>|</Text>
-                                    <Text style={{...stylesList.quant, color:"#578445"}}>{item.category}</Text>
+                                    <Text style={{...stylesList.quant, color:"#6294ac"}}>{item.category}</Text>
                                 </View>
                             </View>
 

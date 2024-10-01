@@ -141,7 +141,7 @@ export default function Venda({ navigation, route }) {
                                     <Text style={{ fontSize: 20, fontWeight: "bold" }}>{quantidade}</Text>
 
                                     <TouchableOpacity
-                                        style={{ ...stylesList.btnMenos, backgroundColor: "#8DEB84" }}
+                                        style={{ ...stylesList.btnMenos, backgroundColor: "#3bdcc2" }}
                                         onPress={() => adicionarAoCarrinho(item)}
                                     >
                                         <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>+</Text>

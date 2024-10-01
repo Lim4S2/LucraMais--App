@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { View, Text, ScrollView, Dimensions, TouchableOpacity, Image, Animated } from "react-native";
+import { View, Text, ScrollView, Dimensions, TouchableOpacity, Image, Animated, StatusBar } from "react-native";
 import { BarChart } from "react-native-chart-kit";
 import Svg, { Path, G } from 'react-native-svg';
 import styles from "./style";
@@ -105,14 +105,18 @@ export default function Home({ navigation }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <TouchableOpacity style={styles.headerContainer} onPress={() => navigation.navigate("Conta")}>
+    <View>
+      <StatusBar barStyle={"light-content"} backgroundColor={"#6294ac"}/>
+      <View style={styles.headerContainer}>
+      <TouchableOpacity style={styles.conta} onPress={() => navigation.navigate("Conta")}>
         <Image source={require("../../images/avatarFeirante.png")} style={styles.icon} />
         <Text style={styles.companyName}>Nome do comércio</Text>
       </TouchableOpacity>
+      </View>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.balanceContainer}>
         <Text style={styles.balanceTitle}>Saldo do Mês</Text>
-        <Text style={styles.balanceAmount}>Saldo: R$ 1.500,90</Text>
+        <Text style={styles.balanceAmount}>R$ 1.500,90</Text>
         <Text style={styles.balanceDate}>Sexta-Feira 17 de maio</Text>
       </View>
       <View style={styles.chartContainer}>
@@ -128,7 +132,7 @@ export default function Home({ navigation }) {
               yAxisLabel="R$"
               chartConfig={{
                 backgroundGradientFrom: "black",
-                backgroundGradientTo: "#black",
+                backgroundGradientTo: "black",
                 decimalPlaces: 0,
                 color: (opacity = 1) => {
                   switch (selectedFilter) {
@@ -174,8 +178,6 @@ export default function Home({ navigation }) {
           <Text style={styles.chartDescription}>Lucro: {profitPercentage}%</Text>
           {selectedFilter === "Média" && <Text style={styles.chartDescription}>Média: {averagePercentage}%</Text>}
         </View>
-      </View>
-      <View style={styles.chartContainer}>
         <View style={styles.pieChartContainer}>
           <Text style={styles.title}>Gráfico de Pizza Interativo</Text>
           {getPieChart()}
@@ -193,5 +195,6 @@ export default function Home({ navigation }) {
         </View>
       )}
     </ScrollView>
+    </View>
   );
 }

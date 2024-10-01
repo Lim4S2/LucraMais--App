@@ -19,12 +19,12 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         fontSize: 24, 
         fontWeight: 'bold',
-        color: '#6B983C',
+        color: '#04414b',
     },
     setaEsq: {
         fontSize: 40, 
         fontWeight: '900',
-        color: '#6B983C',
+        color: '#04414b',
         paddingLeft: 15,
         paddingRight: 10,
         marginBottom: -15, 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 50,
         height: 35,
-        borderColor: "#79F146",
+        borderColor: "#acc4cc",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
     }, 
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         marginTop: 100
     },
     btnCad: {
-        backgroundColor: "#6B983C",
+        backgroundColor: "#04414b",
         borderRadius: 50,
         justifyContent: "center",
         alignItems:"center",

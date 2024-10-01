@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { View, Image, Text, Animated } from "react-native";
+import { View, Image, Text, Animated, StatusBar } from "react-native";
 
 import * as Animatable from "react-native-animatable";
 import LottieView from "lottie-react-native";
@@ -28,6 +28,7 @@ export default function Preload({navigation}) {
 
     return(
         <View style={styles.container}>
+            <StatusBar backgroundColor={"#04414b"} barStyle={"light-content"}/>
             <Image source={require("../../images/logo.png")} style={styles.logo}/>
 
             <View style={styles.carregamento}>

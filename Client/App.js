@@ -39,7 +39,7 @@ const CustomTabBarButton = ({children, onPress}) => (
       width: 60,
       height: 60,
       borderRadius: 50,
-      backgroundColor: '#46D051',
+      backgroundColor: '#04414b',
       ...styles.shadow
     }}>
       {children}
@@ -60,13 +60,15 @@ function Tabs() {
         tabBarInactiveTintColor: "",
         tabBarStyle: {
           position: "absolute",
-          backgroundColor: "#ffffff",
+          backgroundColor: "#acc4cc",
           borderTopWidth: 0,
           height: "6%",
           bottom: 12,
           left: 12,
           right: 12,
           borderRadius: 12,
+          borderColor: "#04414b",
+          borderWidth: 2,
           ...styles.shadow
         }
       }}>

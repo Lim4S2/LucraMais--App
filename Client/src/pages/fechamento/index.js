@@ -81,9 +81,9 @@ export default function Fechamento({ navigation }) {
 
             <View style={styles.viewLucro}>
                 <Text style={{ ...styles.text, fontSize: 20 }}>Receita do Dia</Text>
-                <Text style={{ ...styles.text, fontSize: 30, color: "green" }}>R$
-                    <Text style={{ color: "#f6f6f6" }}>_</Text>
-                    <Text style={{ ...styles.text, fontSize: 48, color: "green" }}>{fechamento.receitaTotal}</Text>
+                <Text style={{ ...styles.text, fontSize: 30, color: "white" }}>R$
+                    <Text style={{ color: "#04414b" }}>_</Text>
+                    <Text style={{ ...styles.text, fontSize: 50, color: "white" }}>{fechamento.receitaTotal}</Text>
                 </Text>
             </View>
 
@@ -110,7 +110,7 @@ export default function Fechamento({ navigation }) {
                 <Text style={{ ...styles.textDetalhe, color: "blue" }}>{fechamento.totalSales}</Text>
             </TouchableOpacity>
 
-            <Text style={{ ...styles.text, fontSize: 22, marginBottom: 15, marginTop: 20 }}>Formas de Pagamento</Text>
+            <Text style={{ ...styles.text, fontSize: 22, marginBottom: 15, marginTop: 20, color: "#04414b" }}>Formas de Pagamento</Text>
 
             <View style={{ ...styles.viewDetalhamento, width: "70%" }}>
                 <View style={{ flexDirection: "row" }}>

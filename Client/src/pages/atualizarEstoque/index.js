@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, Alert, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity, Alert, Text } from 'react-native';
 import axios from 'axios';
 import styles from "./style"; // Certifique-se de que o caminho está correto
 
@@ -87,12 +87,10 @@ export default function AtualizarProd({ route, navigation }) {
             </View>
             
             <View style={styles.buttons}>
-                <View style={styles.btnCad}>
-                    <Button title="Atualizar" onPress={handleUpdateProduct} color="#FFF" />
-                </View>
-                <View style={styles.btnCancel}>
-                    <Button title="Cancelar" onPress={() => navigation.goBack()} color="#FFF" />
-                </View>
+                <Text onPress={() => navigation.navigate("Home")} style={styles.btnCancel}>✘ Cancelar</Text>
+                <TouchableOpacity onPress={handleUpdateProduct} style={styles.btnCad}>
+                    <Text style={styles.textButtom}> ✓ Atualizar</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );

@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
     buttom:{
         flexDirection: 'row',
-        backgroundColor: '#38A209',
+        backgroundColor: '#6294ac',
         padding: 20,
         width: 300,
         borderRadius: 20,

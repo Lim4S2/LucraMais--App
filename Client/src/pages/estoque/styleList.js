@@ -44,7 +44,6 @@ const stylesList = StyleSheet.create({
     },
     descricao: {
         fontSize: 15,
-        //fontWeight: "condensed",
         color: "#8f8f8f"
     },
     quant: {

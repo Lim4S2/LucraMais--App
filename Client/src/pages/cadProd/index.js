@@ -43,6 +43,9 @@ export default function Produto({ navigation }) {
             setPrice('');
             setSaleType('');
             setCategory('');
+
+            navigation.navigate("Estoque")
+
         } catch (error) {
             console.error('Erro ao cadastrar produto:', error.response ? error.response.data : error.message);
             Alert.alert('Erro', 'Não foi possível cadastrar o produto.');

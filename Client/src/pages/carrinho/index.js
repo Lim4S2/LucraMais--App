@@ -53,12 +53,12 @@ export default function Carrinho({ navigation, route }) {
         <View style={{ flex: 1 }}>
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <Image source={require("../../images/setaesq.png")} style={{ width: 40, height: 40, marginRight: 20 }} />
+                    <Text style={styles.setaEsq}>➱</Text>
                 </TouchableOpacity>
                 <View style={styles.viewValorCompra}>
                     <Text style={{ ...styles.text, fontSize: 26, paddingTop: 8 }}>Valor total</Text>
                     <Text style={{ ...styles.text, fontWeight: "bold" }}>R$
-                        <Text style={{ color: "#f6f6f6" }}>_</Text>
+                        <Text style={{ color: "#6294ac" }}>_</Text>
                         <Text style={{ ...styles.text, fontSize: 38, fontWeight: "bold" }}>
                             {carrinho.reduce((total, item) => total + item.price * item.quantidade, 0).toFixed(2)}
                         </Text>
