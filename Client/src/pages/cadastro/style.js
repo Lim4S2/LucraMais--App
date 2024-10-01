@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     form: {
-        marginTop: "17%",
+        marginTop: "10%",
         marginBottom: 15,
         backgroundColor: "white",
         borderRadius: 20,

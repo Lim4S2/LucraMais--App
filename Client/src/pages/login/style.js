@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     logo: {
-        marginTop: "12%",
+        marginTop: "7%",
         width: "65%",
         height: 105
     },
@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "semibold",
         color: "#6294ac",
+        marginBottom: "5%"
     }, 
     cad: {
         fontSize: 16,
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
         alignItems:"center",
         width: "90%",
         marginBottom: 20,
-        marginTop: 15
+        marginTop: 1
 
     }, textButtom: {
         fontSize: 20,
