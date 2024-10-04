@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import {View, Text, BackHandler, StatusBar} from "react-native"
+import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback } from "react-native"
 import { BarChart, PieChart } from "react-native-gifted-charts"
 import styles from "./style"
 
@@ -15,9 +15,11 @@ export default function Home({navigation}) {
     return(
         <View >
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
-            <View style={styles.container}>
-                <Text style={styles.text}>Tela inicial</Text>
-            </View>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
+                <View style={styles.container}>
+                    <Text style={styles.text}>Nome do comércio</Text>
+                </View>
+            </TouchableWithoutFeedback>
 
             <View style={{padding: 15}}>
                 <BarChart

@@ -116,6 +116,7 @@ function Tabs() {
 
       <Tab.Screen name="Estoque" component={Estoque} 
       options={{
+        title: "Estoque",
         tabBarIcon: ({focused}) => {
           if(focused) {
             return(
