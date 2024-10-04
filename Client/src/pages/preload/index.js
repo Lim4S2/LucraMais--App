@@ -1,25 +1,51 @@
-import React, { useEffect } from "react";
-import { View, Image, Text, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { View, Image, Text, Animated } from "react-native";
+
+import * as Animatable from "react-native-animatable";
+import LottieView from "lottie-react-native";
 import styles from "./style";
 
-export default function Preload({ navigation }) {
-    useEffect(() => {
-        // Temporizador para navegação após 2 segundos
-        const timer = setTimeout(() => {
-            navigation.navigate("Login"); // Navega para a tela de Login após 2 segundos
-        }, 2000);
+export default function Preload({navigation}) {
 
-        return () => clearTimeout(timer); // Limpa o timer quando o componente desmonta
-    }, [navigation]);
+    const [carregamento, setCarregamento] = useState( new Animated.Value(0))
+    const [terra, setTerra] = useState( new Animated.Value(0))
 
-    return (
+    /*Animated.sequence([
+        Animated.timing(
+            terra, {
+                toValue: 370,
+                duration: 2000
+            }
+        ),
+        Animated.timing(
+            carregamento, {
+                toValue: 280,
+                duration: 3500
+            }
+        )
+    ]).start()*/
+
+    return(
         <View style={styles.container}>
-            <Image source={require("../../images/logo.png")} style={styles.logo} />
+            <Image source={require("../../images/logo.png")} style={styles.logo}/>
 
             <View style={styles.carregamento}>
-                <ActivityIndicator size="large" color="#0000ff" />
+                <LottieView source={require("../../components/screenSplash/animation.json")} 
+                    style={styles.trator}
+                    onAnimationFinish={() => navigation.navigate("Login")}
+                    autoPlay loop={false}
+                />
             </View>
 
+                {/*<Animated.Image
+                    source={require("../../images/terra.png")} style={{...styles.terra, width: terra}}/>
+            </Animatable.View> */}
+
+            <Text onPress={() => navigation.navigate("Login")}
+                style={{
+                    padding: 10
+                }}
+            >Próxima página</Text>
         </View>
-    );
+    )
 }

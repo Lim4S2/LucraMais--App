@@ -1,8 +1,7 @@
 import React, { children } from "react"
 import {View, Image, TouchableOpacity} from "react-native"
-import { NavigationContainer } from '@react-navigation/native';
 
-
+import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 
@@ -19,7 +18,7 @@ import Conta from "./src/pages/conta/"
 import styles from "./style"
 import Fechamento from "./src/pages/fechamento"
 import AtualizarProd from "./src/pages/atualizarEstoque"
-import Carrinho from "./src/pages/carrinho";
+import Carrinho from "./src/pages/carrinho"
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,7 +38,7 @@ const CustomTabBarButton = ({children, onPress}) => (
       width: 60,
       height: 60,
       borderRadius: 50,
-      backgroundColor: '#04414b',
+      backgroundColor: '#46D051',
       ...styles.shadow
     }}>
       {children}
@@ -60,15 +59,13 @@ function Tabs() {
         tabBarInactiveTintColor: "",
         tabBarStyle: {
           position: "absolute",
-          backgroundColor: "#acc4cc",
+          backgroundColor: "#ffffff",
           borderTopWidth: 0,
           height: "6%",
           bottom: 12,
           left: 12,
           right: 12,
           borderRadius: 12,
-          borderColor: "#04414b",
-          borderWidth: 2,
           ...styles.shadow
         }
       }}>
@@ -94,6 +91,33 @@ function Tabs() {
               width: 25
             }}
             />
+          </View>)
+        }
+      }}/>
+
+      <Tab.Screen name="Gráfico" component={Grafico} 
+      options={{
+        tabBarIcon: ({focused}) => {
+          if (focused) {
+            return(
+          <View>
+            <Image source={require("./src/images/iconGraficoFocus.png")}
+              style={{
+                height: 42,
+                width: 42,
+                marginRight: 8
+              }}
+            />
+          </View>
+          )}
+          return (
+          <View>
+            <Image source={require("./src/images/iconGraficoSemFocus.png")}
+            style={{
+              height: 25,
+              width: 25,
+              marginRight: 8
+            }}/>
           </View>)
         }
       }}/>
@@ -142,28 +166,68 @@ function Tabs() {
           }
       }}/>
 
+      <Tab.Screen name="Conta" component={Conta} 
+      options={{
+        tabBarIcon: ({focused}) => {
+          if(focused) {
+            return(
+              <View>
+                <Image source={require("./src/images/avatarFeirante.png")} 
+                style={{
+                  height: 40,
+                  width: 40
+                }}
+                />
+              </View>
+            )}
+          return(
+            <View>
+              <Image source={require("./src/images/avatarFeirante.png")}
+              style={{
+                height: 30,
+                width: 30
+              }}
+              />
+            </View>)
+          }
+      }}/>
 
     </Tab.Navigator>
   )
 }
 
 export default function App() {
-    return (
-      <NavigationContainer>
-        <Stack.Navigator  screenOptions={{ headerShown: false}} initialRouteName="Preload">
-          <Stack.Screen name="Preload" component={Preload} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Cadastro" component={Cadastro} />
-          <Stack.Screen name="Produto" component={Produto} />
-          <Stack.Screen name="Abrir Caixa" component={AbrirCaixa} />
-          <Stack.Screen name="Venda" component={Venda} />
-          <Stack.Screen name="Fechamento" component={Fechamento} />
-          <Stack.Screen name="Conta" component={Conta}/>
-          <Stack.Screen name="AtualizarProd" component={AtualizarProd} />
-          <Stack.Screen name="Home" component={Tabs} />
-          <Stack.Screen name="Carrinho" component={Carrinho}/>
-        </Stack.Navigator>
-      </NavigationContainer>
-    );
-  };
-  
+  return (
+    <NavigationContainer>
+      <Stack.Navigator 
+        initialRouteName="Preload"
+        // tira a borda de cima das telas
+        screenOptions={{
+          headerShown: false
+        }}>
+        <Stack.Screen name="Preload" component={Preload}/>
+        <Stack.Screen name="Login" component={Login}
+          options={{
+            gestureEnabled: false
+          }}
+        />
+        <Stack.Screen name="Cadastro" component={Cadastro}
+          options={{
+            gestureEnabled: false
+          }}
+        />
+        <Stack.Screen name="Produto" component={Produto}/>
+        <Stack.Screen name="AbrirCaixa" component={AbrirCaixa}/>
+        <Stack.Screen name="Venda" component={Venda}/>
+        <Stack.Screen name="Fechamento" component={Fechamento}/>
+        <Stack.Screen name="AtualizarProd" component={AtualizarProd}/>
+        <Stack.Screen name="Carrinho" component={Carrinho}/>
+        <Stack.Screen name="Home" component={Tabs} 
+          options={{
+            gestureEnabled: false
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}

@@ -4,14 +4,13 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         justifyContent: "space-between",
+        marginTop: "6%",
         alignItems: 'center',
-        backgroundColor: "#6294ac",
         paddingBottom: 10,
         paddingLeft: 25,
         paddingRight: 10,
-        paddingTop: 5,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20
+        paddingTop: 30,
+        borderBottomWidth: 1
     },
     text: {
         fontSize: 18,
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
     btnFechar: {
         width: "60%",
         height: 50,
-        backgroundColor: "#04414b",
+        backgroundColor: "green",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 20,

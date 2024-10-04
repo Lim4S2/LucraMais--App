@@ -4,15 +4,16 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         bottom: 0,
-        backgroundColor: "#04414b",
+        backgroundColor: "#306318",
         alignItems: "center",
     },
     form: {
-        marginTop: "10%",
+        marginTop: "17%",
         marginBottom: 15,
         backgroundColor: "white",
         borderRadius: 20,
         alignItems: "center",
+        //height: 583,
         height: "auto",
         width: "80%"
     }, 
@@ -23,13 +24,13 @@ const styles = StyleSheet.create({
     tittle: {
         fontSize: 40,
         fontWeight: "900",
-        color: "#6294ac",
+        color: "#6B983C",
         paddingTop: 15,
     },
     legend: {
         fontSize: 16,
         fontWeight: "bold",
-        color: "#6294ac",
+        color: "#6B983C",
         paddingTop: 15,
         paddingBottom: 3,
         paddingLeft: 30
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         paddingRight: 12,
         borderRadius: 50,
         height: 35,
-        borderColor: "#acc4cc",
+        borderColor: "#DBDBDB",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
     }, 
@@ -51,10 +52,10 @@ const styles = StyleSheet.create({
         paddingRight: 15,
         paddingLeft: 15,
         fontWeight: "semibold",
-        color: "#6294ac",
+        color: "#6B983C",
     }, 
     buttom: {
-        backgroundColor: "#6294ac",
+        backgroundColor: "#6B983C",
         borderRadius: 50,
         justifyContent: "center",
         alignItems:"center",

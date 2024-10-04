@@ -3,12 +3,11 @@ import { StyleSheet } from "react-native"
 const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
+        marginTop: "15%",
         alignItems: 'center',
         justifyContent: "space-around",
-        backgroundColor: "#6294ac",
         paddingBottom: 10,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20
+        borderBottomWidth: 1
     },
     viewValorCompra: {
         flexDirection: "row",
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 24,
         fontWeight: 'bold',
-        color: "white"
+        color: "#545454"
     },
     textValor: {
         color: "white",
@@ -33,8 +32,8 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     venda: {
-        height: 250,
-        backgroundColor: "#6294ac",
+        flex: 1,
+        backgroundColor: "#65c03b",
         justifyContent: "space-evenly",
         alignItems: "center",
         padding: 10,
@@ -50,23 +49,15 @@ const styles = StyleSheet.create({
     btnVender: {
         width: "95%",
         height: 50,
-        backgroundColor: "#acc4cc",
+        backgroundColor: "yellow",
         borderRadius: 15,
         justifyContent: "center",
         alignItems: "center",
     },
     textButton: {
-        color: "#000",
+        color: "black",
         fontSize: 20,
         fontWeight: "bold"
-    },
-    setaEsq: {
-        fontSize: 40, 
-        fontWeight: '900',
-        color: 'white',
-        paddingLeft: 15,
-        marginBottom: -15, 
-        transform: [{rotate: '180deg'}] 
     },
 
 

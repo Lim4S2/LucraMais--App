@@ -6,20 +6,16 @@ const styles = StyleSheet.create({
         bottom: 0
     },
     header:{
+        marginTop: 55,
         width: '100%', 
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: "flex-end",
-        backgroundColor: "#6294ac",
-        paddingTop: 10,
-        paddingBottom: 15,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20
     },
     titleText:{
         fontSize: 28, 
         fontWeight: 'bold',
-        color: 'white',
+        color: '#6B983C',
         marginRight: "20%"
     },
     buttons: {
@@ -32,7 +28,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 50,
-        backgroundColor: "#04414b",
+        backgroundColor: "#6B983C",
         marginLeft: 20, 
         marginRight: 20
     },
@@ -45,15 +41,15 @@ const styles = StyleSheet.create({
         flexDirection: "row-reverse",
         alignItems: "center",
         justifyContent: "space-between",
-        width: '93%',
+        width: '90%',
         borderRadius: 50,
-        borderColor: "#acc4cc", 
+        borderColor: "#DBDBDB", 
         borderWidth: 2,
         paddingLeft: 15,
         paddingRight: 15,
-        height: 40,
-        marginTop: 5
-},
+        height: 35,
+        marginTop: 20
+    },
     imgPesq: {
         height: 25,
         width: 25
