@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: "#306318",
+        backgroundColor: "#04414b",
         alignItems: "center",
     }, 
     form: {
@@ -21,14 +21,14 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     logo: {
-        marginTop: "12%",
+        marginTop: "7%",
         width: "65%",
         height: 105
     },
     tittle: {
         fontSize: 46,
         fontWeight: "900",
-        color: "#6B983C",
+        color: "#6294ac",
         padding: 15
     },
     text:{
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     legend: {
         fontSize: 20,
         fontWeight: "bold",
-        color: "#6B983C",
+        color: "#6294ac",
         paddingTop: 15,
         paddingBottom: 5,
         paddingLeft: 30
@@ -46,12 +46,13 @@ const styles = StyleSheet.create({
     plus: {
         fontSize: 16,
         fontWeight: "semibold",
-        color: "#6B983C",
+        color: "#6294ac",
+        marginBottom: "5%"
     }, 
     cad: {
         fontSize: 16,
         textDecorationLine: 'underline',
-        color: "#4FA5E4",
+        color: "#6294ac",
         padding: 7
     },
     senhaCad: {
@@ -67,18 +68,18 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         borderRadius: 50,
         height: 35,
-        borderColor: "#DBDBDB",
+        borderColor: "#acc4cc",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
     }, 
     buttom: {
-        backgroundColor: "#6B983C",
+        backgroundColor: "#6294ac",
         borderRadius: 50,
         justifyContent: "center",
         alignItems:"center",
         width: "90%",
         marginBottom: 20,
-        marginTop: 15
+        marginTop: 1
 
     }, textButtom: {
         fontSize: 20,

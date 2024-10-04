@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import {View, Text, BackHandler} from "react-native"
+import {View, Text, BackHandler, StatusBar} from "react-native"
 import { BarChart, PieChart } from "react-native-gifted-charts"
 import styles from "./style"
 
@@ -14,6 +14,7 @@ export default function Home({navigation}) {
 
     return(
         <View >
+            <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
             <View style={styles.container}>
                 <Text style={styles.text}>Tela inicial</Text>
             </View>

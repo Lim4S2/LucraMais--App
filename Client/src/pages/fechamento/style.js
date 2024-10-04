@@ -3,29 +3,29 @@ import { StyleSheet } from "react-native"
 const styles = StyleSheet.create({
     container: {
         width: "100%",
-        marginTop: "10%",
         flexDirection: "row",
         justifyContent: "center",
         alignItems: 'center',
-        borderBottomWidth: 2,
-        borderColor: "#545454",
-        padding: 10
+        backgroundColor: "#6294ac",
+        padding: 10,
+        borderBottomRightRadius: 20,
+        borderBottomLeftRadius: 20
     },
     viewLucro: {
-        width: "90%",
-        height: 100,
+        width: "95%",
+        height: 110,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 25,
         marginBottom: 30,
+        marginTop: 30,
         borderRadius: 50,
-        backgroundColor: "white",
+        backgroundColor: "#04414b",
         elevation: 15
     },
     text: {
         fontSize: 26,
         fontWeight: 'bold',
-        color: '#545454'
+        color: 'white'
     },
     textDetalhe: {
         fontSize: 20,
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
         color: '#545454'
     },
     viewDetalhamento: {
-        marginTop: 5,
         marginBottom: 10,
         flexDirection: "row",
         width: "85%",
@@ -45,8 +44,7 @@ const styles = StyleSheet.create({
         marginRight: 10
     }, 
     button: {
-        marginTop: "20%",
-        backgroundColor:"green",
+        backgroundColor:"#6294ac",
         borderRadius: 50,
         width: "80%",
         height: 50,

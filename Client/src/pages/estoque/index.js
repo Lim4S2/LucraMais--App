@@ -1,70 +1,86 @@
-import React from "react";
-import {View, Text, TouchableOpacity, TextInput, Keyboard, Image, FlatList } from "react-native"
-import styles from "./style"
-import stylesList from "./stylesList.js"
-import { getBorderColorAsync } from "expo-navigation-bar";
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, Text, TouchableOpacity, TextInput, Image, FlatList, ActivityIndicator, Alert } from 'react-native';
+import axios from 'axios';
+import { useFocusEffect } from '@react-navigation/native';
+import styles from "./style";
+import stylesList from "./styleList";
 
-export default function Estoque({navigation}) {
+export default function Estoque({ navigation }) {
+    const [produtos, setProdutos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const DATA = [
-        {
-            tittle: "Coxinha",
-            descricao: "Coxinha de frango com catupiry",
-            quantidade: 20,
-            categoria: "Salgado assado",
-            preco: 3.50
-        },
-        {
-            tittle: "Suco de laranjna",
-            descricao: "Suco de laranja natural - 500ml",
-            quantidade: 5,
-            categoria: "Babida",
-            preco: 5.00
-        },
-        {
-            tittle: "Batata",
-            descricao: "Batata sem produtos químicos",
-            quantidade: 1,
-            categoria: "Legume",
-            preco: 8.00
-
-        },
-        {
-            tittle: "Pastel de Carne",
-            descricao: "",
-            quantidade: 0,
-            categoria: "Pastel salgado",
-            preco: 6.00
-        },
-        {
-            tittle: "Caldo de cana",
-            descricao: "Sabor abacaxi ou limão - 400ml",
-            quantidade: 10,
-            categoria: "Bebida",
-            preco: 5.50
+    const fetchProdutos = useCallback(async () => {
+        try {
+            const response = await axios.get('http://10.0.2.2:5000/produtos');
+            setProdutos(response.data);
+        } catch (error) {
+            console.error('Erro ao buscar produtos:', error);
+            setError(error.message);
+        } finally {
+            setLoading(false);
         }
+    }, []);
 
-    ]
+    useEffect(() => {
+        fetchProdutos();
+    }, [fetchProdutos]);
 
+    useFocusEffect(
+        useCallback(() => {
+            fetchProdutos();
+        }, [fetchProdutos])
+    );
 
+    const handleDelete = async (id) => {
+        try {
+            console.log(`Deletando produto com ID: ${id}`);
+            const response = await axios.delete(`http://10.0.2.2:5000/produtos/${id}`);
+            console.log('Resposta do servidor:', response.data);
+            setProdutos((prevProdutos) => prevProdutos.filter((produto) => produto.id !== id));
+            Alert.alert('Sucesso', 'Produto excluído com sucesso');
+        } catch (error) {
+            console.error('Erro ao excluir produto:', error.response ? error.response.data : error.message);
+            Alert.alert('Erro', 'Não foi possível excluir o produto');
+        }
+    };
 
-    return(
+    if (loading) {
+        return (
+            <View style={styles.container}>
+                <ActivityIndicator size="large" color="#0000ff" />
+            </View>
+        );
+    }
+
+    if (error) {
+        return (
+            <View style={styles.container}>
+                <Text>Erro: {error}</Text>
+            </View>
+        );
+    }
+
+    return (
         <View style={styles.container}>
             <View style={styles.header}> 
                 <View style={styles.containerTitle}>
                     <Text style={styles.titleText}>Estoque</Text>
                 </View>
 
-                <TouchableOpacity style={{...styles.buttonCadPro, width: 45, height: 45}}
-                    onPress={() =>navigation.navigate("Produto")}>
+                <TouchableOpacity 
+                    style={{...styles.buttonCadPro, width: 45, height: 45}}
+                    onPress={() => navigation.navigate("Produto")}
+                >
                     <Text style={{...styles.textCadProd, fontSize: 30 }}>+</Text>
                 </TouchableOpacity>
             </View>
             
             <View style={{justifyContent: 'center', alignItems: 'center', marginTop: 10}}>
                 <View style={styles.viewInput}>
-                    <Image style={styles.imgPesq} source={require("../../images/search.png")}/>
-                    <TextInput style={{width: "90%", marginRight: 10}}
+                    <Image style={styles.imgPesq} source={require("../../images/search.png")} />
+                    <TextInput 
+                        style={{width: "90%", marginRight: 10}}
                         placeholderTextColor={"#808080"}
                         placeholder="Pesquisar"
                         keyboardType="text"
@@ -73,69 +89,57 @@ export default function Estoque({navigation}) {
 
                 <View style={{flexDirection: "row", justifyContent: "space-around", width: "100%", marginTop: 15}} 
                     accessible={true} accessibilityRole="checkbox">
-                    <Text>X produto cadastrados</Text>
+                    <Text>{produtos.length} produto(s) cadastrado(s)</Text>
                     <Text>Filtro ▽</Text>
                 </View>
             </View>
 
             <View style={{height: "69%", marginTop: 15}}>
-            <FlatList style={stylesList.list}
-                contentContainerStyle={{marginTop: 20}}
-                data={DATA}
-                viewPosition={0.5}
-                renderItem={({item}) => {
-                    return(
-                    <View style={stylesList.produto}>
-                        <View style={stylesList.viewText}>
-                            <Text style={stylesList.titulo}>{item.tittle}</Text>
-                            <Text style={stylesList.descricao}>{item.descricao}</Text>
+                <FlatList
+                    style={stylesList.list}
+                    contentContainerStyle={{marginTop: 20}}
+                    data={produtos}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <View style={stylesList.produto}>
+                            <View style={stylesList.viewText}>
+                                <Text style={stylesList.titulo}>{item.name}</Text>
+                                <Text style={stylesList.descricao}>{item.description}</Text>
+                                <View style={stylesList.viewQuant}>
+                                    <Text style={stylesList.quant}>{item.quantity}</Text>
+                                    <Text style={{...stylesList.quant}}>|</Text>
+                                    <Text style={{...stylesList.quant, color:"#6294ac"}}>{item.category}</Text>
+                                </View>
+                            </View>
 
-                            <View style={stylesList.viewQuant}>
-                                <Text style={stylesList.quant}>{item.quantidade}</Text>
-                                <Text style={{...stylesList.quant}}>|</Text>
-                                <Text style={{...stylesList.quant, color:"#578445"}}>{item.categoria}</Text>
+                            <View style={stylesList.mais}>
+                                <View style={stylesList.valor}>
+                                    <Text style={stylesList.sifrao}>R$
+                                        <Text style={{color: "white"}}>0</Text>
+                                        <Text style={{...stylesList.sifrao, fontSize: 34}}>{item.price}</Text>
+                                    </Text>
+                                </View>
+
+                                <View style={stylesList.viewButtons}>
+                                    <TouchableOpacity 
+                                        style={{...styles.buttonCadPro, backgroundColor: "#8DEB84"}}
+                                        onPress={() => navigation.navigate("AtualizarProd", { produto: item })}
+                                    >
+                                        <Text style={{...stylesList.textCadProd}}>🖊</Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity 
+                                        style={{...styles.buttonCadPro, backgroundColor: "#FF5757"}}
+                                        onPress={() => handleDelete(item.id)}
+                                    >
+                                        <Text style={{...stylesList.textCadProd}}>🗑</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                         </View>
-
-                        <View style={stylesList.mais}>
-                            <View style={stylesList.valor}>
-                                <Text style={stylesList.sifrao}>R$
-                                    <Text style={{color: "white"}}>0</Text>
-                                    <Text style={{...stylesList.sifrao, fontSize: 34}}>{item.preco}</Text>
-                                </Text>
-                            </View>
-
-                            <View style={stylesList.viewButtons}>
-                                <TouchableOpacity style={{...styles.buttonCadPro, backgroundColor: "#8DEB84"}}
-                                    onPress={() =>navigation.navigate("AtualizarProd")}>
-                                    <Text style={{...stylesList.textCadProd}}>🖊</Text>
-                                </TouchableOpacity>
-
-                                <TouchableOpacity style={{...styles.buttonCadPro, backgroundColor: "#FF5757"}}
-                                    onPress={() =>navigation.navigate("Home")}>
-                                    <Text style={{...stylesList.textCadProd}}>🗑</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                    )
-                }
-            }/> 
+                    )}
+                />
             </View>
-
-            {/*<FlatList>            
-                <View style={styles.buttons}>
-                    <TouchableOpacity style={{...styles.buttonCadPro, backgroundColor: "gray"}}
-                        onPress={() =>navigation.navigate("AtualizarProd")}>
-                        <Text style={{...styles.textCadProd}}>🖊</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{...styles.buttonCadPro, backgroundColor: "red"}}
-                        onPress={() =>navigation.navigate("Home")}>
-                        <Text style={{...styles.textCadProd}}>🗑</Text>
-                    </TouchableOpacity>
-                </View>
-        </FlatList>*/}
         </View>
-    )
+    );
 }

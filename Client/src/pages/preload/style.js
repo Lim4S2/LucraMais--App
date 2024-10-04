@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#306318",
+        backgroundColor: "#04414b",
         justifyContent: "space-around",
         alignItems: "center",
     },
@@ -12,9 +12,9 @@ const styles = StyleSheet.create({
         marginTop: "40%",
     },
     logo: {
-        marginTop: "65%",
-        width: "95%",
-        height: 178
+        marginTop: "40%",
+        width: "100%",
+        height: 250
     },
     trator: {
         width: 100,

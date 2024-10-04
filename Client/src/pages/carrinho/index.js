@@ -1,148 +1,131 @@
-import React from "react"
-import { View, FlatList, Text, TouchableOpacity, Image } from "react-native"
-import styles from "./style"
-import stylesList from "../venda/stylesList.js"
+import React, { useState } from "react";
+import { View, FlatList, Text, Image, TouchableOpacity, Alert } from "react-native";
+import styles from "./style";
+import stylesList from "../venda/stylesList.js";
+import axios from "axios";
 
-export default function Carrinho({ navigation }) {
+export default function Carrinho({ navigation, route }) {
+    const { carrinho = [] } = route.params || { carrinho: [] }; // Garantir que carrinho não seja undefined
+    const [selectedRadio, setSelectedRadio] = useState(null);
 
-    const DATA = [
-        {
-            tittle: "Coxinha",
-            descricao: "Coxinha de frango com catupiry",
-            quantidade: 20,
-            categoria: "Salgado assado",
-            preco: 3.50
-        },
-        {
-            tittle: "Suco de laranjna",
-            descricao: "Suco de laranja natural - 500ml",
-            quantidade: 5,
-            categoria: "Babida",
-            preco: 5.00
-        },
-        {
-            tittle: "Batata",
-            descricao: "Batata sem produtos químicos",
-            quantidade: 1,
-            categoria: "Legume",
-            preco: 8.00
-
-        },
-        {
-            tittle: "Pastel de Carne",
-            descricao: "",
-            quantidade: 0,
-            categoria: "Pastel salgado",
-            preco: 6.00
-        },
-        {
-            tittle: "Caldo de cana",
-            descricao: "Sabor abacaxi ou limão - 400ml",
-            quantidade: 10,
-            categoria: "Bebida",
-            preco: 5.50
+    const realizarVenda = async () => {
+        if (carrinho.length === 0) {
+            Alert.alert('Atenção', 'O carrinho está vazio.');
+            return;
         }
 
-    ]       
-    
-    const [selectedRadio, setSelectedRadio] = React.useState(3)
+        if (selectedRadio === null) {
+            Alert.alert('Atenção', 'Selecione uma forma de pagamento.');
+            return;
+        }
+
+        // Adicionar a forma de pagamento aos itens do carrinho
+        const carrinhoComPagamento = carrinho.map(item => ({
+            ...item,
+            formaPagamento: selectedRadio
+        }));
+
+        console.log("Dados a serem enviados:", {
+            vendas: carrinhoComPagamento,
+            formaPagamento: selectedRadio
+        });
+
+        try {
+            const response = await axios.post('http://10.0.2.2:5000/api/vendas', {
+                vendas: carrinhoComPagamento,
+                formaPagamento: selectedRadio
+            });
+
+            console.log("Resposta da API:", response.data);
+
+            Alert.alert('Sucesso', 'Venda realizada com sucesso!');
+            navigation.navigate("Venda", {
+                carrinhoAtualizado: [] // Resetar o carrinho após a venda
+            });
+        } catch (error) {
+            console.error('Erro ao realizar a venda:', error.response?.data || error.message);
+            Alert.alert('Erro', 'Não foi possível realizar a venda. Tente novamente.');
+        }
+    };
+
 
     return (
-        <View style={{ height: "100%" }}>
+        <View style={{ flex: 1 }}>
             <View style={styles.container}>
-                <Image source={require("../../images/iconCesta.png")}
-                    style={{ width: 40, height: 40, marginRight: 20 }}
-                />
+                <TouchableOpacity onPress={() => navigation.goBack()}>
+                    <Text style={styles.setaEsq}>➱</Text>
+                </TouchableOpacity>
                 <View style={styles.viewValorCompra}>
                     <Text style={{ ...styles.text, fontSize: 26, paddingTop: 8 }}>Valor total</Text>
                     <Text style={{ ...styles.text, fontWeight: "bold" }}>R$
-                        <Text style={{ color: "#f6f6f6" }}>_</Text>
-                        <Text style={{ ...styles.text, fontSize: 38, fontWeight: "bold" }}>28,00</Text>
+                        <Text style={{ color: "#6294ac" }}>_</Text>
+                        <Text style={{ ...styles.text, fontSize: 38, fontWeight: "bold" }}>
+                            {carrinho.reduce((total, item) => total + item.price * item.quantidade, 0).toFixed(2)}
+                        </Text>
                     </Text>
                 </View>
             </View>
 
-            <View style={{
-                marginTop: 10,
-                height: "60%"
-            }}>
+            <View style={{ marginTop: 10, flex: 1 }}>
                 <FlatList
-                    data={DATA}
+                    data={carrinho}
+                    keyExtractor={(item) => item.id.toString()}
                     contentContainerStyle={{ paddingTop: 15 }}
-                    renderItem={({ item }) => {
-                        return (
-                            <View>
-                                <View style={stylesList.produto}>
-                                    <View style={stylesList.viewTittle}>
-                                        <Text style={stylesList.titulo}>{item.tittle}</Text>
-                                        <View style={stylesList.viewAddCar}>
-                                            <TouchableOpacity style={stylesList.btnMenos}>
-                                                <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>-</Text>
-                                            </TouchableOpacity>
-
-                                            <Text style={{ fontSize: 20, fontWeight: "bold" }}>1</Text>
-
-                                            <TouchableOpacity style={{ ...stylesList.btnMenos, backgroundColor: "#8DEB84" }}>
-                                                <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>+</Text>
-                                            </TouchableOpacity>
-
-                                            <TouchableOpacity>
-                                                <Image source={require("../../images/iconLixeira.png")}
-                                                    style={{ width: 30, height: 30, marginLeft: 50 }} />
-                                            </TouchableOpacity>
-                                        </View>
-                                    </View>
-
-                                    <View style={stylesList.viewValor}>
-                                        <Text style={stylesList.sifrao}>R$
-                                            <Text style={{ color: "white" }}>_</Text>
-                                            <Text style={{ ...stylesList.sifrao, fontSize: 34 }}>{item.preco}</Text>
-                                        </Text>
-                                    </View>
-                                </View>
+                    renderItem={({ item }) => (
+                        <View style={stylesList.produto}>
+                            <View style={stylesList.viewTittle}>
+                                <Text style={stylesList.titulo}>{item.name}</Text>
+                                <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+                                    Quantidade: {item.quantidade}
+                                </Text>
                             </View>
-                        )
-                    }}
+
+                            <View style={stylesList.viewValor}>
+                                <Text style={stylesList.sifrao}>R$
+                                    <Text style={{ color: "white" }}>_</Text>
+                                    <Text style={{ ...stylesList.sifrao, fontSize: 34 }}>{item.price}</Text>
+                                </Text>
+                            </View>
+                        </View>
+                    )}
                 />
             </View>
+
             <View style={styles.venda}>
-
                 <Text style={styles.textValor}>Forma de pagamento</Text>
-
                 <View style={styles.formaPg}>
                     <TouchableOpacity onPress={() => setSelectedRadio(1)}>
                         <View style={styles.wrapper}>
                             <View style={styles.radio}>
-                                {selectedRadio == 1 ? <View style={styles.radioBg}></View> : null}
+                                {selectedRadio === 1 ? <View style={styles.radioBg}></View> : null}
                             </View>
-                            <Text style={styles.textRadio}>Dinheiro</Text>
+                            <Text style={styles.textRadio}>PIX</Text>
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => setSelectedRadio(2)}>
                         <View style={styles.wrapper}>
                             <View style={styles.radio}>
-                                {selectedRadio == 2 ? <View style={styles.radioBg}></View> : null}
+                                {selectedRadio === 2 ? <View style={styles.radioBg}></View> : null}
                             </View>
-                            <Text style={styles.textRadio}>PIX</Text>
+                            <Text style={styles.textRadio}>Cartão</Text>
                         </View>
                     </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => setSelectedRadio(3)}>
                         <View style={styles.wrapper}>
                             <View style={styles.radio}>
-                                {selectedRadio == 3 ? <View style={styles.radioBg}></View> : null}
+                                {selectedRadio === 3 ? <View style={styles.radioBg}></View> : null}
                             </View>
-                            <Text style={styles.textRadio}>Cartão</Text>
+                            <Text style={styles.textRadio}>Dinheiro</Text>
                         </View>
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity style={styles.btnVender}
-                    onPress={() => navigation.navigate("Venda")}>
+                <TouchableOpacity style={styles.btnVender} onPress={realizarVenda}>
                     <Text style={styles.textButton}>Vender</Text>
                 </TouchableOpacity>
             </View>
         </View>
-    )
+    );
 }

@@ -6,25 +6,27 @@ const styles = StyleSheet.create({
         bottom: 0,
         backgroundColor: "#ECECEC",
         alignItems: "center",
-        justifyContent: "center"
     },
     header:{
-        marginTop: 20,
-        height: 50,
         width: '100%', 
         flexDirection: 'row',
         alignItems: 'center',
+        backgroundColor: "#6294ac",
+        paddingBottom: 10,
+        paddingTop: 10,
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
     },
     titleText:{
         marginLeft: 40,
         fontSize: 24, 
         fontWeight: 'bold',
-        color: '#6B983C',
+        color: 'white',
     },
     setaEsq: {
         fontSize: 40, 
         fontWeight: '900',
-        color: '#6B983C',
+        color: 'white',
         paddingLeft: 15,
         paddingRight: 10,
         marginBottom: -15, 
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
         transform: [{rotate: '180deg'}] 
     },
     form: {
-        marginTop: "34%",
+        marginTop: 120,
         marginBottom: 20,
         backgroundColor: "white",
         borderRadius: 20,
@@ -43,24 +45,19 @@ const styles = StyleSheet.create({
         // sombra - shadow
         elevation: 30
     }, 
-    label: {
-        position: "absolute",
-        paddingHorizontal: 5,
-        marginLeft: 22
-    },
     textBox: {
         alignItems: "center",
-        width: "90%",
+        width: "100%",
     },
     input: {
-        width: "100%",
-        height: 44,
+        width: "90%",
         paddingLeft: 12,
         paddingRight: 12,
         marginTop: 10,
         marginBottom: 10,
         borderRadius: 50,
-        borderColor: "#79F146",
+        height: 35,
+        borderColor: "#acc4cc",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
     }, 
@@ -77,7 +74,7 @@ const styles = StyleSheet.create({
         marginTop: 100
     },
     btnCad: {
-        backgroundColor: "#6B983C",
+        backgroundColor: "#04414b",
         borderRadius: 50,
         justifyContent: "center",
         alignItems:"center",
@@ -92,31 +89,6 @@ const styles = StyleSheet.create({
         color: "#D47A7A",
         fontWeight: "bold",
         fontSize: 18, 
-    },
-    viewPreTip: {
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        gap: 10
-    },
-
-    // Dropdow
-    dropdow: {
-        width: "45%",
-        paddingHorizontal: 15,
-        height: 44,
-        borderRadius: 50,
-        borderWidth: 2,
-        borderColor: "#79F146"
-    },
-    placeholderStyle: {
-        color: "#0B1C10",
-        fontSize: 14
-    },
-    selectedTextStyle: {
-        color: "#0B1C10",
-        fontSize: 14
     }
 })
 
