@@ -87,8 +87,8 @@ app.post('/api/login', async (req, res) => {
 app.post('/api/products', async (req, res) => {
   const { name, description, quantity, price, saleType, category } = req.body;
 
-  if (!name || !quantity || !price) {
-    return res.status(400).json({ message: 'Nome, quantidade e preço são obrigatórios.' });
+  if (!name || !description || !quantity || !price || !saleType || !category) {
+    return res.status(400).json({ message: 'Todos os campos são obrigatórios.' });
   }
 
   try {
