@@ -4,7 +4,7 @@ import Home from "./pages/home"
 import AbrirCaixa from "./pages/abrirCaixa"
 import Estoque from "./pages/estoque"
 
-import  TabBar  from "./components/tabBar"
+import  TabBar  from "./components/tabBar/tabBar"
 
 const Tab = createBottomTabNavigator()
 
