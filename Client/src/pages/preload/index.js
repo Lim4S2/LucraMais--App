@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Image, Text, ActivityIndicator } from "react-native";
+import { View, Image, ActivityIndicator, StatusBar } from "react-native";
 import styles from "./style";
 
 export default function Preload({ navigation }) {
@@ -14,6 +14,7 @@ export default function Preload({ navigation }) {
 
     return (
         <View style={styles.container}>
+            <StatusBar backgroundColor={"#04414b"} barStyle="light-content"/>
             <Image source={require("../../images/logo.png")} style={styles.logo} />
 
             <View style={styles.carregamento}>

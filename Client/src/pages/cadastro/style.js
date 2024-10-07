@@ -7,6 +7,12 @@ const styles = StyleSheet.create({
         backgroundColor: "#04414b",
         alignItems: "center",
     },
+    containerTitle: {
+        width: "100%",
+        flexDirection: "row",
+        justifyContent: "flex-start",
+        alignItems: "center"
+    },
     form: {
         marginTop: "10%",
         marginBottom: 15,
@@ -25,6 +31,7 @@ const styles = StyleSheet.create({
         fontWeight: "900",
         color: "#6294ac",
         paddingTop: 15,
+        marginLeft: "5%",
     },
     legend: {
         fontSize: 16,
@@ -45,6 +52,18 @@ const styles = StyleSheet.create({
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
     }, 
+    setaEsq: {
+        fontSize: 35, 
+        fontWeight: '900',
+        color: '#6294ac',
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 5,
+        paddingBottom: 10,
+        marginBottom: -25,
+        marginLeft: "3%",
+        transform: [{rotate: '180deg'}] 
+    },
     plus: {
         fontSize: 16,
         padding: 8,

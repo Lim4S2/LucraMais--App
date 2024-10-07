@@ -2,9 +2,13 @@ import React, {useEffect, useState} from "react"
 import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback, ScrollView } from "react-native"
 import { BarChart } from "react-native-gifted-charts"
 import styles from "./style"
+import { useSharedValue, withTiming } from "react-native-reanimated";
+import { generateRandomNumbers } from "../../components/randomGrafico/generateRandom";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { calculatePercent } from "../../components/randomGrafico/calculatePorcentage";
+import RenderItem from "./renderItem";
 
 export default function Home({navigation, props}) {
-
     //função para que o usuário não volte para a página
     useEffect(() => {
         BackHandler.addEventListener("hardwareBackPress", () => {
@@ -13,7 +17,45 @@ export default function Home({navigation, props}) {
     }, [])
 
     const n = 5
-    const [data, setData] = useState([])
+    const [data, setData] = useState<Data[]>([])
+    const totalValue = useSharedValue(0)
+    const decimals = useSharedValue<number[]>([])
+    const colors = ['blue', 'red', 'green', 'pink', 'orange']
+
+    const generateData = () => {
+        // gera os números
+        const generateNumbers = generateRandomNumbers(n)
+        // soma o total dos números gerados
+        const total = generateNumbers.reduce(
+            (acc, currentValue) => acc + currentValue
+        )
+        // calcula a porcentagem dos números
+        const generatePercentes = calculatePercent(generateNumbers, total)
+        // transforma porcentagem em número decimal
+        const generateDecimals = generatePercentes.map(
+            number => Number(number.toFixed(0)) / 100
+        )
+
+        // junta todos os dados para mostrar
+        const arrayOfObjects = generateNumbers.map((value, index) =>({
+           value,
+           percentage: generatePercentes[index],
+           color: colors[index] 
+        }))
+
+        //para fazer a animação do gráfico
+        totalValue.value = withTiming(total, {duration: 1000})
+        decimals.value = [...generateDecimals]
+        setData(arrayOfObjects)
+
+        console.log({
+            data,
+            generateNumbers, 
+            total,
+            generatePercentes, 
+            generateDecimals
+        })
+    }
 
     return(
         <View>
@@ -57,6 +99,12 @@ export default function Home({navigation, props}) {
 
                 <View>
                     <Text style={{...styles.text, color: "#222"}}>Produtos mais vendidos</Text>
+                    <TouchableOpacity onPress={generateData}>
+                        <Text>Gerar número</Text>
+                    </TouchableOpacity>
+                    {data.map((item, index) => {
+                        return <RenderItem item={item} index={index} key={index} />
+                    })}
                 </View>
             </ScrollView>
         </View>

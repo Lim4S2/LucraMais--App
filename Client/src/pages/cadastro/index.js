@@ -47,7 +47,10 @@ export default function Cadastro({ navigation }) {
     return (
         <Pressable onPress={Keyboard.dismiss} style={styles.container}>
             <Pressable onPress={Keyboard.dismiss} style={styles.form}>
-                <Text style={styles.tittle}>Cadastro</Text>
+                <View style={styles.containerTitle}>
+                    <Text style={styles.setaEsq} onPress={() => navigation.navigate("Login")}>➱</Text>
+                    <Text style={styles.tittle}>Cadastro</Text>
+                </View>
 
                 <View style={styles.textBox}>
                     <Text style={styles.legend}>Nome do Comércio</Text>
