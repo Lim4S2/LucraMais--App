@@ -8,6 +8,12 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { calculatePercent } from "../../components/randomGrafico/calculatePorcentage";
 import RenderItem from "./renderItem";
 
+interface Data {
+    value: number;
+    percentage: number;
+    color: string;
+}
+
 export default function Home({navigation, props}) {
     //função para que o usuário não volte para a página
     useEffect(() => {
@@ -60,6 +66,7 @@ export default function Home({navigation, props}) {
     return(
         <View>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
+            
             <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
                 <View style={styles.container}>
                     <Text style={styles.text}>Nome do comércio</Text>
@@ -67,8 +74,9 @@ export default function Home({navigation, props}) {
             </TouchableWithoutFeedback>
 
             <ScrollView contentContainerStyle={{ alignItems: "center" }}>
-                <View style={{padding: 15, gap: 10}}>
+                <View style={{padding: 15, gap: 10, alignItems: "center"}}>
                     <Text style={{...styles.text, color: "#222"}}>Gráfico sobre receita</Text>
+                    
                     <BarChart
                         data={[
                             {value: 500, frontColor: 'blue'},
@@ -97,8 +105,9 @@ export default function Home({navigation, props}) {
                     />
                 </View>
 
-                <View>
+                <View style={{ alignItems: "center"}}>
                     <Text style={{...styles.text, color: "#222"}}>Produtos mais vendidos</Text>
+                    
                     <TouchableOpacity onPress={generateData}>
                         <Text>Gerar número</Text>
                     </TouchableOpacity>
