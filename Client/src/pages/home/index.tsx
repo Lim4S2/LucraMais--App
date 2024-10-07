@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react"
-import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback, ScrollView } from "react-native"
+import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback, ScrollView, StyleSheet } from "react-native"
 import { BarChart } from "react-native-gifted-charts"
 import styles from "./style"
 import { useSharedValue, withTiming } from "react-native-reanimated";
@@ -7,12 +7,22 @@ import { generateRandomNumbers } from "../../components/randomGrafico/generateRa
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { calculatePercent } from "../../components/randomGrafico/calculatePorcentage";
 import RenderItem from "./renderItem";
+import DonutChart from "../../components/randomGrafico/donutChart";
 
 interface Data {
     value: number;
     percentage: number;
     color: string;
 }
+
+// Raio do gráfico
+const RADIUS = 160
+// Valor da espessura do gráfico
+const STROKE_WIDTH = 30
+// Valor da espessura do traço externo
+const OUTER_STROKE_WIDTH = 40
+// Distância entre os dados
+const GAP = 0.04
 
 export default function Home({navigation, props}) {
     //função para que o usuário não volte para a página
@@ -26,7 +36,7 @@ export default function Home({navigation, props}) {
     const [data, setData] = useState<Data[]>([])
     const totalValue = useSharedValue(0)
     const decimals = useSharedValue<number[]>([])
-    const colors = ['blue', 'red', 'green', 'pink', 'orange']
+    const colors = ['blue', 'red', 'green', 'purple', 'orange']
 
     const generateData = () => {
         // gera os números
@@ -66,7 +76,7 @@ export default function Home({navigation, props}) {
     return(
         <View>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
-            
+
             <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
                 <View style={styles.container}>
                     <Text style={styles.text}>Nome do comércio</Text>
@@ -108,6 +118,15 @@ export default function Home({navigation, props}) {
                 <View style={{ alignItems: "center"}}>
                     <Text style={{...styles.text, color: "#222"}}>Produtos mais vendidos</Text>
                     
+                    <View style={styles2.containerChart}>
+                        <DonutChart
+                            radius={RADIUS}
+                            strokeWidth={STROKE_WIDTH}
+                            outerStrokeWidth={OUTER_STROKE_WIDTH}
+                            totalValue={totalValue}
+                        />
+                    </View>
+
                     <TouchableOpacity onPress={generateData}>
                         <Text>Gerar número</Text>
                     </TouchableOpacity>
@@ -119,3 +138,12 @@ export default function Home({navigation, props}) {
         </View>
     )
 }
+
+
+const styles2 = StyleSheet.create({
+    containerChart: {
+        width: RADIUS * 2,
+        height: RADIUS * 2,
+        marginTop: 10
+    }
+})
