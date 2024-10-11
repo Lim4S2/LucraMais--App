@@ -27,6 +27,7 @@ const RenderItem = ({item, index} : Props) => {
                 <View style={[styles.color, {backgroundColor: item.color}]}/>
                 <Text style={styles.text}>{item.percentage}%</Text>
                 <Text style={styles.text}>Quant.
+                    <Text style={{color: "white"}}>_</Text>
                     <Text style={{ fontSize: 24, fontWeight: "bold", color: "black"}}>{item.value}</Text>
                 </Text>
             </View>

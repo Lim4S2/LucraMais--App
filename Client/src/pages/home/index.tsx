@@ -16,11 +16,11 @@ interface Data {
 }
 
 // Raio do gráfico
-const RADIUS = 160
+const RADIUS = 120
 // Valor da espessura do gráfico
 const STROKE_WIDTH = 30
 // Valor da espessura do traço externo
-const OUTER_STROKE_WIDTH = 40
+const OUTER_STROKE_WIDTH = 35
 // Distância entre os dados
 const GAP = 0.04
 
@@ -124,6 +124,12 @@ export default function Home({navigation, props}) {
                             strokeWidth={STROKE_WIDTH}
                             outerStrokeWidth={OUTER_STROKE_WIDTH}
                             totalValue={totalValue}
+                            smallFont={smallFont}
+                            font={font}
+                            n={n}
+                            gap={GAP}
+                            decimals={decimals}
+                            colors={colors}
                         />
                     </View>
 
