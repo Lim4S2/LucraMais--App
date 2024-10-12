@@ -40,8 +40,8 @@ export default RenderItem
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "white",
-        paddingVertical: 20,
-        marginBottom: 10,
+        paddingVertical: 15,
+        marginBottom: 15,
         borderRadius: 20,
         elevation: 5
     },
@@ -53,9 +53,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 20
     },
     color: {
-        width: 60,
-        height: 60,
-        borderRadius: 10
+        width: 25,
+        height: 25,
+        borderRadius: 5
     }, 
     text: {
         fontSize: 20,

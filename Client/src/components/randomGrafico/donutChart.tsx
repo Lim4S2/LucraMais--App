@@ -5,16 +5,16 @@ import { Canvas, Path, SkFont, Skia, Text } from "@shopify/react-native-skia"
 import DonutPath from "./donutPath";
 
 type Props = {
-    radius: number;
-    strokeWidth: number;
-    outerStrokeWidth: number;
-    font: SkFont;
-    smallFont: SkFont;
     totalValue: SharedValue<number>;
-    n: number;
-    gap: number;
     decimals: SharedValue<number[]>;
+    outerStrokeWidth: number;
+    strokeWidth: number;
+    smallFont: SkFont;
     colors: string[];
+    radius: number;
+    font: SkFont;
+    gap: number;
+    n: number;
 }
 
 const DonutChart = ({
@@ -38,11 +38,11 @@ const DonutChart = ({
 
     // fazendo aparecer o texto no centro do gráfico
     const targetText = useDerivedValue(
-        () => `$${Math.round(totalValue.value)}`,
+        () => `${Math.round(totalValue.value)}`,
         [],
     )
 
-    const fontSize = font.measureText('$00');
+    const fontSize = font.measureText("$00");
     const smallFontSize = smallFont.measureText("Produtos vendidos")
 
     const targX = useDerivedValue(() => {
@@ -54,7 +54,7 @@ const DonutChart = ({
         <View>
             <Canvas style={styles.container}>
                 <Path path={path} 
-                    color="blue"
+                    color="#d4d4d4ae"
                     style="stroke"
                     strokeWidth={outerStrokeWidth}
                     strokeJoin="round"
@@ -62,19 +62,13 @@ const DonutChart = ({
                     start={0}
                     end={1}
                 />
-                <Text
-                    x={radius - smallFontSize.width / 2}
-                    y={radius + smallFontSize.height / 2 - fontSize.height / 1.2}
-                    text={"Produtos vendidos"}
-                    font={smallFont}
-                    color="#545454"
-                />
                 {array.map((_, index) => {
                     return(
                     <DonutPath 
                         key={index} 
                         radius={radius} 
                         strokeWidth={strokeWidth}
+                        outerStrokeWidth={outerStrokeWidth}
                         color={colors[index]}
                         decimals={decimals}
                         index={index}
@@ -83,8 +77,15 @@ const DonutChart = ({
                     )  
                 })}
                 <Text
+                    x={radius - smallFontSize.width / 2}
+                    y={radius + smallFontSize.height / 2 - fontSize.height / 1.6}
+                    text={"Produtos vendidos"}
+                    font={smallFont}
+                    color="#545454"
+                />
+                <Text
                     x={targX}
-                    y={radius + fontSize.height / 2}
+                    y={radius + fontSize.height / 2 + 5}
                     text={targetText}
                     font={font}
                     color="black"

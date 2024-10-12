@@ -56,7 +56,16 @@ export default function Produto({ navigation }) {
         color: floatingLabelAnimation.interpolate({
             inputRange: [0, 1],
             outputRange: ["#0C1B10", "#6294ac"]
+        }),
+        backgroundColor: floatingLabelAnimation.interpolate({
+            inputRange: [0, 1],
+            outputRange: ["white", "#fff"]
+        }),
+        zIndex:  floatingLabelAnimation.interpolate({ 
+            inputRange: [0, 1],
+            outputRange: [0, 1]
         })
+
     };
 
     const handleRegisterProduct = async () => {
@@ -115,6 +124,11 @@ export default function Produto({ navigation }) {
                             fontSizeFocused: 14,
                             colorBlurred: "#0C1B10",
                         }}
+                        labelStyles={{
+                            backgroundColor: "white",
+                            padding: 5,
+                            borderRadius: 50
+                        }}
                         onChangeText={text => setNomeProd(text)}
                     />
                     <FloatingLabelInput
@@ -126,6 +140,11 @@ export default function Produto({ navigation }) {
                             fontSizeFocused: 14,
                             colorBlurred: "#0C1B10",
                         }}
+                        labelStyles={{
+                            backgroundColor: "white",
+                            padding: 5,
+                            borderRadius: 50
+                        }}
                         onChangeText={text => setDescricao(text)}
                     />
                     <FloatingLabelInput
@@ -135,7 +154,12 @@ export default function Produto({ navigation }) {
                         customLabelStyles={{
                             colorFocused: "#6294ac",
                             fontSizeFocused: 14,
-                            colorBlurred: "#0C1B10",
+                            colorBlurred: "#0C1B10"
+                        }}
+                        labelStyles={{
+                            backgroundColor: "white",
+                            padding: 5,
+                            borderRadius: 50
                         }}
                         keyboardType="numeric"
                         onChangeText={text => setQuant(text)}
@@ -182,6 +206,11 @@ export default function Produto({ navigation }) {
                             colorFocused: "#6294ac",
                             fontSizeFocused: 14,
                             colorBlurred: "#0C1B10",
+                        }}
+                        labelStyles={{
+                            backgroundColor: "white",
+                            padding: 5,
+                            borderRadius: 50
                         }}
                         onChangeText={text => setCategoria(text)}
                     />

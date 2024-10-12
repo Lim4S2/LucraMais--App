@@ -8,6 +8,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { calculatePercent } from "../../components/randomGrafico/calculatePorcentage";
 import RenderItem from "./renderItem";
 import DonutChart from "../../components/randomGrafico/donutChart";
+import { useFont } from "@shopify/react-native-skia";
 
 interface Data {
     value: number;
@@ -16,13 +17,13 @@ interface Data {
 }
 
 // Raio do gráfico
-const RADIUS = 120
+const RADIUS = 125
 // Valor da espessura do gráfico
 const STROKE_WIDTH = 30
 // Valor da espessura do traço externo
 const OUTER_STROKE_WIDTH = 35
 // Distância entre os dados
-const GAP = 0.04
+const GAP = 0.048
 
 export default function Home({navigation, props}) {
     //função para que o usuário não volte para a página
@@ -73,6 +74,13 @@ export default function Home({navigation, props}) {
         })
     }
 
+    const font = useFont(require("../../../assets/fonts/NotoSansJP-Bold.ttf"), 60)
+    const smallFont = useFont(require("../../../assets/fonts/NotoSansJP-Light.ttf"), 17)
+
+    if (!font || !smallFont) {
+        return <View/>
+    }
+
     return(
         <View>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
@@ -83,7 +91,8 @@ export default function Home({navigation, props}) {
                 </View>
             </TouchableWithoutFeedback>
 
-            <ScrollView contentContainerStyle={{ alignItems: "center" }}>
+            <ScrollView contentContainerStyle={{ alignItems: "center", paddingBottom: 150 }}
+                showsVerticalScrollIndicator={false}>
                 <View style={{padding: 15, gap: 10, alignItems: "center"}}>
                     <Text style={{...styles.text, color: "#222"}}>Gráfico sobre receita</Text>
                     
@@ -95,7 +104,7 @@ export default function Home({navigation, props}) {
                             {value: 0, frontColor: 'purple'},
                         ]}
                         height={250}
-                        width={320}
+                        width={370}
                         // grossura do gráfico
                         barWidth={40}
                         // minimo de altura quando for 0
@@ -112,11 +121,11 @@ export default function Home({navigation, props}) {
                         xAxisLabelTextStyle={{color: "gray"}}
                         isAnimated
                         dashGap={5}
+                        onPressOut={() => navigation.navigate("Estoque")}
                     />
                 </View>
 
                 <View style={{ alignItems: "center"}}>
-                    <Text style={{...styles.text, color: "#222"}}>Produtos mais vendidos</Text>
                     
                     <View style={styles2.containerChart}>
                         <DonutChart
