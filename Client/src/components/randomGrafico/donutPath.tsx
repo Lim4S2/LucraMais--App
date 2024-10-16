@@ -3,6 +3,8 @@ import React from "react"
 import { SharedValue, useDerivedValue, withTiming } from "react-native-reanimated";
 import { Path, Skia } from "@shopify/react-native-skia";
 
+
+// Neste arquivo é para fazer a parte com os dados do gráfico de Dunet
 type Props = {
     radius: number;
     gap: number;
@@ -23,24 +25,28 @@ const DonutPath = ({
     index
 } : Props) => {
 
-    const innerRadius = radius -outerStrokeWidth / 2
+    // tamanho do gráfico
+    const innerRadius = radius - outerStrokeWidth / 2
 
     const path = Skia.Path.Make()
     path.addCircle(radius, radius, innerRadius)
 
+    // para fazer o espaçamento no começo entre os dados e a animação
     const start = useDerivedValue(() =>{
         if (index === 0) {
             return gap
         }
-
+        
         const decimal = decimals.value.slice(0, index)
         const sum = decimal.reduce(
             (accumulator,  currentValue) => accumulator + currentValue, 0
         )
-
+        
         return withTiming(sum + gap, {duration: 1000})
     }) 
-
+    
+    
+    // para fazer o espaçamento no final entre os dados e a animação
     const end = useDerivedValue(() =>{
         if (index ===  decimals.value.length - 1) {
             return withTiming(1, {duration: 1000})

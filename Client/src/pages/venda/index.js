@@ -147,7 +147,7 @@ export default function Venda({ navigation, route }) {
                                         <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>+</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => navigation.navigate("Carrinho", {carrinho})}>
                                         <Image source={require("../../images/cesta.png")}
                                             style={{ width: 30, height: 30, marginLeft: 50 }} />
                                     </TouchableOpacity>
@@ -156,8 +156,7 @@ export default function Venda({ navigation, route }) {
 
                             <View style={stylesList.viewValor}>
                                 <Text style={stylesList.sifrao}>R$
-                                    <Text style={{ color: "white" }}>_</Text>
-                                    <Text style={{ ...stylesList.sifrao, fontSize: 34 }}>{item.price}</Text>
+                                    <Text style={{ ...stylesList.sifrao, fontSize: 34 }}> {item.price}</Text>
                                 </Text>
                             </View>
                         </View>

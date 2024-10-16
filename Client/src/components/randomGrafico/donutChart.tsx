@@ -4,6 +4,8 @@ import { SharedValue, useDerivedValue } from "react-native-reanimated";
 import { Canvas, Path, SkFont, Skia, Text } from "@shopify/react-native-skia"
 import DonutPath from "./donutPath";
 
+
+// É neste arquivo que fica o gráfico e suas propriedades
 type Props = {
     totalValue: SharedValue<number>;
     decimals: SharedValue<number[]>;
@@ -30,8 +32,10 @@ const DonutChart = ({
     n
 } : Props) => {
 
+    // aqui vai pegar os dados conforme a quantidade disponível
     const array = Array.from({length: n})
     
+    // tamanho do gráfico
     const innerRadius = radius - outerStrokeWidth / 2
     const path = Skia.Path.Make()
     path.addCircle(radius, radius, innerRadius)
@@ -54,7 +58,7 @@ const DonutChart = ({
         <View>
             <Canvas style={styles.container}>
                 <Path path={path} 
-                    color="#d4d4d4ae"
+                    color="white"
                     style="stroke"
                     strokeWidth={outerStrokeWidth}
                     strokeJoin="round"
@@ -62,6 +66,8 @@ const DonutChart = ({
                     start={0}
                     end={1}
                 />
+
+                {/* É nesta parte onde os dados vão aparecer */}
                 {array.map((_, index) => {
                     return(
                     <DonutPath 
@@ -76,6 +82,7 @@ const DonutChart = ({
                     />
                     )  
                 })}
+
                 <Text
                     x={radius - smallFontSize.width / 2}
                     y={radius + smallFontSize.height / 2 - fontSize.height / 1.6}
@@ -83,6 +90,7 @@ const DonutChart = ({
                     font={smallFont}
                     color="#545454"
                 />
+
                 <Text
                     x={targX}
                     y={radius + fontSize.height / 2 + 5}

@@ -67,23 +67,19 @@ export default function Fechamento({ navigation }) {
             </View>
 
             <Text style={{ fontSize: 18, marginTop: 20 }}>Caixa aberto -
-                <Text style={{ color: "#f6f6f6" }}>_</Text>
-                <Text style={{ fontSize: 18, marginTop: 10 }}>{fechamento.abertura}</Text>
+                <Text style={{ fontSize: 18, marginTop: 10 }}> {fechamento.abertura}</Text>
             </Text>
             <Text style={{ fontSize: 18, marginTop: 10 }}>Fechou caixa -
-                <Text style={{ color: "#f6f6f6" }}>_</Text>
-                <Text style={{ fontSize: 18, marginTop: 10 }}>{fechamento.fechamentoHora}</Text>
+                <Text style={{ fontSize: 18, marginTop: 10 }}> {fechamento.fechamentoHora}</Text>
             </Text>
             <Text style={{ fontSize: 18, marginTop: 10 }}>Horas trabalhadas -
-                <Text style={{ color: "#f6f6f6" }}>_</Text>
-                <Text style={{ fontSize: 18, marginTop: 10 }}>{fechamento.horasTrabalhadas}</Text>
+                <Text style={{ fontSize: 18, marginTop: 10 }}> {fechamento.horasTrabalhadas}</Text>
             </Text>
 
             <View style={styles.viewLucro}>
                 <Text style={{ ...styles.text, fontSize: 20 }}>Receita do Dia</Text>
                 <Text style={{ ...styles.text, fontSize: 30, color: "white" }}>R$
-                    <Text style={{ color: "#04414b" }}>_</Text>
-                    <Text style={{ ...styles.text, fontSize: 50, color: "white" }}>{fechamento.receitaTotal}</Text>
+                    <Text style={{ ...styles.text, fontSize: 50, color: "white" }}> {fechamento.receitaTotal}</Text>
                 </Text>
             </View>
 

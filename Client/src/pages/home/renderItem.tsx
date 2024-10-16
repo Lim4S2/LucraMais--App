@@ -12,7 +12,7 @@ type Props = {
     item: Data;
     index: number;
 }
-
+// É nesse arquivo que mostra a legenda do gráfico, os resultados
 const RenderItem = ({item, index} : Props) => {
 
     const {width} = useWindowDimensions()
@@ -24,12 +24,21 @@ const RenderItem = ({item, index} : Props) => {
             exiting={FadeOutDown}
         >
             <View style={styles.contentContainer}>
+                {/* Cor */}
                 <View style={[styles.color, {backgroundColor: item.color}]}/>
-                <Text style={styles.text}>{item.percentage}%</Text>
-                <Text style={styles.text}>Quant.
-                    <Text style={{color: "white"}}>_</Text>
-                    <Text style={{ fontSize: 24, fontWeight: "bold", color: "black"}}>{item.value}</Text>
-                </Text>
+
+                {/* Nome do produto */}
+                <Text style={{...styles.text, color: "#313131"}}>Nome do Produto</Text>
+                    
+                <View style={{alignItems: "center"}}>
+                    {/* Valor de vendas */}
+                    <Text style={styles.text}>Quant.
+                        <Text style={{color: "white"}}>_</Text>
+                        <Text style={{ fontSize: 24, fontWeight: "bold", color: "black"}}>{item.value}</Text>
+                    </Text>
+                    {/* Porcentagem */}
+                    <Text style={styles.text}>{item.percentage}%</Text>
+                </View>
             </View>
         </Animated.View>
     )
@@ -39,8 +48,9 @@ export default RenderItem
 
 const styles = StyleSheet.create({
     container: {
+        width: "50%",
         backgroundColor: "white",
-        paddingVertical: 15,
+        paddingVertical: 5,
         marginBottom: 15,
         borderRadius: 20,
         elevation: 5
@@ -55,7 +65,7 @@ const styles = StyleSheet.create({
     color: {
         width: 25,
         height: 25,
-        borderRadius: 5
+        borderRadius: 5,
     }, 
     text: {
         fontSize: 20,

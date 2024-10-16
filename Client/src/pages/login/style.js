@@ -7,10 +7,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
     }, 
     form: {
-        marginTop: "15%",
+        marginTop: "12%",
         marginBottom: 20,
         backgroundColor: "white",
-        borderRadius: 20,
+        borderRadius: 25,
         alignItems: "center",
         //height: "56%",
         height: "auto",
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         fontSize: 46,
         fontWeight: "900",
         color: "#6294ac",
-        padding: 15
+        //padding: 15
     },
     text:{
         color: "#7a7a7a",
@@ -39,15 +39,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         color: "#6294ac",
-        paddingTop: 15,
+        paddingTop: 10,
         paddingBottom: 5,
         paddingLeft: 30
     },
     plus: {
         fontSize: 16,
         fontWeight: "semibold",
-        color: "#6294ac",
-        marginBottom: "5%"
+        color: "#6294ac"
     }, 
     cad: {
         fontSize: 16,
@@ -59,15 +58,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         width: "100%",
         justifyContent: "space-evenly",
-        marginTop: 20,
-        marginBottom: 30
+        alignItems: "center",
+        marginVertical: 15
     },
     input: {
         width: "90%",
         marginLeft: 15,
         paddingLeft: 10,
         borderRadius: 50,
-        height: 35,
+        height: 45,
         borderColor: "#acc4cc",
         //para ter cor na borda tem que ter uma altura
         borderWidth: 2
@@ -78,14 +77,13 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems:"center",
         width: "90%",
-        marginBottom: 20,
-        marginTop: 1
+        marginBottom: 15,
 
     }, textButtom: {
         fontSize: 20,
         color:"white",
         fontWeight: "bold",
-        padding: 10
+        padding: 15
     }
 })
 

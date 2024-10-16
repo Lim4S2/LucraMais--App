@@ -184,6 +184,7 @@ export default function Produto({ navigation }) {
                                 onChangeText={text => setPreco(text)}
                             />
                         </View>
+                        
                         <SelectCountry
                             style={styles.dropdow}
                             selectedTextStyle={styles.selectedTextStyle}

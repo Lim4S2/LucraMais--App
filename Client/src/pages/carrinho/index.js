@@ -57,8 +57,7 @@ export default function Carrinho({ navigation, route }) {
                 </TouchableOpacity>
                 <View style={styles.viewValorCompra}>
                     <Text style={{ ...styles.text, fontSize: 26, paddingTop: 8 }}>Valor total</Text>
-                    <Text style={{ ...styles.text, fontWeight: "bold" }}>R$
-                        <Text style={{ color: "#6294ac" }}>_</Text>
+                    <Text style={{ ...styles.text, fontWeight: "bold" }}>R$ 
                         <Text style={{ ...styles.text, fontSize: 38, fontWeight: "bold" }}>
                             {carrinho.reduce((total, item) => total + item.price * item.quantidade, 0).toFixed(2)}
                         </Text>

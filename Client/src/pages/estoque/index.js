@@ -115,8 +115,7 @@ export default function Estoque({ navigation }) {
                             <View style={stylesList.mais}>
                                 <View style={stylesList.valor}>
                                     <Text style={stylesList.sifrao}>R$
-                                        <Text style={{color: "white"}}>0</Text>
-                                        <Text style={{...stylesList.sifrao, fontSize: 34}}>{item.price}</Text>
+                                        <Text style={{...stylesList.sifrao, fontSize: 34}}> {item.price}</Text>
                                     </Text>
                                 </View>
 

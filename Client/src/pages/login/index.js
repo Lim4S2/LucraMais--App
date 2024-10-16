@@ -39,27 +39,27 @@ export default function Login({ navigation }) {
                 <View style={styles.textBox}>
                     <Text style={styles.legend}>E-mail</Text>
                     <TextInput  style={styles.input}
-                    value={email}
-                    onChangeText={setEmail}
-                    keyboardType="email-address"
-                    keyboard="#6B983C"
-                    autoCorrect={false}
-                    blurOnSubmit="true"
+                        value={email}
+                        onChangeText={setEmail}
+                        keyboardType="email-address"
+                        keyboard="#6B983C"
+                        autoCorrect={false}
+                        blurOnSubmit="true"
                     />
                 
                     <Text style={styles.legend}>Senha</Text>
                     <TextInput style={styles.input}
-                    value={senha}
-                    onChangeText={setSenha}
-                    keyboardType="text"
-                    secureTextEntry={true}
-                    autoCorrect={false}
+                        value={senha}
+                        onChangeText={setSenha}
+                        keyboardType="text"
+                        secureTextEntry={true}
+                        autoCorrect={false}
                     />
                 </View>
                 
                 <View style={styles.senhaCad}>
-                    <Text style={{...styles.plus, padding: 7}}>Esqueceu sua senha?</Text>
-                    <Text style={{...styles.plus, paddingTop: 5}}>|</Text>
+                    <Text style={styles.plus}>Esqueceu sua senha?</Text>
+                    <Text style={styles.plus}>|</Text>
                     <Text style={styles.cad} 
                     onPress={() => navigation.navigate("Cadastro")}
                     >Cadastrar</Text>
@@ -69,7 +69,7 @@ export default function Login({ navigation }) {
                     <Text style={styles.textButtom}>Logar</Text>
                 </TouchableOpacity>
 
-                <Text onPress={() => navigation.navigate("Home")} style={styles.plus}>Suporte?</Text>
+                <Text onPress={() => navigation.navigate("Home")} style={{...styles.plus, marginBottom: "5%"}}>Suporte?</Text>
             </Pressable>
         </Pressable>
     );
