@@ -144,11 +144,13 @@ export default function Home({navigation, props}) {
                         </View>
                     </View>
 
-                    <View>
+                    <View style={{height: 'auto'}}>
                         <BarChart
                             data={[
-                                {value: 500, frontColor: 'blue', label: "Jan" },
-                                {value: 800, frontColor: 'green', label: "Fev" },
+                                {value: 600, frontColor: 'blue', spacing: 2, label: "Jan", labelWidth: 40 },
+                                {value: 500, frontColor: 'red' },
+                                {value: 800, frontColor: 'green', label: "Fev", spacing: 2, labelWidth: 40 },
+                                {value: 300, frontColor: 'green' },
                                 {value: 300, frontColor: 'red', label: "Mar"},
                                 {value: 100, frontColor: 'purple', label: "Abr"},
                                 {value: 1000, frontColor: 'orange', label: "Mai"},
@@ -157,11 +159,9 @@ export default function Home({navigation, props}) {
                                 {value: 640, frontColor: 'brown', label: "Ago"},
                                 {value: 230, frontColor: 'pink', label: "Set"},
                                 {value: 480, frontColor: 'gray', label: "Out"},
-                                {value: 0, frontColor: '#00ffea', label: "Nov"},
-                                {value: 0, frontColor: '#0d0080', label: "Dez"},
                             ]}
                             height={150}
-                            width={340}
+                            width={350}
                             // grossura do gráfico
                             barWidth={14}
                             // minimo de altura quando for 0
@@ -181,6 +181,26 @@ export default function Home({navigation, props}) {
                             xAxisLabelTextStyle={{color: "gray"}}
                             isAnimated
                             dashGap={10}
+                            focusBarOnPress={true}
+                            focusedBarConfig={{
+                                width: 30,
+                                color: 'gray'
+                            }}
+                            onPress={(item, index) => console.log('Item', item)}
+                            renderTooltip={(item, index) => {
+                                return(
+                                    <View style={{
+                                        backgroundColor: "gray",
+                                        bottom: -50,
+                                        marginLeft: -6,
+                                        paddingHorizontal: 6,
+                                        paddingVertical: 4,
+                                        borderRadius: 5
+                                    }}>
+                                        <Text>{item.value}</Text>
+                                    </View>
+                                )
+                            }}
                         />
                     </View>
                     

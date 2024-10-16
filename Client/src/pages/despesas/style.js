@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
     textBtn: {
         color: 'white',
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: 'bold'
     }
 })

@@ -173,7 +173,7 @@ export default function Despesas({navigation}) {
                 </View>
 
                 <TouchableOpacity style={styles.btnProx} onPress={() => navigation.navigate("Fechamento")}>
-                    <Text style={styles.textBtn}>Position Relative</Text>
+                    <Text style={styles.textBtn}>Fechar dia</Text>
                 </TouchableOpacity>
         
                 
