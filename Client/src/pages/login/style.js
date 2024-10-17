@@ -5,6 +5,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#04414b",
         alignItems: "center",
+        justifyContent:  "center",
+
     }, 
     form: {
         marginTop: "12%",
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     logo: {
-        marginTop: "7%",
+        marginTop: "-30%",
         width: "65%",
         height: 105
     },
@@ -29,7 +31,6 @@ const styles = StyleSheet.create({
         fontSize: 46,
         fontWeight: "900",
         color: "#6294ac",
-        //padding: 15
     },
     text:{
         color: "#7a7a7a",
@@ -83,7 +84,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color:"white",
         fontWeight: "bold",
-        padding: 15
+        padding: 12
     }
 })
 

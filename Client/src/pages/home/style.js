@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
         color: 'white'
     },
     containerReceita: {
+        flexDirection: "column",
         width: "100%",
         justifyContent: "space-between",
-        marginLeft: 10, 
         flexDirection: "row", 
         alignItems: "center",
         marginVertical: 10
@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
         marginBottom: 50
     },
     buttonsFiltro: {
-        marginTop: 20,
         flexDirection: "row",
         width:  "100%",
         justifyContent: "space-around",
@@ -46,7 +45,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         borderColor: "#2b972b",
         borderWidth: 2,
-        width: 90,
+        width: 75,
         height: 35
     },
     buttonPress: {
