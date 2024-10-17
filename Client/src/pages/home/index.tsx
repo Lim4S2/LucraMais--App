@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback, ScrollView, StyleSheet, Touchable } from "react-native"
-import { BarChart } from "react-native-gifted-charts"
+import { BarChart, PieChart } from "react-native-gifted-charts"
 import styles from "./style"
 import { useSharedValue, withTiming } from "react-native-reanimated";
 import { generateRandomNumbers } from "../../components/randomGrafico/generateRandom";
@@ -9,7 +9,6 @@ import { calculatePercent } from "../../components/randomGrafico/calculatePorcen
 import RenderItem from "./renderItem";
 import DonutChart from "../../components/randomGrafico/donutChart";
 import { useFont } from "@shopify/react-native-skia";
-import PieChart from "react-native-pie-chart"
 
 interface Data {
     value: number;
@@ -93,67 +92,94 @@ export default function Home({navigation, props}) {
     }
 
     // PARÂMETROS PARA FAZER O GRÁFICO DE PIE
-    const widthAndHeight = 160
-    // quantidade
-    const series = [123, 321, 789]
-    const sliceColor = ["blue", "red", "green"]
-    // dados do gráfico
     const pagamento = [
         {
-            id: 1, 
-            name: "Cartão", 
+            value:  123,
             color: "blue" 
         },
         {
-            id: 2,
-            name: "PIX",
+            value:  321,
             color: "red"
         },
         {
-            id: 3,
-            name: "Dinheiro",
+            value:   789,
             color: "green"
         }
     ]
     
     const barData = [
-        {value: 600, frontColor: 'blue', spacing: 2, label: "Jan", labelWidth: 40 },
-        {value: 300, frontColor: 'blue' },
+        // Receita 
+        {value: 600, frontColor: '#3884db', spacing: 2, label: "Jan", labelWidth: 40, text: "Receita" },
+        // Gasto
+        {value: 300, frontColor: '#e9584e', text: "Despesa", spacing: 2 },
+        {value: 300, frontColor: '#2b972b', text: "Lucro" },
 
-        {value: 800, frontColor: 'green', label: "Fev", spacing: 2, labelWidth: 40 },
-        {value: 400, frontColor: 'green' },
+        {value: 800, frontColor: '#3884db', label: "Fev", spacing: 2, labelWidth: 40, text: "Receita" },
+        {value: 400, frontColor: '#e9584e', text: "Despesa" , spacing: 2},
+        {value: 400, frontColor: '#2b972b', text: "Lucro" },
 
-        {value: 300, frontColor: 'red', label: "Mar", spacing: 2, labelWidth: 40},
-        {value: 150, frontColor: 'red'},
+        {value: 300, frontColor: '#3884db', label: "Mar", spacing: 2, labelWidth: 40, text: "Receita"},
+        {value: 150, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 150, frontColor: '#2b972b', text: "Lucro"},
 
-        {value: 100, frontColor: 'purple', label: "Abr", spacing: 2, labelWidth: 40},
-        {value: 50, frontColor: 'purple'},
+        {value: 100, frontColor: '#3884db', label: "Abr", spacing: 2, labelWidth: 40, text: "Receita"},
+        {value: 50, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 50, frontColor: '#2b972b', text: "Lucro"},
 
-        {value: 1000, frontColor: 'orange', label: "Mai", spacing: 2, labelWidth: 40},
-        {value: 500, frontColor: 'orange'},
+        {value: 1000, frontColor: '#3884db', label: "Mai", spacing: 2, labelWidth: 40, text: "Receita"},
+        {value: 500, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 500, frontColor: '#2b972b', text: "Lucro"},
 
-        {value: 950, frontColor: 'black', label: "Jun", spacing: 2, labelWidth: 40},
-        {value: 475, frontColor: 'black'},
+        {value: 950, frontColor: '#3884db', label: "Jun", spacing: 2, labelWidth: 40, text: "Receita"},
+        {value: 475, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 475, frontColor: '#2b972b', text: "Lucro"},
 
-        {value: 175, frontColor: 'yellow', label: "Jul", spacing: 2, labelWidth:  40},
-        {value: 87, frontColor: 'yellow'},
+        {value: 175, frontColor: '#3884db', label: "Jul", spacing: 2, labelWidth:  40, text: "Receita"},
+        {value: 87, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 87, frontColor: '#2b972b', text: "Lucro"},
         
-        {value: 640, frontColor: 'brown', label: "Ago" , spacing: 2, labelWidth: 40},
-        {value: 230, frontColor: 'brown'},
+        {value: 640, frontColor: '#3884db', label: "Ago" , spacing: 2, labelWidth: 40, text: "Receita"},
+        {value: 230, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 230, frontColor: '#2b972b', text: "Lucro"},
 
-        {value: 230, frontColor: 'pink', label: "Set",  spacing: 2, labelWidth: 40 },
-        {value: 115, frontColor: 'pink'},
+        {value: 230, frontColor: '#3884db', label: "Set",  spacing: 2, labelWidth: 40, text: "Receita" },
+        {value: 115, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 115, frontColor: '#2b972b', text: "Lucro"},
 
-        {value: 480, frontColor: 'gray', label: "Out",  spacing: 2, labelWidth: 40 },
-        {value: 240, frontColor: 'gray'},
+        {value: 480, frontColor: '#3884db', label: "Out",  spacing: 2, labelWidth: 40, text: "Receita" },
+        {value: 240, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 240, frontColor: '#2b972b', text: "Lucro"},
         
-        {value: 480, frontColor: '', label: "Nov",  spacing: 2, labelWidth: 40 },
-        {value: 240, frontColor: 'gray'},
+        {value: 480, frontColor: '#3884db', label: "Nov",  spacing: 2, labelWidth: 40, text: "Receita" },
+        {value: 240, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 240, frontColor: '#2b972b', text: "Lucro"},
         
-        {value: 480, frontColor: 'gray', label: "Dez",  spacing: 2, labelWidth: 40 },
-        {value: 240, frontColor: 'gray'},
+        {value: 480, frontColor: '#3884db', label: "Dez",  spacing: 2, labelWidth: 40, text: "Receita" },
+        {value: 240, frontColor: '#e9584e', text: "Despesa", spacing: 2},
+        {value: 240, frontColor: '#2b972b', text: "Lucro"},
         
     ]
+
+    const mes = [
+        // Receita 
+        {value: 600, frontColor: '#3884db', spacing: 2, label: "1° sem", labelWidth: 50, text: "Receita" },
+        // Despesa
+        {value: 300, frontColor: '#e9584e', spacing: 2, text: "Despesa" },
+        // Lucro
+        {value: 300, frontColor: '#2b972b', text: "Lucro" },
+
+        {value: 800, frontColor: '#3884db', label: "2° sem", spacing: 2, labelWidth: 50, text: "Receita" },
+        {value: 400, frontColor: '#e9584e', spacing: 2, text: "Despesa" },
+        {value: 400, frontColor: '#2b972b', text: "Lucro" },
+
+        {value: 300, frontColor: '#3884db', label: "3° sem", spacing: 2, labelWidth: 50, text: "Receita"},
+        {value: 150, frontColor: '#e9584e', spacing: 2, text: "Despesa"},
+        {value: 150, frontColor: '#2b972b', text: "Lucro"},
+
+        {value: 100, frontColor: '#3884db', label: "4° sem", spacing: 2, labelWidth: 50, text: "Receita"},
+        {value: 50, frontColor: '#e9584e', spacing: 2, text: "Despesa"},
+        {value: 50, frontColor: '#2b972b', text: "Lucro"}
+    ];
     
     const receita = [
         {value: 600, label: "Jan" },
@@ -256,12 +282,12 @@ export default function Home({navigation, props}) {
                                             <View style={{
                                                 backgroundColor: "#d8d8d89d",
                                                 bottom: -79,
-                                                //marginLeft: -6,
+                                                marginLeft: -10,
                                                 paddingHorizontal: 6,
                                                 paddingVertical: 4,
                                                 borderRadius: 6
                                             }}>
-                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>{item.value}</Text>
+                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>R$ {item.value}</Text>
                                             </View>
                                         )
                                     }}
@@ -309,12 +335,12 @@ export default function Home({navigation, props}) {
                                             <View style={{
                                                 backgroundColor: "#d8d8d89d",
                                                 bottom: -79,
-                                                //marginLeft: -6,
+                                                marginLeft: -10,
                                                 paddingHorizontal: 6,
                                                 paddingVertical: 4,
                                                 borderRadius: 6
                                             }}>
-                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>{item.value}</Text>
+                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>R$ {item.value}</Text>
                                             </View>
                                         )
                                     }}
@@ -361,12 +387,12 @@ export default function Home({navigation, props}) {
                                             <View style={{
                                                 backgroundColor: "#d8d8d89d",
                                                 bottom: -79,
-                                                //marginLeft: -6,
+                                                marginLeft: -10,
                                                 paddingHorizontal: 6,
                                                 paddingVertical: 4,
                                                 borderRadius: 6
                                             }}>
-                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>{item.value}</Text>
+                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>R$ {item.value}</Text>
                                             </View>
                                         )
                                     }}
@@ -413,12 +439,14 @@ export default function Home({navigation, props}) {
                                             <View style={{
                                                 backgroundColor: "#d8d8d89d",
                                                 bottom: -79,
-                                                //marginLeft: -6,
+                                                marginLeft: -10,
                                                 paddingHorizontal: 6,
                                                 paddingVertical: 4,
-                                                borderRadius: 6
+                                                borderRadius: 6,
+                                                alignItems: 'center'
                                             }}>
-                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>{item.value}</Text>
+                                                <Text style={{fontWeight: 'bold', color: "#000000"}}>{item.text}</Text>
+                                                <Text style={{fontWeight: 'bold', color: "#303030"}}>R$ {item.value}</Text>
                                             </View>
                                         )
                                     }}
@@ -436,7 +464,7 @@ export default function Home({navigation, props}) {
                             </View> 
                                 : 
                             <View style={{...styles.button,  borderColor: "#dbc338"}}>
-                                <Text style={{...styles.textButtons, color: "#dbc338"}}>Receita</Text>
+                                <Text style={{...styles.textButtons, color: "#dbc338"}}>Geral</Text>
                             </View>}
                         </TouchableOpacity>
 
@@ -469,6 +497,67 @@ export default function Home({navigation, props}) {
                                 <Text style={{...styles.textButtons, color: "#e9584e", fontSize: 15}}>Despesas</Text>
                             </View>}
                         </TouchableOpacity>
+                    </View>
+
+                    <View style={{ alignItems: 'center'}}>
+                        <Text style={{...styles.text, color: "#545454", marginVertical: 20}}>Informações do mês</Text>
+                        
+                        <View style={{flexDirection: 'row', width:  '100%', justifyContent: 'space-between', alignItems: "center"}}>
+                            <Text style={{...styles.text, color: "#545454"}}>Outubro</Text>
+                            <Text style={{...styles.text, color: "black", fontSize: 35}}>R$ 1.500,00</Text>
+                        </View>
+                        
+                        <BarChart
+                            data={mes}
+                            height={150}
+                            width={340}
+                            // grossura do gráfico
+                            barWidth={20}
+                            // minimo de altura quando for 0
+                            minHeight={3}
+                            barBorderRadius={3}
+                            spacing={14}
+                            // espaçamento inicial
+                            initialSpacing={6}
+                            //disableScroll={true}
+                            // quantidade de números do lado
+                            noOfSections={3}
+                            // linha preta que fica no lado
+                            yAxisThickness={0}
+                            // linha preta que fica embaixo
+                            xAxisThickness={0}
+                            yAxisTextStyle={{color: "gray",  fontSize: 11}}
+                            xAxisLabelTextStyle={{color: "gray"}}
+                            isAnimated
+                            disableScroll={true}
+                            dashGap={10}
+                            focusBarOnPress={true}
+                            focusedBarConfig={{
+                                color: "#dbb038",
+                                width: 35
+                            }}
+                            onPress={(item, index) => console.log('Item', item)}
+                            renderTooltip={(item, index) => {
+                                return(
+                                    <View style={{
+                                        backgroundColor: "#ffffff0",
+                                        bottom: -82,
+                                        marginLeft: -4,
+                                        paddingHorizontal: 6,
+                                        paddingVertical: 4,
+                                        borderRadius: 6, 
+                                        alignItems: "center"
+                                    }}>
+                                        <Text style={{fontWeight: 'bold', color: "#000000", fontSize: 10}}>{item.text}</Text>
+                                        <Text style={{fontWeight: 'bold', color: "#303030", fontSize: 10}}>R$ {item.value}</Text>
+                                    </View>
+                                )
+                            }}
+                        />
+
+                        <View>
+                            <Text>Horas trabalhadas</Text>
+                        </View>
                     </View>
                 </View>
 
@@ -504,22 +593,31 @@ export default function Home({navigation, props}) {
                     <View style={styles.graficoPie}>
                         <View style={styles.graficoPieContainer}>
                             <PieChart
-                                widthAndHeight={widthAndHeight}
-                                series={series}
-                                sliceColor={sliceColor}
+                               data={pagamento}
+                               radius={85}
+                               showText
+                               showValuesAsLabels
+                               textColor="white"
+                               textSize={14}
+                               fontWeight="bold"
                             />
                         </View>
+                        
                         <View style={styles.graficoPieContainerLegend}>
-                            {pagamento.map((item, index) =>
-                                <View key={index} style={styles.containerLegend}>
-                                    <View style={styles.viewLegendColor}> 
-                                        <Text style={{...styles.legendColor, backgroundColor: item.color}}></Text>
-                                    </View>
-                                    <View>
-                                        <Text style={styles.legendName}>{item.name}</Text>
-                                    </View>
+                                <View style={styles.containerLegend}>
+                                    <View style={{...styles.viewLegendColor, backgroundColor: "green"}}/>
+                                    <Text style={styles.legendName}> Dinheiro</Text>
                                 </View>
-                            )}
+
+                                <View style={styles.containerLegend}>
+                                    <View style={styles.viewLegendColor}/>
+                                    <Text style={styles.legendName}> Cartão</Text>
+                                </View>
+                                
+                                <View  style={styles.containerLegend}>
+                                    <View style={{...styles.viewLegendColor, backgroundColor: "red"}}/>
+                                    <Text style={styles.legendName}> Pix</Text>
+                                </View>
                         </View>
                     </View>
                 </View>

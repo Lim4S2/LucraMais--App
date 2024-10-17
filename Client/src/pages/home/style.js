@@ -80,22 +80,26 @@ const styles = StyleSheet.create({
     graficoPie: {
         flexDirection: "row",
         justifyContent: "space-between",
+        gap: 20
     },
     graficoPieContainer: {
         justifyContent: "center",
         alignItems: "center",
-        width: "55%"
+        width: "55%",
     },
     graficoPieContainerLegend: {
         width:  "40%",
-        justifyContent: "center",
+        justifyContent: "space-evenly"
     },
     containerLegend: {
         flexDirection: "row", 
-        alignItems: "center"
+        alignItems: "center", 
     },
     viewLegendColor: {
-        justifyContent: "center", 
+        width: 20,
+        height: 20,
+        backgroundColor: "blue",
+        borderRadius: 20,
         marginLeft: 10, 
         padding: 10
     },
@@ -106,7 +110,8 @@ const styles = StyleSheet.create({
     },
     legendName: {
         color: "black",
-        fontSize: 16
+        fontSize: 16,
+        fontWeight: '500'
     }
 })
 
