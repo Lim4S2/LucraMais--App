@@ -61,6 +61,18 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: "#2b972b"
     },
+    infoMes: {
+        marginVertical: 5,
+        flexDirection: 'row',
+        width: '85%', 
+        justifyContent:  'space-between'
+    },  
+    descMes: {
+        fontSize: 18,
+        color: "#545454",
+        fontWeight:  "500"
+
+    },
 
     // estilos do gráfico de pie
     titleChart: {

@@ -132,7 +132,7 @@ export default function Home({navigation, props}) {
 
         {value: 950, frontColor: '#3884db', label: "Jun", spacing: 2, labelWidth: 40, text: "Receita"},
         {value: 475, frontColor: '#e9584e', text: "Despesa", spacing: 2},
-        {value: 475, frontColor: '#2b972b', text: "Lucro"},
+        {value: 475, frontColor: '#2b972b', text: "Lucro", spacing: 82},
 
         {value: 175, frontColor: '#3884db', label: "Jul", spacing: 2, labelWidth:  40, text: "Receita"},
         {value: 87, frontColor: '#e9584e', text: "Despesa", spacing: 2},
@@ -153,7 +153,7 @@ export default function Home({navigation, props}) {
         {value: 480, frontColor: '#3884db', label: "Nov",  spacing: 2, labelWidth: 40, text: "Receita" },
         {value: 240, frontColor: '#e9584e', text: "Despesa", spacing: 2},
         {value: 240, frontColor: '#2b972b', text: "Lucro"},
-        
+
         {value: 480, frontColor: '#3884db', label: "Dez",  spacing: 2, labelWidth: 40, text: "Receita" },
         {value: 240, frontColor: '#e9584e', text: "Despesa", spacing: 2},
         {value: 240, frontColor: '#2b972b', text: "Lucro"},
@@ -414,9 +414,10 @@ export default function Home({navigation, props}) {
                                     // minimo de altura quando for 0
                                     minHeight={3}
                                     barBorderRadius={3}
-                                    spacing={14}
+                                    spacing={12}
+                                    endSpacing={4}
                                     // espaçamento inicial
-                                    initialSpacing={6}
+                                    initialSpacing={3}
                                     //disableScroll={true}
                                     // quantidade de números do lado
                                     noOfSections={3}
@@ -502,7 +503,8 @@ export default function Home({navigation, props}) {
                     <View style={{ alignItems: 'center'}}>
                         <Text style={{...styles.text, color: "#545454", marginVertical: 20}}>Informações do mês</Text>
                         
-                        <View style={{flexDirection: 'row', width:  '100%', justifyContent: 'space-between', alignItems: "center"}}>
+                        <View style={{flexDirection: 'row', width:  '100%', justifyContent: 'space-between', alignItems: "center",  marginBottom: 15}}>
+
                             <Text style={{...styles.text, color: "#545454"}}>Outubro</Text>
                             <Text style={{...styles.text, color: "black", fontSize: 35}}>R$ 1.500,00</Text>
                         </View>
@@ -555,8 +557,21 @@ export default function Home({navigation, props}) {
                             }}
                         />
 
-                        <View>
-                            <Text>Horas trabalhadas</Text>
+                        <View style={{marginTop: 20}}>
+                            <View style={styles.infoMes}>
+                                <Text style={styles.descMes}>Horas trabalhadas</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>40 h</Text>
+                            </View>
+
+                            <View style={styles.infoMes}>
+                                <Text style={styles.descMes}>Média de receita</Text>
+                                <Text style={{...styles.descMes, color: "black"}}>R$ 500,00</Text>
+                            </View>
+                            
+                            <View style={styles.infoMes}>
+                                <Text style={styles.descMes}>Média de gastos</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>R$ 250,00</Text>
+                            </View>
                         </View>
                     </View>
                 </View>
