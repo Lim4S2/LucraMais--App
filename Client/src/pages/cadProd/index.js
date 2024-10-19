@@ -188,7 +188,7 @@ export default function Produto({ navigation }) {
                         <SelectCountry
                             style={styles.dropdow}
                             selectedTextStyle={styles.selectedTextStyle}
-                            placeholderStyle={styles.placeholderStyle}
+                            placeholderStyle={styles.selectedTextStyle}
                             maxHeight={210}
                             value={country}
                             data={escolha}

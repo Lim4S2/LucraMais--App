@@ -99,6 +99,21 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 22,
         fontWeight: 'bold'
+    },
+    btnAdd: {
+        position: "absolute",
+        bottom: "-30%",
+        right: "-3%",
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#04414b',
+        width:  45,
+        height: 45,
+        borderRadius: 50
+    },
+    textAdd: {
+        fontSize: 24,
+        color: "white",
     }
 })
 

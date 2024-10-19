@@ -59,22 +59,26 @@ export default function Fechamento({ navigation }) {
 
 
     return (
-        <View style={{ alignItems: "center" }}>
+        <View style={{ alignItems: "center", flex: 1 }}>
             <View style={styles.container}>
                 <Image source={require("../../images/iconFechaCaixa.png")}
                     style={{ width: 40, height: 40, marginRight: 20 }} />
                 <Text style={styles.text}>Fechamento do dia</Text>
             </View>
 
-            <Text style={{ fontSize: 18, marginTop: 20 }}>Caixa aberto -
-                <Text style={{ fontSize: 18, marginTop: 10 }}> {fechamento.abertura}</Text>
-            </Text>
-            <Text style={{ fontSize: 18, marginTop: 10 }}>Fechou caixa -
-                <Text style={{ fontSize: 18, marginTop: 10 }}> {fechamento.fechamentoHora}</Text>
-            </Text>
-            <Text style={{ fontSize: 18, marginTop: 10 }}>Horas trabalhadas -
-                <Text style={{ fontSize: 18, marginTop: 10 }}> {fechamento.horasTrabalhadas}</Text>
-            </Text>
+            <View style={{alignItems: 'center', width: '90%'}}>
+                <Text style={{ fontSize: 18, marginTop: 20 }}>Caixa aberto -
+                    <Text style={{ fontSize: 18, marginTop: 10, fontWeight: 'bold' }}> {fechamento.abertura}</Text>
+                </Text>
+
+                <Text style={{ fontSize: 18, marginTop: 5 }}>Fechou caixa -
+                    <Text style={{ fontSize: 18, marginTop: 10, fontWeight: 'bold' }}> {fechamento.fechamentoHora}</Text>
+                </Text>
+
+                <Text style={{ fontSize: 18, marginTop: 10 }}>Horas trabalhadas -
+                    <Text style={{ fontSize: 18, marginTop: 10, fontWeight: 'bold' }}> {fechamento.horasTrabalhadas}</Text>
+                </Text>
+            </View>
 
             <View style={styles.viewLucro}>
                 <Text style={{ ...styles.text, fontSize: 20 }}>Receita do Dia</Text>
@@ -85,28 +89,20 @@ export default function Fechamento({ navigation }) {
 
             <View style={styles.viewDetalhamento}>
                 <Text style={styles.textDetalhe}>Lucro do dia</Text>
-                <Text style={{ ...styles.textDetalhe, color: "green" }}>{fechamento.receitaTotal}</Text>
+                <Text style={{ ...styles.textDetalhe, color: "green" }}>R$ {fechamento.receitaTotal}</Text>
             </View>
 
             <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>
-                <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-                    <Image source={require("../../images/setaDireita.png")}
-                        style={{ width: 15, height: 15, marginRight: 10 }} />
-                    <Text style={styles.textDetalhe}>Despesas</Text>
-                </View>
-                <Text style={{ ...styles.textDetalhe, color: "red" }}>{fechamento.despesas}</Text>
+                <Text style={styles.textDetalhe}>Despesas</Text>
+                <Text style={{ ...styles.textDetalhe, color: "red" }}>R$ {fechamento.despesas}</Text>
             </TouchableOpacity>
 
             <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>
-                <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
-                    <Image source={require("../../images/setaDireita.png")}
-                        style={{ width: 15, height: 15, marginRight: 10 }} />
-                    <Text style={styles.textDetalhe}>Qnt. de vendas</Text>
-                </View>
+                <Text style={styles.textDetalhe}>Qnt. de vendas</Text>
                 <Text style={{ ...styles.textDetalhe, color: "blue" }}>{fechamento.totalSales}</Text>
             </TouchableOpacity>
 
-            <Text style={{ ...styles.text, fontSize: 22, marginBottom: 15, marginTop: 20, color: "#04414b" }}>Formas de Pagamento</Text>
+            <Text style={{ ...styles.text, fontSize: 22,marginVertical: 25, color: "#04414b" }}>Formas de Pagamento</Text>
 
             <View style={{ ...styles.viewDetalhamento, width: "70%" }}>
                 <View style={{ flexDirection: "row" }}>

@@ -113,10 +113,6 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: "#acc4cc"
     },
-    placeholderStyle: {
-        color: "#0B1C10",
-        fontSize: 14
-    },
     selectedTextStyle: {
         color: "#0B1C10",
         fontSize: 14

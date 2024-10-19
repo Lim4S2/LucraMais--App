@@ -95,15 +95,15 @@ export default function Home({navigation, props}) {
     const pagamento = [
         {
             value:  123,
-            color: "blue" 
+            color: "#9400D3" 
         },
         {
             value:  321,
-            color: "red"
+            color: "#FFA500"
         },
         {
             value:   789,
-            color: "green"
+            color: "#44af4b"
         }
     ]
     
@@ -521,7 +521,6 @@ export default function Home({navigation, props}) {
                             spacing={14}
                             // espaçamento inicial
                             initialSpacing={6}
-                            //disableScroll={true}
                             // quantidade de números do lado
                             noOfSections={3}
                             // linha preta que fica no lado
@@ -604,7 +603,7 @@ export default function Home({navigation, props}) {
                 </View>
 
                 <View style={styles.pieChart}>
-                    <Text style={styles.titleChart}>Formas de pagemento</Text>
+                    <Text style={{...styles.text, color: "#545454"}}>Formas de pagemento</Text>
                     <View style={styles.graficoPie}>
                         <View style={styles.graficoPieContainer}>
                             <PieChart
@@ -615,12 +614,14 @@ export default function Home({navigation, props}) {
                                textColor="white"
                                textSize={14}
                                fontWeight="bold"
+                               strokeWidth={3}
+                               strokeColor="black"
                             />
                         </View>
                         
                         <View style={styles.graficoPieContainerLegend}>
                                 <View style={styles.containerLegend}>
-                                    <View style={{...styles.viewLegendColor, backgroundColor: "green"}}/>
+                                    <View style={{...styles.viewLegendColor, backgroundColor: "#44af4b"}}/>
                                     <Text style={styles.legendName}> Dinheiro</Text>
                                 </View>
 
@@ -630,7 +631,7 @@ export default function Home({navigation, props}) {
                                 </View>
                                 
                                 <View  style={styles.containerLegend}>
-                                    <View style={{...styles.viewLegendColor, backgroundColor: "red"}}/>
+                                    <View style={{...styles.viewLegendColor, backgroundColor: "#FFA500"}}/>
                                     <Text style={styles.legendName}> Pix</Text>
                                 </View>
                         </View>

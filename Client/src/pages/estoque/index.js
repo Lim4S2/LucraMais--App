@@ -1,11 +1,23 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Image, FlatList, ActivityIndicator, Alert } from 'react-native';
-import axios from 'axios';
 import { useFocusEffect } from '@react-navigation/native';
+import { SelectCountry } from 'react-native-element-dropdown'
+import axios from 'axios';
 import styles from "./style";
 import stylesList from "./styleList";
 
 export default function Estoque({ navigation }) {
+
+    const filtro = [
+        { label: 'Todos', value: 'Todos' },
+        { label: 'Salgado', value: 'Salgado' },
+        { label: 'Doce', value: 'Doce' },
+        { label: 'Bebida', value: 'Bebida' },
+        { label: 'Verdura', value: 'Verdura' },
+        { label: 'Fruta', value: 'Fruta' },
+    ]
+
+    const [select, setSelect] = useState('0')
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -87,10 +99,32 @@ export default function Estoque({ navigation }) {
                     />
                 </View>
 
-                <View style={{flexDirection: "row", justifyContent: "space-around", width: "100%", marginTop: 15}} 
+                <View style={{flexDirection: "row", justifyContent: "space-around", alignItems: 'center', width: "100%", marginTop: 15}} 
                     accessible={true} accessibilityRole="checkbox">
                     <Text>{produtos.length} produto(s) cadastrado(s)</Text>
-                    <Text>Filtro ▽</Text>
+
+                    <SelectCountry
+                        style={styles.filtro}
+                        value={select}
+                        data={filtro}
+                        selectedTextStyle={{fontSize: 14,  marginLeft: -5 }}
+                        placeholderStyle={{fontSize: 14}}
+                        maxHeight={120}
+                        valueField='value'
+                        showsVerticalScrollIndicator={false}
+                        labelField='label'
+                        placeholder='Filtro'
+                        onChange={(text) =>  setSelect(text)}
+                        containerStyle={{
+                            width: 100,
+                            borderRadius: 10,
+                            marginLeft: -5
+                        }}
+                        renderRightIcon={() => (
+                            <Image style={styles.imgFiltro} source={require("../../images/iconFiltro.png")} />
+                        )}
+                    />
+                    
                 </View>
             </View>
 

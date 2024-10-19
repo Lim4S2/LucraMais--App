@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         paddingLeft: 15,
         paddingRight: 15,
-        height: 40,
+        height: 45,
         marginTop: 5
-},
+    },
     imgPesq: {
         height: 25,
         width: 25
@@ -63,6 +63,24 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         width: "50%",
         alignItems: "center",
+    },
+    
+    // Dropdown
+    viewFiltro: {
+        width: '40%', 
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    filtro: {
+        width: "22%", 
+        height:  30,
+    }, 
+    imgFiltro: {
+        width: 18,
+        height: 18
+    },
+    renderItem: {
+
     }
 })
 

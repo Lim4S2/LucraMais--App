@@ -80,14 +80,11 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     pieChart: {
-        marginTop: 30,
-        backgroundColor:  "#c5c3c3",
+        marginTop: 15,
         width: "90%",
-        borderRadius: 20,
-        elevation: 10,
         alignItems: "center",
         padding: 10,
-        gap: 10
+        gap: 20
     },
     graficoPie: {
         flexDirection: "row",
@@ -108,21 +105,16 @@ const styles = StyleSheet.create({
         alignItems: "center", 
     },
     viewLegendColor: {
-        width: 20,
-        height: 20,
-        backgroundColor: "blue",
-        borderRadius: 20,
+        width: 5,
+        height: 5,
+        backgroundColor: "#9400D3",
+        borderRadius: 15,
         marginLeft: 10, 
         padding: 10
     },
-    legendColor: {
-        borderRadius: 10, 
-        width: 15, 
-        height: 15
-    },
     legendName: {
         color: "black",
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: '500'
     }
 })

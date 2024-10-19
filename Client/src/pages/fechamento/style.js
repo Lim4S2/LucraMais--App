@@ -8,19 +8,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: "#6294ac",
         padding: 10,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20
+        borderBottomRightRadius: 30,
+        borderBottomLeftRadius: 30
     },
     viewLucro: {
         width: "95%",
         height: 110,
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 30,
+        marginBottom: 20,
         marginTop: 30,
         borderRadius: 50,
         backgroundColor: "#04414b",
-        elevation: 15
+        elevation: 20
     },
     text: {
         fontSize: 26,
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     },
     textDetalhe: {
         fontSize: 20,
-        fontWeight: 'semibold',
+        fontWeight: 'bold',
         color: '#545454'
     },
     viewDetalhamento: {
@@ -44,6 +44,8 @@ const styles = StyleSheet.create({
         marginRight: 10
     }, 
     button: {
+        position: 'absolute',
+        bottom: 30,
         backgroundColor:"#6294ac",
         borderRadius: 50,
         width: "80%",

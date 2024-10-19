@@ -149,8 +149,8 @@ export default function Despesas({navigation}) {
                             </View>
                         </View>
 
-                        <TouchableOpacity style={{position: "absolute", bottom: "-10%", right: "10%"}}>
-                            <Text>+</Text>
+                        <TouchableOpacity style={styles.btnAdd}>
+                            <Text style={styles.textAdd}>+</Text>
                         </TouchableOpacity>
                     </View>
                     
