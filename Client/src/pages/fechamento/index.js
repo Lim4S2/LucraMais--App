@@ -3,10 +3,22 @@ import { View, Text, TouchableOpacity, Image, ScrollView, Alert } from "react-na
 import axios from 'axios';
 import styles from "./style";
 import moment from 'moment';
+import { BarChart } from "react-native-gifted-charts";
 
 export default function Fechamento({ navigation }) {
   const [fechamento, setFechamento] = useState(null);
   const [erro, setErro] = useState(null);
+
+  const data = [
+    {value: 20, label: "7h"},
+    {value: 30, label: "8h"},
+    {value: 60, label: "9h"},
+    {value: 45, label: "10h"},
+    {value: 30, label: "11h"},
+    {value: 20, label: "12h"},
+    {value: 15, label: "13h"},
+  ]
+
 
   useEffect(() => {
       const fetchFechamento = async () => {
@@ -59,13 +71,14 @@ export default function Fechamento({ navigation }) {
 
 
     return (
-        <View style={{ alignItems: "center", flex: 1 }}>
+        <View style={{ flex: 1 }}>
             <View style={styles.container}>
                 <Image source={require("../../images/iconFechaCaixa.png")}
                     style={{ width: 40, height: 40, marginRight: 20 }} />
                 <Text style={styles.text}>Fechamento do dia</Text>
             </View>
 
+            <ScrollView contentContainerStyle={{alignItems: 'center', paddingBottom: 25}}>
             <View style={{alignItems: 'center', width: '90%'}}>
                 <Text style={{ fontSize: 18, marginTop: 20 }}>Caixa aberto -
                     <Text style={{ fontSize: 18, marginTop: 10, fontWeight: 'bold' }}> {fechamento.abertura}</Text>
@@ -92,15 +105,39 @@ export default function Fechamento({ navigation }) {
                 <Text style={{ ...styles.textDetalhe, color: "green" }}>R$ {fechamento.receitaTotal}</Text>
             </View>
 
-            <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>
+            <View style={styles.viewDetalhamento}>
                 <Text style={styles.textDetalhe}>Despesas</Text>
                 <Text style={{ ...styles.textDetalhe, color: "red" }}>R$ {fechamento.despesas}</Text>
-            </TouchableOpacity>
+            </View>
 
-            <TouchableOpacity activeOpacity={0.5} style={styles.viewDetalhamento}>
+            <View style={{...styles.viewDetalhamento, marginBottom: 0}}>
                 <Text style={styles.textDetalhe}>Qnt. de vendas</Text>
-                <Text style={{ ...styles.textDetalhe, color: "blue" }}>{fechamento.totalSales}</Text>
-            </TouchableOpacity>
+                <Text style={{ ...styles.textDetalhe, color: "#3884db" }}>{fechamento.totalSales}</Text>
+            </View>
+
+            <Text style={{ ...styles.text, fontSize: 22,marginVertical: 25, color: "#04414b" }}>Período com mais vendas</Text>
+            
+            <View style={{width: '80%', alignItems:'center'}}>
+                <BarChart
+                    data={data}
+                    spacing={12}
+                    initialSpacing={5}
+                    width={280}
+                    height={100}
+                    barWidth={28}
+                    frontColor={"#6294ac"}
+                    minHeight={3}
+                    barBorderRadius={3}
+                    noOfSections={4}
+                    yAxisThickness={0}
+                    xAxisThickness={0}
+                    isAnimated
+                    yAxisTextStyle={{color: "gray",  fontSize: 14}}
+                    xAxisLabelTextStyle={{color: "gray"}}
+                    dashGap={10}
+                    disableScroll={true}
+                />
+            </View>
 
             <Text style={{ ...styles.text, fontSize: 22,marginVertical: 25, color: "#04414b" }}>Formas de Pagamento</Text>
 
@@ -135,6 +172,7 @@ export default function Fechamento({ navigation }) {
                 style={styles.button}>
                 <Text style={{ ...styles.text, color: "white", fontSize: 20 }}>Voltar para a tela inicial</Text>
             </TouchableOpacity>
+            </ScrollView>
         </View>
     );
 }

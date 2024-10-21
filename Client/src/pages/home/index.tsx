@@ -230,7 +230,7 @@ export default function Home({navigation, props}) {
         <View style={{backgroundColor: "white"}}>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
 
-            <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("Fechamento")}>
                 <View style={styles.container}>
                     <Text style={styles.text}>Nome do comércio</Text>
                 </View>
@@ -501,7 +501,7 @@ export default function Home({navigation, props}) {
                     </View>
 
                     <View style={{ alignItems: 'center'}}>
-                        <Text style={{...styles.text, color: "#545454", marginVertical: 20}}>Informações do mês</Text>
+                        <Text style={{...styles.text, color: "#545454", marginVertical: 20, fontSize: 28}}>Informações do mês</Text>
                         
                         <View style={{flexDirection: 'row', width:  '100%', justifyContent: 'space-between', alignItems: "center",  marginBottom: 15}}>
 
@@ -606,16 +606,17 @@ export default function Home({navigation, props}) {
                     <Text style={{...styles.text, color: "#545454"}}>Formas de pagemento</Text>
                     <View style={styles.graficoPie}>
                         <View style={styles.graficoPieContainer}>
+                            <Text style={{position: "absolute", fontSize: 100, zIndex: 1}}>123</Text>
+                            <Text>321</Text>
+                            <Text>789</Text>
                             <PieChart
                                data={pagamento}
                                radius={85}
-                               showText
-                               showValuesAsLabels
                                textColor="white"
                                textSize={14}
                                fontWeight="bold"
-                               strokeWidth={3}
-                               strokeColor="black"
+                               strokeColor="white"
+                               strokeWidth={2}
                             />
                         </View>
                         
