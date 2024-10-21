@@ -25,7 +25,7 @@ export default function Routes() {
 
             tabBar={(props) => <TabBar {...props}/> }
         >
-            <Tab.Screen name="Home" component={Home} options={{ title: "Início" }}/>
+            <Tab.Screen name="Home" component={Home} options={{ title: "Início" }} />
             <Tab.Screen name="AbrirCaixa" component={AbrirCaixa} options={{ title: "Venda" }} />
             <Tab.Screen name="Estoque" component={Estoque} />
         </Tab.Navigator>

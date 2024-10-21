@@ -230,7 +230,7 @@ export default function Home({navigation, props}) {
         <View style={{backgroundColor: "white"}}>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
 
-            <TouchableWithoutFeedback onPress={() => navigation.navigate("Despesas")}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
                 <View style={styles.container}>
                     <Text style={styles.text}>Nome do comércio</Text>
                 </View>

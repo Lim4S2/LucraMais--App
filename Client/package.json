@@ -33,6 +33,7 @@
     "react-native-gesture-handler": "~2.16.1",
     "react-native-get-random-values": "^1.11.0",
     "react-native-gifted-charts": "^1.4.43",
+    "react-native-image-picker": "^7.1.2",
     "react-native-linear-gradient": "^2.8.3",
     "react-native-masked-text": "^1.13.0",
     "react-native-paper": "^5.12.5",

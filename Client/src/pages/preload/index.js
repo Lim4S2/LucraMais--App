@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, Image, ActivityIndicator, StatusBar } from "react-native";
+import { View, Image, ActivityIndicator, StatusBar, Text } from "react-native";
 import styles from "./style";
 
 export default function Preload({ navigation }) {
@@ -21,6 +21,7 @@ export default function Preload({ navigation }) {
                 <ActivityIndicator size="large" color="#0000ff" />
             </View>
 
+            <Text onPress={() => navigation.navigate("Login")}>Próxima página</Text>
         </View>
     );
 }

@@ -3,40 +3,50 @@ import { StyleSheet } from "react-native"
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      paddingBottom: 100,
-      marginTop: 55
+      backgroundColor: "#6294ac",
+      alignItems: "center"
+    },
+    setaEsq: {
+      fontSize: 40, 
+      fontWeight: '900',
+      color: '#fff',
+      paddingLeft: 15,
+      paddingRight: 10,
+      marginLeft: 15,
+      marginVertical: 15, 
+      transform: [{rotate: '180deg'}],
     },
     profileContainer: {
-      flexDirection: 'row',
       alignItems: 'center',
-      padding: 20,
-      borderBottomWidth: 1,
-      borderBottomColor: '#eee',
-      marginTop: 50
+      gap: 20
     },
     profileImage: {
-      width: 70,
-      height: 70,
+      width: 150,
+      height: 150,
       borderRadius: 35,
       marginRight: 20
     },
     profileText: {
-      flex: 1
+      alignItems: "center"
     },
     name: {
       fontWeight: 'bold',
-      fontSize: 16,
-      color: '#333'
+      fontSize: 20,
+      color: 'white'
     },
     email: {
       fontSize: 14,
-      color: '#666'
-    },
-    editButton: {
-      padding: 10,
+      color: '#f1f1f1'
     },
     optionContainer: {
-      marginTop: 20
+      marginTop: 40,
+      backgroundColor: 'white',
+      width: '100%',
+      alignItems: 'center',
+      padding: 20,
+      flex: 2,
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20
     },
     option: {
       flexDirection: 'row',
@@ -51,9 +61,6 @@ const styles = StyleSheet.create({
       fontSize: 16,
       color: '#333'
     },
-    iconButton: {
-      padding: 10,
-    }
   });
 
 export default styles

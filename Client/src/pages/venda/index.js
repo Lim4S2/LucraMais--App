@@ -85,7 +85,7 @@ export default function Venda({ navigation, route }) {
             console.log('Resposta do servidor:', response.data);
     
             // Navegar para a tela de fechamento
-            navigation.navigate("Fechamento", {
+            navigation.navigate("Despesas", {
                 openingTime: openingTime.format(),
                 closingTime: closingTime.format()
             });
