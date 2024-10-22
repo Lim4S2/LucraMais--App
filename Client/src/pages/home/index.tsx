@@ -606,9 +606,6 @@ export default function Home({navigation, props}) {
                     <Text style={{...styles.text, color: "#545454"}}>Formas de pagemento</Text>
                     <View style={styles.graficoPie}>
                         <View style={styles.graficoPieContainer}>
-                            <Text style={{position: "absolute", fontSize: 100, zIndex: 1}}>123</Text>
-                            <Text>321</Text>
-                            <Text>789</Text>
                             <PieChart
                                data={pagamento}
                                radius={85}
@@ -623,17 +620,21 @@ export default function Home({navigation, props}) {
                         <View style={styles.graficoPieContainerLegend}>
                                 <View style={styles.containerLegend}>
                                     <View style={{...styles.viewLegendColor, backgroundColor: "#44af4b"}}/>
-                                    <Text style={styles.legendName}> Dinheiro</Text>
+                                    <Text style={styles.legendName}> Dinheiro ➱</Text>
+                                    <Text style={{...styles.legendName, color: "#44af4b", fontSize: 20}}> 789</Text>
                                 </View>
 
                                 <View style={styles.containerLegend}>
                                     <View style={styles.viewLegendColor}/>
-                                    <Text style={styles.legendName}> Cartão</Text>
+                                    <Text style={styles.legendName}> Cartão ➱</Text>
+                                    
+                                    <Text style={{...styles.legendName, color: "#9400D3", fontSize: 20}}> 123</Text>
                                 </View>
                                 
                                 <View  style={styles.containerLegend}>
                                     <View style={{...styles.viewLegendColor, backgroundColor: "#FFA500"}}/>
-                                    <Text style={styles.legendName}> Pix</Text>
+                                    <Text style={styles.legendName}> Pix ➱</Text>
+                                    <Text style={{...styles.legendName, color: "#FFA500", fontSize: 20}}> 321</Text>
                                 </View>
                         </View>
                     </View>

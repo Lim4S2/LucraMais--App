@@ -81,15 +81,17 @@ const styles = StyleSheet.create({
     },
     pieChart: {
         marginTop: 15,
-        width: "90%",
+        width: "95%",
         alignItems: "center",
         padding: 10,
         gap: 20
     },
     graficoPie: {
+        marginLeft: '-6%',
         flexDirection: "row",
         justifyContent: "space-between",
-        gap: 20
+        width: '100%'
+        //gap: 20
     },
     graficoPieContainer: {
         justifyContent: "center",
@@ -109,7 +111,6 @@ const styles = StyleSheet.create({
         height: 5,
         backgroundColor: "#9400D3",
         borderRadius: 15,
-        marginLeft: 10, 
         padding: 10
     },
     legendName: {
