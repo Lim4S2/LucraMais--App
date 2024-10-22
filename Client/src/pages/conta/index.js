@@ -1,50 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
-import { launchImageLibrary, ImageLibraryOptions } from 'react-native-image-picker'
+import * as ImagePicker from 'expo-image-picker'
 import styles from './style';
 
 export default function Conta({navigation}) {
 
-    const [imageUser, setImageUser] = useState<string>("https://cdn-icons-png.flaticon.com/512/6596/6596121.png")
+    // para que o usuário possa mudar a foto de perfil
+    const [imageUser, setImageUser] = useState("https://cdn-icons-png.flaticon.com/512/6596/6596121.png")
     
-    const handleImageUser = () => {
-        Alert.alert("Permissão", 'Como você quer adicionar sua foto',
-        [
-            {
-                text: "Galeria",
-                onPress: () => pressGalery(),
-                style: 'default'
-            },
-            {
-                text: "Câmera",
-                onPress: () => pressCamera(),
-                style: "default"
-            },
-            /*{
-                cancelable: true,
-                text: "Cancelar",
-                onPress: () => console.log("Cancelado"),
-                style: 'cancel'
-            }*/
-        ])
-    }
+    const handleImageUser = async () => {
+        const result = await ImagePicker.launchImageLibraryAsync({
+            aspect: [4, 4],
+            allowsEditing: true,
+            base64: true,
+            quality: 1
+        })
 
-    const pressGalery = async () => {
-        const options: ImageLibraryOptions = {
-            mediaType: "photo"
+        if (!result.canceled) {
+            setImageUser(result.assets[0].uri)
         }
-        
-        const result = await launchImageLibrary(options)
-        console.log(result)
-
-        if(result?.assets) {
-            setImageUser(result.assets[0].uri!)
-            return
-        }
-    }
-
-    const pressCamera = () => {
-
     }
 
 
@@ -56,7 +30,7 @@ export default function Conta({navigation}) {
             
             <View style={styles.profileContainer}>
 
-                <TouchableOpacity onPress={() => handleImageUser()}>
+                <TouchableOpacity onPress={handleImageUser}>
                     <Image source={{
                         uri: imageUser
                     }} 

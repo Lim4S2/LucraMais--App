@@ -21,10 +21,13 @@ const styles = StyleSheet.create({
       gap: 20
     },
     profileImage: {
-      width: 150,
-      height: 150,
-      borderRadius: 35,
-      marginRight: 20
+      width: 180,
+      height: 180,
+      borderRadius: 100,
+      marginRight: 20,
+      borderWidth: 4,
+      borderColor: '#c4eeff',
+      elevation: 50
     },
     profileText: {
       alignItems: "center"
