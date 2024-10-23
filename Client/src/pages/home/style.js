@@ -73,6 +73,21 @@ const styles = StyleSheet.create({
         fontWeight:  "500"
 
     },
+    containerProduto: {
+        width: "90%",
+        backgroundColor: "white",
+        paddingVertical: 10,
+        marginBottom: 15,
+        borderRadius: 20,
+        elevation: 5
+    },
+    teste: {
+        flex: 1,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginHorizontal: 20
+    },
 
     // estilos do gráfico de pie
     titleChart: {

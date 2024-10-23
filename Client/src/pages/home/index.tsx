@@ -272,7 +272,7 @@ export default function Home({navigation, props}) {
         <View style={{backgroundColor: "white"}}>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
 
-            <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("Fechamento")}>
                 <View style={styles.container}>
                     <Text style={styles.text}>Nome do comércio</Text>
                 </View>
@@ -700,29 +700,24 @@ export default function Home({navigation, props}) {
 
                             <View style={styles.infoMes}>
                                 <Text style={styles.descMes}>Dia de maior receita</Text>
-                                <Text style={{...styles.descMes, color: 'black'}}>Sábado, 05</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>05, Sáb - 1.500</Text>
                             </View>
-                            
-                            {/*<View style={styles.infoMes}>
-                                <Text style={styles.descMes}>Dia com mais vendas</Text>
-                                <Text style={{...styles.descMes, color: 'black'}}>Quarta, 16</Text>
-                            </View>*/}
                             
                             <View style={styles.infoMes}>
                                 <Text style={styles.descMes}>Dia que mais trabalhou</Text>
-                                <Text style={{...styles.descMes, color: 'black'}}>Quarta, 16</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>16, Quar - 7H</Text>
                             </View>
 
-                            <View style={styles.infoMes}>
+                            {/*<View style={styles.infoMes}>
                                 <Text style={styles.descMes}>Qual dia compensa mais?</Text>
                                 <Text style={{...styles.descMes, color: 'black'}}>Sábado</Text>
-                            </View>
+                            </View>*/}
                         </View>
                         }
                     </View>
                 </View>
 
-                <View style={{ alignItems: "center"}}>
+                <View style={{ alignItems: "center", width: '100%'}}>
                     
                     {/* Esse é o gráfico de Dunet*/}
                     <View style={styles2.containerChart}>
@@ -747,11 +742,16 @@ export default function Home({navigation, props}) {
                     {data.map((item, index) => {
                         return <RenderItem item={item} index={index} key={index} />
                     })}
-                    <Animated.View>
-                        <View style={{ width: 200, height: 50}}>
-                            <Text>Teste</Text>
+                    <View style={styles.containerProduto}>
+                        <View style={styles.teste}>
+                            <Text style={styles.descMes}>Média de venda por semana</Text>
+                            <Text style={{...styles.descMes, color: 'black'}}>600</Text>
                         </View>
-                    </Animated.View>
+                        <View style={styles.teste}>
+                            <Text style={styles.descMes}>Dia que mais vendeu</Text>
+                            <Text style={{...styles.descMes, color: 'black'}}>05, Sáb - 150</Text>
+                        </View>
+                    </View>
                 </View>
 
                 <View style={styles.pieChart}>
