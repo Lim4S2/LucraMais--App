@@ -18,7 +18,6 @@ export default function Preload({ navigation }) {
                 loop={false}
             />
 
-            <Text onPress={() => navigation.navigate("Login")}>Próxima página</Text>
         </View>
     );
 }

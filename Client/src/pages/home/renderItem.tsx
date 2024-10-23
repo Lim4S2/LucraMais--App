@@ -18,29 +18,29 @@ const RenderItem = ({item, index} : Props) => {
     const {width} = useWindowDimensions()
     
     return(
-        <Animated.View style={[styles.container, {width: width * 0.9}]} 
-            // fazendo a animação dos resultados
-            entering={FadeInDown.delay(index * 200)}
-            exiting={FadeOutDown}
-        >
-            <View style={styles.contentContainer}>
-                {/* Cor */}
-                <View style={[styles.color, {backgroundColor: item.color}]}/>
+            <Animated.View style={[styles.container, {width: width * 0.9}]} 
+                // fazendo a animação dos resultados
+                entering={FadeInDown.delay(index * 200)}
+                exiting={FadeOutDown}
+            >
+                <View style={styles.contentContainer}>
+                    {/* Cor */}
+                    <View style={[styles.color, {backgroundColor: item.color}]}/>
 
-                {/* Nome do produto */}
-                <Text style={{...styles.text, color: "#313131"}}>Nome do Produto</Text>
-                    
-                <View style={{alignItems: "center"}}>
-                    {/* Valor de vendas */}
-                    <Text style={styles.text}>Quant.
-                        <Text style={{color: "white"}}>_</Text>
-                        <Text style={{ fontSize: 24, fontWeight: "bold", color: "black"}}>{item.value}</Text>
-                    </Text>
-                    {/* Porcentagem */}
-                    <Text style={styles.text}>{item.percentage}%</Text>
+                    {/* Nome do produto */}
+                    <Text style={{...styles.text, color: "#313131"}}>Nome do Produto</Text>
+                        
+                    <View style={{alignItems: "center"}}>
+                        {/* Valor de vendas */}
+                        <Text style={styles.text}>Quant.
+                            <Text style={{color: "white"}}>_</Text>
+                            <Text style={{ fontSize: 24, fontWeight: "bold", color: "black"}}>{item.value}</Text>
+                        </Text>
+                        {/* Porcentagem */}
+                        <Text style={styles.text}>{item.percentage}%</Text>
+                    </View>
                 </View>
-            </View>
-        </Animated.View>
+            </Animated.View>
     )
 }
 

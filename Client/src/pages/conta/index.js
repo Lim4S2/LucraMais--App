@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import * as ImagePicker from 'expo-image-picker'
 import { Feather } from "@expo/vector-icons"
 import styles from './style';
@@ -46,28 +46,28 @@ export default function Conta({navigation}) {
 
             <View style={styles.optionContainer}>
                 <View style={{ width: '100%' }}>
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start"}}>
-                        <Feather name='user' size={20}/>
+                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                        <Image source={require("../../images/infoPessoais.png")} style={{width:  30, height: 30}}/>
                         <Text>Conta e informações pessoais</Text>
                     </View>
                         
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start"}}>
-                        <Feather name='settings' size={20}/>
+                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                        <Image source={require("../../images/configuracao.png")} style={{width:  30, height: 30}}/>
                         <Text>Configurações</Text>
                     </View>
                         
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start"}}>
-                        <Feather name='' size={20}/>
+                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                        <Image source={require("../../images/sobre-nos.png")} style={{width:  30, height: 30}}/>
                         <Text>Sobre o aplicativo</Text>
                     </View>
                     
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start"}}>
-                        <Feather name='' size={20}/>
+                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                        <Image source={require("../../images/apoio-suporte.png")} style={{width:  30, height: 30}}/>
                         <Text>Suporte</Text>
                     </View>
                     
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start"}}>
-                        <Feather name='log-out' size={20}/>
+                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                        <Image source={require("../../images/sair.png")} style={{width:  30, height: 30}}/>
                         <Text>Sair</Text>
                     </View>
                 </View>

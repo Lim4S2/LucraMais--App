@@ -83,15 +83,11 @@ const styles = StyleSheet.create({
         marginTop: 15,
         width: "95%",
         alignItems: "center",
-        padding: 10,
-        gap: 20
+        gap: 20,
     },
     graficoPie: {
-        marginLeft: '-6%',
         flexDirection: "row",
-        justifyContent: "space-between",
-        width: '100%'
-        //gap: 20
+        width: '100%',
     },
     graficoPieContainer: {
         justifyContent: "center",
@@ -99,12 +95,14 @@ const styles = StyleSheet.create({
         width: "55%",
     },
     graficoPieContainerLegend: {
-        width:  "40%",
-        justifyContent: "space-evenly"
+        width:  "42%",
+        justifyContent: "space-evenly",
     },
     containerLegend: {
+        width: '100%',
         flexDirection: "row", 
-        alignItems: "center", 
+        alignItems: "center",
+        justifyContent: "space-between",
     },
     viewLegendColor: {
         width: 5,

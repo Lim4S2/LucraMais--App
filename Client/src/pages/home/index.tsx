@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react"
-import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback, ScrollView, StyleSheet, Touchable } from "react-native"
+import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback, ScrollView, StyleSheet, useWindowDimensions } from "react-native"
 import { BarChart, PieChart } from "react-native-gifted-charts"
 import styles from "./style"
-import { useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { useSharedValue, withTiming } from "react-native-reanimated";
 import { generateRandomNumbers } from "../../components/randomGrafico/generateRandom";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { calculatePercent } from "../../components/randomGrafico/calculatePorcentage";
@@ -34,6 +34,8 @@ export default function Home({navigation, props}) {
     }, [])
     
     const [selectButton,  setSelectButton] = useState(4)
+    const [selectChart,  setSelectChart] = useState(1)
+    const {width} = useWindowDimensions()
 
 
     // PARÂMETROS PARA FAZER O GRÁFICO DE DUNET
@@ -160,6 +162,46 @@ export default function Home({navigation, props}) {
         
     ]
 
+    const diario = [
+        // Receita 
+        {value: 600, frontColor: '#3884db', spacing: 2, label: "02 - Quar", labelWidth: 60, text: "Receita" },
+        // Despesa
+        {value: 300, frontColor: '#e9584e', spacing: 2, text: "Despesa" },
+        // Lucro
+        {value: 300, frontColor: '#2b972b', text: "Lucro" },
+
+        {value: 800, frontColor: '#3884db', label: "05 - Sáb", spacing: 2, labelWidth: 60, text: "Receita" },
+        {value: 400, frontColor: '#e9584e', spacing: 2, text: "Despesa" },
+        {value: 400, frontColor: '#2b972b', text: "Lucro" },
+
+        {value: 300, frontColor: '#3884db', label: "09 - Quar", spacing: 2, labelWidth: 60, text: "Receita"},
+        {value: 150, frontColor: '#e9584e', spacing: 2, text: "Despesa"},
+        {value: 150, frontColor: '#2b972b', text: "Lucro"},
+
+        {value: 100, frontColor: '#3884db', label: "12 - Sáb", spacing: 2, labelWidth: 60, text: "Receita"},
+        {value: 50, frontColor: '#e9584e', spacing: 2, text: "Despesa"},
+        {value: 50, frontColor: '#2b972b', text: "Lucro"},
+        
+        {value: 600, frontColor: '#3884db', spacing: 2, label: "16 - Quar", labelWidth: 60, text: "Receita" },  
+        {value: 300, frontColor: '#e9584e', spacing: 2, text: "Despesa" },
+        {value: 300, frontColor: '#2b972b', text: "Lucro" },
+
+        {value: 800, frontColor: '#3884db', label: "19 - Sáb", spacing: 2, labelWidth: 60, text: "Receita" },
+        {value: 400, frontColor: '#e9584e', spacing: 2, text: "Despesa" },
+        {value: 400, frontColor: '#2b972b', text: "Lucro" },
+
+        {value: 300, frontColor: '#3884db', label: "23 - Quar", spacing: 2, labelWidth: 60, text: "Receita"},
+        {value: 150, frontColor: '#e9584e', spacing: 2, text: "Despesa"},
+        {value: 150, frontColor: '#2b972b', text: "Lucro"},
+        
+        {value: 100, frontColor: '#3884db', label: "26 - Sáb", spacing: 2, labelWidth: 60, text: "Receita"},
+        {value: 50, frontColor: '#e9584e', spacing: 2, text: "Despesa"},
+        {value: 50, frontColor: '#2b972b', text: "Lucro"},
+        
+        {value: 300, frontColor: '#3884db', label: "30 - Quar", spacing: 2, labelWidth: 60, text: "Receita"},
+        {value: 150, frontColor: '#e9584e', spacing: 2, text: "Despesa"},
+        {value: 150, frontColor: '#2b972b', text: "Lucro"}
+    ];
     const mes = [
         // Receita 
         {value: 600, frontColor: '#3884db', spacing: 2, label: "1° sem", labelWidth: 50, text: "Receita" },
@@ -244,8 +286,8 @@ export default function Home({navigation, props}) {
                             {selectButton === 1 ? 
                             <View>
                                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20}}>
-                                    <Text style={{...styles.text, color: "#545454", fontSize: 18}}>Desempenho anual</Text>
-                                    <Text style={{...styles.text, color: "#3884db", fontSize: 18}}>Receita</Text>
+                                    <Text style={{...styles.text, color: "#545454", fontSize: 20}}>Desempenho anual</Text>
+                                    <Text style={{...styles.text, color: "#3884db", fontSize: 20}}>Receita</Text>
                                 </View>
                             
                                 <BarChart
@@ -297,8 +339,8 @@ export default function Home({navigation, props}) {
                             :   selectButton === 2 ? 
                             <View>
                                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20}}>
-                                    <Text style={{...styles.text, color: "#545454", fontSize: 18}}>Desempenho anual</Text>
-                                    <Text style={{...styles.text, color: "#2b972b", fontSize: 18}}>Lucro</Text>
+                                    <Text style={{...styles.text, color: "#545454", fontSize: 20}}>Desempenho anual</Text>
+                                    <Text style={{...styles.text, color: "#2b972b", fontSize: 20}}>Lucro</Text>
                                 </View>
                             
                                 <BarChart
@@ -349,8 +391,8 @@ export default function Home({navigation, props}) {
                             :   selectButton === 3 ?
                             <View>
                                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20}}>
-                                    <Text style={{...styles.text, color: "#545454", fontSize: 18}}>Desempenho anual</Text>
-                                    <Text style={{...styles.text, color: "#e9584e", fontSize:18 }}> Despesas</Text>
+                                    <Text style={{...styles.text, color: "#545454", fontSize: 20}}>Desempenho anual</Text>
+                                    <Text style={{...styles.text, color: "#e9584e", fontSize: 20}}> Despesas</Text>
                                 </View>
                             
                                 <BarChart
@@ -401,8 +443,8 @@ export default function Home({navigation, props}) {
                             :
                             <View>
                                 <View style={{ flexDirection: "row", justifyContent: "space-between", marginBottom: 20}}>
-                                    <Text style={{...styles.text, color: "#545454", fontSize: 18}}>Desempenho anual</Text>
-                                    <Text style={{...styles.text, color: "#dbb038", fontSize: 18}}>Geral</Text>
+                                    <Text style={{...styles.text, color: "#545454", fontSize: 20}}>Desempenho anual</Text>
+                                    <Text style={{...styles.text, color: "#dbb038", fontSize: 20}}>Geral</Text>
                                 </View>
                             
                                 <BarChart
@@ -503,75 +545,180 @@ export default function Home({navigation, props}) {
                     <View style={{ alignItems: 'center'}}>
                         <Text style={{...styles.text, color: "#545454", marginVertical: 20, fontSize: 28}}>Informações do mês</Text>
                         
-                        <View style={{flexDirection: 'row', width:  '100%', justifyContent: 'space-between', alignItems: "center",  marginBottom: 15}}>
+                        <View style={{flexDirection: 'row-reverse', width:  '100%', justifyContent: 'space-between', alignItems: "center",  marginBottom: 15}}>
 
                             <Text style={{...styles.text, color: "#545454"}}>Outubro</Text>
-                            <Text style={{...styles.text, color: "black", fontSize: 35}}>R$ 1.500,00</Text>
+                            <View>
+                                <Text style={{...styles.text, color: "#2b972b", fontSize: 16, fontWeight: 'normal'}}>Lucro do mês</Text>
+                                <Text style={{...styles.text, color: "black", fontSize: 40, marginTop: '-3%'}}>R$ 1.500,00</Text>
+                            </View>
                         </View>
-                        
-                        <BarChart
-                            data={mes}
-                            height={150}
-                            width={340}
-                            // grossura do gráfico
-                            barWidth={20}
-                            // minimo de altura quando for 0
-                            minHeight={3}
-                            barBorderRadius={3}
-                            spacing={14}
-                            // espaçamento inicial
-                            initialSpacing={6}
-                            // quantidade de números do lado
-                            noOfSections={3}
-                            // linha preta que fica no lado
-                            yAxisThickness={0}
-                            // linha preta que fica embaixo
-                            xAxisThickness={0}
-                            yAxisTextStyle={{color: "gray",  fontSize: 11}}
-                            xAxisLabelTextStyle={{color: "gray"}}
-                            isAnimated
-                            disableScroll={true}
-                            dashGap={10}
-                            focusBarOnPress={true}
-                            focusedBarConfig={{
-                                color: "#dbb038",
-                                width: 35
-                            }}
-                            onPress={(item, index) => console.log('Item', item)}
-                            renderTooltip={(item, index) => {
-                                return(
-                                    <View style={{
-                                        backgroundColor: "#ffffff0",
-                                        bottom: -82,
-                                        marginLeft: -4,
-                                        paddingHorizontal: 6,
-                                        paddingVertical: 4,
-                                        borderRadius: 6, 
-                                        alignItems: "center"
-                                    }}>
-                                        <Text style={{fontWeight: 'bold', color: "#000000", fontSize: 10}}>{item.text}</Text>
-                                        <Text style={{fontWeight: 'bold', color: "#303030", fontSize: 10}}>R$ {item.value}</Text>
-                                    </View>
-                                )
-                            }}
-                        />
+                        { selectChart === 1 ?
+                        <View style={{alignItems: 'center'}}>
+                        <View 
+                            style={{marginLeft: '-15%'}}
+                        >
+                            <BarChart
+                                data={mes}
+                                height={150}
+                                width={310}
+                                // grossura do gráfico
+                                barWidth={20}
+                                // minimo de altura quando for 0
+                                minHeight={3}
+                                barBorderRadius={3}
+                                spacing={14}
+                                // espaçamento inicial
+                                initialSpacing={6}
+                                endSpacing={2}
+                                // quantidade de números do lado
+                                noOfSections={3}
+                                // linha preta que fica no lado
+                                yAxisThickness={0}
+                                // linha preta que fica embaixo
+                                xAxisThickness={0}
+                                yAxisTextStyle={{color: "gray",  fontSize: 11}}
+                                xAxisLabelTextStyle={{color: "gray"}}
+                                isAnimated
+                                disableScroll={true}
+                                dashGap={10}
+                                focusBarOnPress={true}
+                                focusedBarConfig={{
+                                    color: "#dbb038",
+                                    width: 35
+                                }}
+                                onPress={(item, index) => console.log('Item', item)}
+                                renderTooltip={(item, index) => {
+                                    return(
+                                        <View style={{
+                                            backgroundColor: "#ffffff0",
+                                            bottom: -82,
+                                            marginLeft: -4,
+                                            paddingHorizontal: 6,
+                                            paddingVertical: 4,
+                                            borderRadius: 6, 
+                                            alignItems: "center"
+                                        }}>
+                                            <Text style={{fontWeight: 'bold', color: "#000000", fontSize: 10}}>{item.text}</Text>
+                                            <Text style={{fontWeight: 'bold', color: "#303030", fontSize: 10}}>R$ {item.value}</Text>
+                                        </View>
+                                    )
+                                }}
+                            />
+                            </View>
+                            <View style={{flexDirection: 'row', justifyContent: "space-between", width: "60%", marginVertical: 15, backgroundColor: '#cdcdcd', padding: 3, borderRadius: 10}}>
+                                <TouchableOpacity style={{backgroundColor: "white", padding: 6, borderRadius: 8}}
+                                    activeOpacity={0.8} onPress={() => setSelectChart(1)}>
+                                    <Text>Gráfico Semanal</Text>
+                                </TouchableOpacity>
 
-                        <View style={{marginTop: 20}}>
-                            <View style={styles.infoMes}>
-                                <Text style={styles.descMes}>Horas trabalhadas</Text>
-                                <Text style={{...styles.descMes, color: 'black'}}>40 h</Text>
+                                <TouchableOpacity style={{backgroundColor: "#cdcdcd", padding: 6, borderRadius: 8}}
+                                    activeOpacity={0.8} onPress={() => setSelectChart(2)}>
+                                    <Text>Gráfico Diário</Text>
+                                </TouchableOpacity>
+                                </View>
+
+                                <View style={styles.infoMes}>
+                                    <Text style={styles.descMes}>Horas trabalhadas</Text>
+                                    <Text style={{...styles.descMes, color: 'black'}}>40 h</Text>
+                                </View>
+
+                                <View style={styles.infoMes}>
+                                    <Text style={styles.descMes}>Média de receita</Text>
+                                    <Text style={{...styles.descMes, color: "black"}}>R$ 500,00</Text>
+                                </View>
+                                    
+                                <View style={styles.infoMes}>
+                                    <Text style={styles.descMes}>Média de gastos</Text>
+                                    <Text style={{...styles.descMes, color: 'black'}}>R$ 250,00</Text>
+                                </View>
+                            </View>
+                                :
+                            <View style={{alignItems: 'center'}}>
+                            <View 
+                            style={{marginLeft: '-15%'}}
+                            >
+                                <BarChart
+                                    data={diario}
+                                    height={150}
+                                    width={310}
+                                    // grossura do gráfico
+                                    barWidth={20}
+                                    // minimo de altura quando for 0
+                                    minHeight={3}
+                                    barBorderRadius={3}
+                                    spacing={14}
+                                    // espaçamento inicial
+                                    initialSpacing={6}
+                                    endSpacing={2}
+                                    // quantidade de números do lado
+                                    noOfSections={3}
+                                    // linha preta que fica no lado
+                                    yAxisThickness={0}
+                                    // linha preta que fica embaixo
+                                    xAxisThickness={0}
+                                    yAxisTextStyle={{color: "gray",  fontSize: 11}}
+                                    xAxisLabelTextStyle={{color: "gray"}}
+                                    isAnimated
+                                    dashGap={10}
+                                    focusBarOnPress={true}
+                                    focusedBarConfig={{
+                                        color: "#dbb038",
+                                        width: 35
+                                    }}
+                                    onPress={(item, index) => console.log('Item', item)}
+                                    renderTooltip={(item, index) => {
+                                        return(
+                                            <View style={{
+                                                backgroundColor: "#ffffff0",
+                                                bottom: -82,
+                                                marginLeft: -4,
+                                                paddingHorizontal: 6,
+                                                paddingVertical: 4,
+                                                borderRadius: 6, 
+                                                alignItems: "center"
+                                            }}>
+                                                <Text style={{fontWeight: 'bold', color: "#000000", fontSize: 10}}>{item.text}</Text>
+                                                <Text style={{fontWeight: 'bold', color: "#303030", fontSize: 10}}>R$ {item.value}</Text>
+                                            </View>
+                                        )
+                                    }}
+                                />
+                            </View>
+                                <View style={{flexDirection: 'row', justifyContent: "space-between", width: "60%", marginVertical: 15, backgroundColor: '#cdcdcd', padding: 3, borderRadius: 10, alignItems: 'center'}}>
+
+                                <TouchableOpacity style={{backgroundColor: "#cdcdcd", padding: 6, borderRadius: 8}}
+                                    activeOpacity={0.8} onPress={() => setSelectChart(1)}>
+                                    <Text>Gráfico Semanal</Text>
+                                </TouchableOpacity>
+                                
+                                <TouchableOpacity style={{backgroundColor: "white", padding: 6, borderRadius: 8}}
+                                    activeOpacity={0.8} onPress={() => setSelectChart(2)}>
+                                    <Text>Gráfico Diário</Text>
+                                </TouchableOpacity>
                             </View>
 
                             <View style={styles.infoMes}>
-                                <Text style={styles.descMes}>Média de receita</Text>
-                                <Text style={{...styles.descMes, color: "black"}}>R$ 500,00</Text>
+                                <Text style={styles.descMes}>Dia de maior receita</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>Sábado, 05</Text>
                             </View>
                             
+                            {/*<View style={styles.infoMes}>
+                                <Text style={styles.descMes}>Dia com mais vendas</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>Quarta, 16</Text>
+                            </View>*/}
+                            
                             <View style={styles.infoMes}>
-                                <Text style={styles.descMes}>Média de gastos</Text>
-                                <Text style={{...styles.descMes, color: 'black'}}>R$ 250,00</Text>
+                                <Text style={styles.descMes}>Dia que mais trabalhou</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>Quarta, 16</Text>
+                            </View>
+
+                            <View style={styles.infoMes}>
+                                <Text style={styles.descMes}>Qual dia compensa mais?</Text>
+                                <Text style={{...styles.descMes, color: 'black'}}>Sábado</Text>
                             </View>
                         </View>
+                        }
                     </View>
                 </View>
 
@@ -600,6 +747,11 @@ export default function Home({navigation, props}) {
                     {data.map((item, index) => {
                         return <RenderItem item={item} index={index} key={index} />
                     })}
+                    <Animated.View>
+                        <View style={{ width: 200, height: 50}}>
+                            <Text>Teste</Text>
+                        </View>
+                    </Animated.View>
                 </View>
 
                 <View style={styles.pieChart}>
@@ -620,21 +772,23 @@ export default function Home({navigation, props}) {
                         <View style={styles.graficoPieContainerLegend}>
                                 <View style={styles.containerLegend}>
                                     <View style={{...styles.viewLegendColor, backgroundColor: "#44af4b"}}/>
-                                    <Text style={styles.legendName}> Dinheiro ➱</Text>
-                                    <Text style={{...styles.legendName, color: "#44af4b", fontSize: 20}}> 789</Text>
+                                    <Text style={styles.legendName}>Dinheiro</Text>
+                                    <Text style={styles.legendName}>➱</Text>
+                                    <Text style={{...styles.legendName, color: "#44af4b", fontSize: 20}}> 66%</Text>
                                 </View>
 
                                 <View style={styles.containerLegend}>
                                     <View style={styles.viewLegendColor}/>
-                                    <Text style={styles.legendName}> Cartão ➱</Text>
-                                    
-                                    <Text style={{...styles.legendName, color: "#9400D3", fontSize: 20}}> 123</Text>
+                                    <Text style={styles.legendName}>Cartão</Text>
+                                    <Text style={styles.legendName}>➱</Text>
+                                    <Text style={{...styles.legendName, color: "#9400D3", fontSize: 20}}> 14%</Text>
                                 </View>
                                 
                                 <View  style={styles.containerLegend}>
                                     <View style={{...styles.viewLegendColor, backgroundColor: "#FFA500"}}/>
-                                    <Text style={styles.legendName}> Pix ➱</Text>
-                                    <Text style={{...styles.legendName, color: "#FFA500", fontSize: 20}}> 321</Text>
+                                    <Text style={styles.legendName}>Pix</Text>
+                                    <Text style={styles.legendName}>➱</Text>
+                                    <Text style={{...styles.legendName, color: "#FFA500", fontSize: 20}}> 20%</Text>
                                 </View>
                         </View>
                     </View>
