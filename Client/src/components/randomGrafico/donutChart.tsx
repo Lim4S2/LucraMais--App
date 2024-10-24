@@ -85,15 +85,22 @@ const DonutChart = ({
 
                 <Text
                     x={radius - smallFontSize.width / 2}
-                    y={radius + smallFontSize.height / 2 - fontSize.height / 1.6}
+                    y={radius + smallFontSize.height / 2 - fontSize.height / 1.3}
                     text={"Produtos vendidos"}
+                    font={smallFont}
+                    color="#545454"
+                />
+                <Text
+                    x={radius - smallFontSize.width / 6}
+                    y={radius + smallFontSize.height / 2 - fontSize.height / 2.3}
+                    text={"no mês"}
                     font={smallFont}
                     color="#545454"
                 />
 
                 <Text
                     x={targX}
-                    y={radius + fontSize.height / 2 + 5}
+                    y={radius + fontSize.height / 1.5}
                     text={targetText}
                     font={font}
                     color="black"

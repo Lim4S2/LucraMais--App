@@ -76,10 +76,11 @@ const styles = StyleSheet.create({
     containerProduto: {
         width: "90%",
         backgroundColor: "white",
+        alignItems: 'center',
         paddingVertical: 10,
         marginBottom: 15,
         borderRadius: 20,
-        elevation: 5
+        elevation: 10
     },
     teste: {
         flex: 1,
@@ -103,6 +104,7 @@ const styles = StyleSheet.create({
     graficoPie: {
         flexDirection: "row",
         width: '100%',
+        justifyContent: 'space-around'
     },
     graficoPieContainer: {
         justifyContent: "center",

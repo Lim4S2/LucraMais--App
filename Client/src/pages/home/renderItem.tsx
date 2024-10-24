@@ -30,14 +30,13 @@ const RenderItem = ({item, index} : Props) => {
                     {/* Nome do produto */}
                     <Text style={{...styles.text, color: "#313131"}}>Nome do Produto</Text>
                         
-                    <View style={{alignItems: "center"}}>
+                    <View style={{alignItems: "flex-end"}}>
                         {/* Valor de vendas */}
                         <Text style={styles.text}>Quant.
-                            <Text style={{color: "white"}}>_</Text>
-                            <Text style={{ fontSize: 24, fontWeight: "bold", color: "black"}}>{item.value}</Text>
+                            <Text style={{ fontSize: 20, fontWeight: "bold", color: "black"}}> {item.value}</Text>
                         </Text>
                         {/* Porcentagem */}
-                        <Text style={styles.text}>{item.percentage}%</Text>
+                        <Text style={[styles.text, {color: item.color}]}>{item.percentage}%</Text>
                     </View>
                 </View>
             </Animated.View>
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
     }, 
     text: {
-        fontSize: 20,
+        fontSize: 18,
         fontWeight: "bold",
         color: "#545454"
     }

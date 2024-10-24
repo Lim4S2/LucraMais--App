@@ -73,9 +73,8 @@ export default function Fechamento({ navigation }) {
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.container}>
-                <Image source={require("../../images/iconFechaCaixa.png")}
-                    style={{ width: 40, height: 40, marginRight: 20 }} />
-                <Text style={styles.text}>Fechamento do dia</Text>
+                <Text style={styles.text}>Fechamento do dia - </Text>
+                <Text style={styles.text}>25/10</Text>
             </View>
 
             <ScrollView contentContainerStyle={{alignItems: 'center', paddingBottom: 25}}>
@@ -110,14 +109,19 @@ export default function Fechamento({ navigation }) {
                 <Text style={{ ...styles.textDetalhe, color: "red" }}>R$ {fechamento.despesas}</Text>
             </View>
 
-            <View style={{...styles.viewDetalhamento, marginBottom: 0}}>
+            <View style={styles.viewDetalhamento}>
                 <Text style={styles.textDetalhe}>Qnt. de vendas</Text>
-                <Text style={{ ...styles.textDetalhe, color: "#3884db" }}>{fechamento.totalSales}</Text>
+                <Text style={{ ...styles.textDetalhe, color: "#3884db" }}>Não sei{fechamento.totalSales}</Text>
+            </View>
+            
+            <View style={{...styles.viewDetalhamento, marginBottom: 0}}>
+                <Text style={styles.textDetalhe}>Ganho por hora</Text>
+                <Text style={{ ...styles.textDetalhe, color: "#04414b" }}>R$ 28,50{fechamento.totalSales}</Text>
             </View>
 
-            <Text style={{ ...styles.text, fontSize: 22,marginVertical: 25, color: "#04414b" }}>Período com mais vendas</Text>
+            <Text style={{ ...styles.text, fontSize: 24, marginTop: "15%", marginBottom: "8%", color: "#04414b" }}>Período com mais vendas</Text>
             
-            <View style={{width: '80%', alignItems:'center'}}>
+            <View style={{width: '80%', alignItems:'center', marginBottom: 15}}>
                 <BarChart
                     data={data}
                     spacing={12}
@@ -139,7 +143,12 @@ export default function Fechamento({ navigation }) {
                 />
             </View>
 
-            <Text style={{ ...styles.text, fontSize: 22,marginVertical: 25, color: "#04414b" }}>Formas de Pagamento</Text>
+            <View style={{...styles.viewDetalhamento, marginBottom: 0}}>
+                <Text style={styles.textDetalhe}>Média de produtos vendidos</Text>
+                <Text style={{ ...styles.textDetalhe, color: "#6294ac" }}>Sei lá{fechamento.totalSales}</Text>
+            </View>
+
+            <Text style={{ ...styles.text, fontSize: 24,  marginTop: "15%", marginBottom: "8%", color: "#04414b" }}>Formas de Pagamento</Text>
 
             <View style={{ ...styles.viewDetalhamento, width: "70%" }}>
                 <View style={{ flexDirection: "row" }}>

@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
         height: 110,
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 20,
-        marginTop: 30,
+        marginBottom: "8%",
+        marginTop: "15%",
         borderRadius: 50,
         backgroundColor: "#04414b",
         elevation: 20

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react"
 import {View, Text, BackHandler, StatusBar, TouchableWithoutFeedback, ScrollView, StyleSheet, useWindowDimensions } from "react-native"
 import { BarChart, PieChart } from "react-native-gifted-charts"
 import styles from "./style"
-import Animated, { useSharedValue, withTiming } from "react-native-reanimated";
+import Animated, { FadeInDown, FadeOutDown, useSharedValue, withTiming } from "react-native-reanimated";
 import { generateRandomNumbers } from "../../components/randomGrafico/generateRandom";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { calculatePercent } from "../../components/randomGrafico/calculatePorcentage";
@@ -17,7 +17,7 @@ interface Data {
 }
 
 // Raio do gráfico
-const RADIUS = 125
+const RADIUS = 130
 // Valor da espessura do gráfico
 const STROKE_WIDTH = 30
 // Valor da espessura do traço externo
@@ -86,7 +86,7 @@ export default function Home({navigation, props}) {
     }
 
     // fonte usada no projeto
-    const font = useFont(require("../../../assets/fonts/NotoSansJP-Bold.ttf"), 60)
+    const font = useFont(require("../../../assets/fonts/NotoSansJP-Bold.ttf"), 63)
     const smallFont = useFont(require("../../../assets/fonts/NotoSansJP-Light.ttf"), 17)
 
     if (!font || !smallFont) {
@@ -742,32 +742,39 @@ export default function Home({navigation, props}) {
                     {data.map((item, index) => {
                         return <RenderItem item={item} index={index} key={index} />
                     })}
-                    <View style={styles.containerProduto}>
-                        <View style={styles.teste}>
+                    <Animated.View style={styles.containerProduto}
+                        entering={FadeInDown.delay(10000)}
+                        exiting={FadeOutDown}
+                    >
+                        <View style={styles.infoMes}>
                             <Text style={styles.descMes}>Média de venda por semana</Text>
                             <Text style={{...styles.descMes, color: 'black'}}>600</Text>
                         </View>
-                        <View style={styles.teste}>
+
+                        <View style={styles.infoMes}>
+                            <Text style={styles.descMes}>Produtos vendidos por hora</Text>
+                            <Text style={{...styles.descMes, color: 'black'}}>50</Text>
+                        </View>
+                        
+                        <View style={styles.infoMes}>
                             <Text style={styles.descMes}>Dia que mais vendeu</Text>
                             <Text style={{...styles.descMes, color: 'black'}}>05, Sáb - 150</Text>
                         </View>
-                    </View>
+                    </Animated.View>
                 </View>
 
                 <View style={styles.pieChart}>
                     <Text style={{...styles.text, color: "#545454"}}>Formas de pagemento</Text>
                     <View style={styles.graficoPie}>
-                        <View style={styles.graficoPieContainer}>
-                            <PieChart
-                               data={pagamento}
-                               radius={85}
-                               textColor="white"
-                               textSize={14}
-                               fontWeight="bold"
-                               strokeColor="white"
-                               strokeWidth={2}
-                            />
-                        </View>
+                        <PieChart
+                           data={pagamento}
+                           radius={85}
+                           textColor="white"
+                           textSize={14}
+                           fontWeight="bold"
+                           strokeColor="white"
+                           strokeWidth={2}
+                        />
                         
                         <View style={styles.graficoPieContainerLegend}>
                                 <View style={styles.containerLegend}>
