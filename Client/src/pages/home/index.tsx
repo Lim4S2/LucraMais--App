@@ -272,7 +272,7 @@ export default function Home({navigation, props}) {
         <View style={{backgroundColor: "white"}}>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"}/>
 
-            <TouchableWithoutFeedback onPress={() => navigation.navigate("Fechamento")}>
+            <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
                 <View style={styles.container}>
                     <Text style={styles.text}>Nome do comércio</Text>
                 </View>
@@ -736,9 +736,9 @@ export default function Home({navigation, props}) {
                     </View>
 
                     {/* Botão para gerar os dados, no caso não vai precisar*/}
-                    <TouchableOpacity onPress={generateData}>
+                    {/*<TouchableOpacity onPress={generateData}>
                         <Text>Gerar número</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity>*/}
                     {data.map((item, index) => {
                         return <RenderItem item={item} index={index} key={index} />
                     })}

@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     viewValorCompra: {
         flexDirection: "row",
         alignItems: "center",
-        gap: 10
+        gap: 20
     },
     viewCompra: {
         height: "25%",

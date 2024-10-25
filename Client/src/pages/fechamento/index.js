@@ -111,7 +111,7 @@ export default function Fechamento({ navigation }) {
 
             <View style={styles.viewDetalhamento}>
                 <Text style={styles.textDetalhe}>Qnt. de vendas</Text>
-                <Text style={{ ...styles.textDetalhe, color: "#3884db" }}>Não sei{fechamento.totalSales}</Text>
+                <Text style={{ ...styles.textDetalhe, color: "#3884db" }}>{fechamento.totalSales}</Text>
             </View>
             
             <View style={{...styles.viewDetalhamento, marginBottom: 0}}>
@@ -145,7 +145,7 @@ export default function Fechamento({ navigation }) {
 
             <View style={{...styles.viewDetalhamento, marginBottom: 0}}>
                 <Text style={styles.textDetalhe}>Média de produtos vendidos</Text>
-                <Text style={{ ...styles.textDetalhe, color: "#6294ac" }}>Sei lá{fechamento.totalSales}</Text>
+                <Text style={{ ...styles.textDetalhe, color: "#6294ac" }}>{fechamento.totalSales}</Text>
             </View>
 
             <Text style={{ ...styles.text, fontSize: 24,  marginTop: "15%", marginBottom: "8%", color: "#04414b" }}>Formas de Pagamento</Text>
