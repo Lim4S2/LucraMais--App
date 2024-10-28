@@ -77,7 +77,9 @@ export default function Fechamento({ navigation }) {
                 <Text style={styles.text}>25/10</Text>
             </View>
 
-            <ScrollView contentContainerStyle={{alignItems: 'center', paddingBottom: 25}}>
+            <ScrollView 
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{alignItems: 'center', paddingBottom: 25}}>
             <View style={{alignItems: 'center', width: '90%'}}>
                 <Text style={{ fontSize: 18, marginTop: 20 }}>Caixa aberto -
                     <Text style={{ fontSize: 18, marginTop: 10, fontWeight: 'bold' }}> {fechamento.abertura}</Text>

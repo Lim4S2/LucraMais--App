@@ -14,6 +14,7 @@ import Fechamento from "./src/pages/fechamento"
 import AtualizarProd from "./src/pages/atualizarEstoque"
 import Carrinho from "./src/pages/carrinho";
 import Despesas from "./src/pages/despesas";
+import Sobre from "./src/pages/sobreNos";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="Home" component={Routes} />
           <Stack.Screen name="Carrinho" component={Carrinho}/>
           <Stack.Screen name="Despesas" component={Despesas}/>
+          <Stack.Screen name="Sobre" component={Sobre}/>
         </Stack.Navigator>
       </NavigationContainer>
     );

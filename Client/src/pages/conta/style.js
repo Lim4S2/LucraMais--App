@@ -64,6 +64,15 @@ const styles = StyleSheet.create({
       fontSize: 16,
       color: '#333'
     },
+    viewConta: {
+      flexDirection: 'row', 
+      width: '100%', 
+      height: 'auto', 
+      gap: 20, 
+      justifyContent: "flex-start", 
+      marginBottom: 20, 
+      alignItems: 'center'
+    }
   });
 
 export default styles

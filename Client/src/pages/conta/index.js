@@ -46,30 +46,30 @@ export default function Conta({navigation}) {
 
             <View style={styles.optionContainer}>
                 <View style={{ width: '100%' }}>
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                    <TouchableOpacity style={styles.viewConta}>
                         <Image source={require("../../images/infoPessoais.png")} style={{width:  30, height: 30}}/>
                         <Text>Conta e informações pessoais</Text>
-                    </View>
+                    </TouchableOpacity>
                         
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                    <TouchableOpacity style={styles.viewConta}>
                         <Image source={require("../../images/configuracao.png")} style={{width:  30, height: 30}}/>
                         <Text>Configurações</Text>
-                    </View>
+                    </TouchableOpacity>
                         
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                    <TouchableOpacity style={styles.viewConta} onPress={() => navigation.navigate("Sobre")}>
                         <Image source={require("../../images/sobre-nos.png")} style={{width:  30, height: 30}}/>
                         <Text>Sobre o aplicativo</Text>
-                    </View>
+                    </TouchableOpacity>
                     
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                    <TouchableOpacity style={styles.viewConta}>
                         <Image source={require("../../images/apoio-suporte.png")} style={{width:  30, height: 30}}/>
                         <Text>Suporte</Text>
-                    </View>
+                    </TouchableOpacity>
                     
-                    <View style={{flexDirection: 'row', width: '100%', height: 'auto', gap: 20, justifyContent: "flex-start", marginBottom: 20, alignItems: 'center'}}>
+                    <TouchableOpacity style={styles.viewConta}>
                         <Image source={require("../../images/sair.png")} style={{width:  30, height: 30}}/>
                         <Text>Sair</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

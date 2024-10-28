@@ -68,6 +68,16 @@ const styles = StyleSheet.create({
         marginBottom: -15, 
         transform: [{rotate: '180deg'}] 
     },
+    buttonCadPro: {
+        height: 35,
+        width: 35,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 50,
+        backgroundColor: "#e9584e",
+        left: "70%",
+        top: '-45%'
+    },
 
 
     // fazendo o style do radio button

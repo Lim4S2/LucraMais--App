@@ -41,7 +41,7 @@ const stylesList = StyleSheet.create({
     btnMenos: {
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "#FF5757",
+        backgroundColor: "#e9584e",
         borderRadius: 50,
         width: 30,
         height: 30

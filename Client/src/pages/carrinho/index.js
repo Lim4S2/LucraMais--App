@@ -69,6 +69,7 @@ export default function Carrinho({ navigation, route }) {
 
             <View style={{ marginTop: 10, flex: 1 }}>
                 <FlatList
+                showsVerticalScrollIndicator={false}
                     data={carrinho}
                     keyExtractor={(item) => item.id.toString()}
                     contentContainerStyle={{ paddingTop: 15 }}
@@ -81,11 +82,18 @@ export default function Carrinho({ navigation, route }) {
                                 </Text>
                             </View>
 
-                            <View style={stylesList.viewValor}>
-                                <Text style={stylesList.sifrao}>R$
-                                    <Text style={{ color: "white" }}>_</Text>
-                                    <Text style={{ ...stylesList.sifrao, fontSize: 34 }}>{item.price}</Text>
-                                </Text>
+                            <View style={{ height: '100%' }}>
+                                <View style={stylesList.viewValor}>
+                                    <Text style={stylesList.sifrao}>R$
+                                        <Text style={{ color: "white" }}>_</Text>
+                                        <Text style={{ ...stylesList.sifrao, fontSize: 34 }}>{item.price}</Text>
+                                    </Text>
+                                </View>
+                                <View>
+                                    <TouchableOpacity style={styles.buttonCadPro}>
+                                        <Text style={{fontWeight: 'bold', color: 'white'}}>X</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
                         </View>
                     )}

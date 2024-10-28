@@ -99,7 +99,7 @@ export default function Venda({ navigation, route }) {
         <View style={{ flex: 1 }}>
             <View style={styles.container}>
                 <TouchableOpacity onPress={() => navigation.navigate("Carrinho", { carrinho })}>
-                    <Image source={require("../../images/iconCesta.png")} style={{ width: 40, height: 40 }} />
+                    <Image source={require("../../images/iconCarrinhoLateral.png")} style={{ width: 40, height: 40 }} />
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={fecharCaixa} style={styles.btnFechar}>
@@ -141,14 +141,14 @@ export default function Venda({ navigation, route }) {
                                     <Text style={{ fontSize: 20, fontWeight: "bold" }}>{quantidade}</Text>
 
                                     <TouchableOpacity
-                                        style={{ ...stylesList.btnMenos, backgroundColor: "#3bdcc2" }}
+                                        style={{ ...stylesList.btnMenos, backgroundColor: "#3884db" }}
                                         onPress={() => adicionarAoCarrinho(item)}
                                     >
                                         <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>+</Text>
                                     </TouchableOpacity>
 
                                     <TouchableOpacity onPress={() => navigation.navigate("Carrinho", {carrinho})}>
-                                        <Image source={require("../../images/cesta.png")}
+                                        <Image source={require("../../images/iconsCesta.png")}
                                             style={{ width: 30, height: 30, marginLeft: 50 }} />
                                     </TouchableOpacity>
                                 </View>

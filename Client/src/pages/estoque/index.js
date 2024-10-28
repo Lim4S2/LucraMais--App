@@ -128,10 +128,10 @@ export default function Estoque({ navigation }) {
                 </View>
             </View>
 
-            <View style={{height: "69%", marginTop: 15}}>
+            <View style={{height: "80%", marginTop: 15}}>
                 <FlatList
-                    style={stylesList.list}
-                    contentContainerStyle={{marginTop: 20}}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{marginTop: 20, paddingBottom: 150}}
                     data={produtos}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={({ item }) => (
