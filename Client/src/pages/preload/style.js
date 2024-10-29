@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     logo: {
         marginTop: "40%",
-        width: "100%",
+        width: "90%",
         height: 250
     },
     trator: {

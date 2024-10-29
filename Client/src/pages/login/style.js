@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 
     }, 
     form: {
-        marginTop: "12%",
+        marginTop: "10%",
         marginBottom: 20,
         backgroundColor: "white",
         borderRadius: 25,
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
     },
     logo: {
         marginTop: "-30%",
-        width: "65%",
-        height: 105
+        width: "50%",
+        height: 140
     },
     tittle: {
         fontSize: 46,
