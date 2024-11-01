@@ -204,47 +204,76 @@ app.post('/api/vendas', async (req, res) => {
 //Desgraça de fechamento que acabou com a minha vida
 //Cadastro do Fechamento (pegando os dados da tabela vendas)
 app.post('/api/fechamento', async (req, res) => {
-  const connection = await getDbConnection();
-
   try {
+      const db = await getDbConnection();
       const { openingTime, closingTime } = req.body;
 
+      if (!openingTime || !closingTime) {
+          return res.status(400).json({ error: 'openingTime e closingTime são obrigatórios.' });
+      }
+
       // Calcula totalSales e revenue por forma de pagamento
-      const [results] = await connection.execute(`
+      const [results] = await db.execute(`
           SELECT 
               SUM(quantidade) AS totalSales,
               SUM(preco * quantidade) AS revenue,
-              SUM(CASE WHEN formaPagamento = 3 THEN quantidade ELSE 0 END) AS salesCash,
-              SUM(CASE WHEN formaPagamento = 1 THEN quantidade ELSE 0 END) AS salesPix,
-              SUM(CASE WHEN formaPagamento = 2 THEN quantidade ELSE 0 END) AS salesCard
+              SUM(CASE WHEN formaPagamento = 'Dinheiro' THEN quantidade ELSE 0 END) AS salesCash,
+              SUM(CASE WHEN formaPagamento = 'PIX' THEN quantidade ELSE 0 END) AS salesPix,
+              SUM(CASE WHEN formaPagamento = 'Cartão' THEN quantidade ELSE 0 END) AS salesCard
           FROM vendas
           WHERE DATE(vendaData) BETWEEN DATE(?) AND DATE(?)
       `, [openingTime, closingTime]);
 
-      const { totalSales, revenue, salesCash, salesPix, salesCard } = results[0];
+      const { totalSales = 0, revenue = 0, salesCash = 0, salesPix = 0, salesCard = 0 } = results[0];
 
-      // Registro do fechamento
-      await connection.execute(
+      // Calcula total das despesas (sem filtro de data)
+      const [expenseResults] = await db.execute(`
+          SELECT SUM(valor) AS totalDespesas FROM despesas
+      `);
+
+      const totalDespesas = expenseResults[0].totalDespesas || 0;
+
+      // Calcula receita líquida (revenue - despesas)
+      const receitaLiquida = revenue - totalDespesas;
+
+      // Insere o registro de fechamento na tabela de fechamento
+      await db.execute(
           'INSERT INTO fechamento (openingTime, closingTime, totalSales, revenue, salesCash, salesPix, salesCard) VALUES (?, ?, ?, ?, ?, ?, ?)',
           [openingTime, closingTime, totalSales, revenue, salesCash, salesPix, salesCard]
       );
 
-      res.status(200).json({ message: 'Fechamento registrado com sucesso!' });
+      res.status(200).json({ message: 'Fechamento registrado com sucesso!', receitaLiquida });
   } catch (error) {
       console.error('Erro ao registrar o fechamento:', error);
       res.status(500).json({ error: 'Erro ao registrar o fechamento.' });
-  } finally {
-      connection.end();
   }
 });
 
-//Coleta de dados do fechamento
+
+//Coleta com a subtração
 app.get('/api/fechamento', async (req, res) => {
   try {
-    const connection = await getDbConnection(); // Obtém a conexão com o banco de dados
-    const [rows] = await connection.execute('SELECT * FROM fechamento ORDER BY closingTime DESC LIMIT 1');
-    await connection.end(); // Fecha a conexão
-    res.json(rows);
+    const connection = await getDbConnection();
+    
+    // Obter o fechamento mais recente
+    const [fechamentoRows] = await connection.execute('SELECT * FROM fechamento ORDER BY closingTime DESC LIMIT 1');
+    
+    // Obter as despesas
+    const [despesaRows] = await connection.execute('SELECT SUM(valor) AS totalDespesas FROM despesas');
+    
+    // Calcular receita líquida
+    const receitaTotal = fechamentoRows[0]?.revenue || 0;
+    const despesasTotal = despesaRows[0]?.totalDespesas || 0;
+    const lucroTotal = receitaTotal - despesasTotal;
+
+    // Enviar os dados como resposta
+    res.json({
+      ...fechamentoRows[0],
+      despesasTotal,
+      lucroTotal,
+    });
+
+    await connection.end();
   } catch (error) {
     console.error('Erro ao buscar fechamento:', error);
     res.status(500).send('Erro ao buscar fechamento mais recente.');
@@ -253,6 +282,30 @@ app.get('/api/fechamento', async (req, res) => {
 
 
 //FIM DO ESTOQUE
+
+app.post('/api/despesas', async (req, res) => {
+  try {
+      const db = await getDbConnection();
+      const { descricao, valor } = req.body;
+
+      if (!descricao || valor === undefined) {
+          return res.status(400).json({ error: 'Descrição e valor são obrigatórios.' });
+      }
+
+      // Insere a despesa no banco de dados
+      const [result] = await db.execute(
+          'INSERT INTO despesas (descricao, valor) VALUES (?, ?)',
+          [descricao, valor]
+      );
+
+      // Retorna a nova despesa cadastrada
+      res.status(201).json({ id: result.insertId, descricao, valor });
+  } catch (error) {
+      console.error('Erro ao cadastrar despesa:', error);
+      res.status(500).json({ error: 'Erro ao cadastrar despesa.' });
+  }
+});
+
 
 
 app.listen(port, () => {
