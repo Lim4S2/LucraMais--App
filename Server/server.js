@@ -11,7 +11,7 @@ const dbConfig = {
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'agroclient'
+  database: 'lucradados'
 };
 
 // Middleware
@@ -313,7 +313,10 @@ app.listen(port, () => {
 });
 
 
+
 {/*
+
+ALTERAÇÃO NOME DO BANCO = LUCRADADOS    <-------   (MURILO GAY)
 
 TABELAS
 
@@ -355,5 +358,12 @@ CREATE TABLE vendas (
     vendaData DATETIME DEFAULT CURRENT_TIMESTAMP,
     createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE despesas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    valor DECIMAL(10, 2) NOT NULL,
+    descricao VARCHAR(255) NOT NULL
+);
+
 
 */}

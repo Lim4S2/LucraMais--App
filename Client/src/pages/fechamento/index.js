@@ -152,29 +152,41 @@ export default function Fechamento({ navigation }) {
           <Text style={{ ...styles.textDetalhe, color: "#6294ac" }}>{(fechamento.totalSales / 7).toFixed(2)}</Text>
         </View>
 
-        <Text style={{ ...styles.text, fontSize: 24, marginTop: "15%", marginBottom: "8%", color: "#04414b" }}>Forma de pagamento</Text>
+        <Text style={{ ...styles.text, fontSize: 24,  marginTop: "15%", marginBottom: "8%", color: "#04414b" }}>Formas de Pagamento</Text>
 
-        <View style={styles.viewDetalhamento}>
-          <Text style={styles.textDetalhe}>Dinheiro</Text>
-          <Text style={{ ...styles.textDetalhe, color: "gray" }}>{fechamento.salesCash}</Text>
-        </View>
+          <View style={{ ...styles.viewDetalhamento, width: "70%" }}>
+              <View style={{ flexDirection: "row" }}>
+                  <Image style={styles.img}
+                      source={require("../../images/iconDinheiro.png")} />
+                  <Text style={styles.textDetalhe}>Dinheiro</Text>
+              </View>
+              <Text style={styles.textDetalhe}>{fechamento.salesCash}</Text>
+          </View>
 
-        <View style={styles.viewDetalhamento}>
-          <Text style={styles.textDetalhe}>Pix</Text>
-          <Text style={{ ...styles.textDetalhe, color: "gray" }}>{fechamento.salesPix}</Text>
-        </View>
+          <View style={{ ...styles.viewDetalhamento, width: "70%" }}>
+              <View style={{ flexDirection: "row" }}>
+                  <Image style={styles.img}
+                      source={require("../../images/iconPix.png")} />
+                  <Text style={styles.textDetalhe}>PIX</Text>
+              </View>
+              <Text style={styles.textDetalhe}>{fechamento.salesPix}</Text>
+          </View>
 
-        <View style={styles.viewDetalhamento}>
-          <Text style={styles.textDetalhe}>Cartão</Text>
-          <Text style={{ ...styles.textDetalhe, color: "gray" }}>{fechamento.salesCard}</Text>
-        </View>
+          <View style={{ ...styles.viewDetalhamento, width: "70%" }}>
+              <View style={{ flexDirection: "row" }}>
+                  <Image style={styles.img}
+                      source={require("../../images/iconCartão.png")} />
+                  <Text style={styles.textDetalhe}>Cartão</Text>
+              </View>
+              <Text style={styles.textDetalhe}>{fechamento.salesCard}</Text>
+          </View>
 
-        <View style={{ ...styles.viewDetalhamento, marginBottom: 20 }}>
-          <TouchableOpacity style={styles.btnVoltar} onPress={() => navigation.navigate("Venda")}>
-            <Text style={styles.textBtn}>Voltar</Text>
-          </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("Home")}
+                style={styles.button}>
+                <Text style={{ ...styles.text, color: "white", fontSize: 20 }}>Voltar para a tela inicial</Text>
+            </TouchableOpacity>
+            </ScrollView>
         </View>
-      </ScrollView>
-    </View>
   );
 }
