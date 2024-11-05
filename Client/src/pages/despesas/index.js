@@ -6,16 +6,7 @@ import { TextInputMask } from "react-native-masked-text";
 import axios from "axios";
 
 export default function Despesas({ navigation }) {
-    const [todasDespesas, setTodasDespesas] = useState([
-        { id: 1, nome: "Transporte", valor: 100.00 },
-        { id: 2, nome: "Alimentação", valor: 50.00 },
-        { id: 3, nome: "Luz", valor: 150.00 },
-        { id: 4, nome: "Água", valor: 80.00 },
-        { id: 5, nome: "Internet", valor: 120.00 },
-        { id: 6, nome: "Telefone", valor: 90.00 },
-        { id: 7, nome: "Mensalidade", valor: 500.00 }
-    ]);
-
+    const [todasDespesas, setTodasDespesas] = useState([]); 
     const [despesa, setDespesa] = useState("");
     const [valorDespesa, setValorDespesa] = useState("");
     const floatingLabelAnimation = useRef(new Animated.Value(valorDespesa ? 1 : 0)).current;
@@ -48,35 +39,33 @@ export default function Despesas({ navigation }) {
 
     const handleAddDespesa = async () => {
         if (!despesa || !valorDespesa) return;
-    
+
         try {
             const valorFormatado = parseFloat(valorDespesa.replace('R$', '').replace(',', '.').trim());
-            console.log("Adicionando despesa:", { descricao: despesa, valor: valorFormatado });
-    
+
             const response = await axios.post('http://10.0.2.2:5000/api/despesas', {
                 descricao: despesa,
                 valor: valorFormatado,
             });
-    
+
             const novaDespesa = {
-                id: response.data.id, // ID gerado pelo banco de dados
+                id: response.data.id, 
                 nome: despesa,
                 valor: valorFormatado,
             };
-    
+
             setTodasDespesas(prevDespesas => [
                 ...prevDespesas,
                 novaDespesa
             ]);
-    
+
             setDespesa("");
             setValorDespesa("");
         } catch (error) {
             console.error("Erro ao adicionar despesa:", error.response ? error.response.data : error);
         }
     };
-    
-    
+
     return (
         <View style={{ flex: 1 }}>
             <StatusBar backgroundColor={"#6294ac"} barStyle={"light-content"} />
