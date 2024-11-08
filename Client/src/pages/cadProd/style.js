@@ -12,10 +12,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#6294ac",
         borderBottomEndRadius: 20,
         borderBottomStartRadius: 20,
-        height: 50,
+        height: "8%",
         width: '100%', 
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     titleText:{
         marginLeft: 40,

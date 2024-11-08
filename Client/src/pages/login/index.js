@@ -62,7 +62,7 @@ export default function Login({ navigation }) {
                     <Text style={styles.plus}>Esqueceu sua senha?</Text>
                     <Text style={styles.plus}>|</Text>
                     <Text style={styles.cad} 
-                    onPress={() => navigation.navigate("Cadastro")}
+                        onPress={() => navigation.navigate("Cadastro")}
                     >Cadastrar</Text>
                 </View>
 
@@ -70,7 +70,7 @@ export default function Login({ navigation }) {
                     <Text style={styles.textButtom}>Logar</Text>
                 </TouchableOpacity>
 
-                <Text onPress={() => navigation.navigate("Home")} style={{...styles.plus, marginBottom: "5%"}}>Suporte?</Text>
+                <Text onPress={() => navigation.navigate("Home")} style={{...styles.plus, marginBottom: "2%"}}>Suporte?</Text>
             </Pressable>
         </Pressable>
     );

@@ -3,7 +3,7 @@ import { View, Text, Image, TouchableOpacity, StatusBar, ScrollView } from  "rea
 import styles from "./style"
 import Animated from "react-native-reanimated"
 
-export default function Sobre() {
+export default function Sobre({navigation}) {
 
 
     return (
@@ -17,12 +17,14 @@ export default function Sobre() {
                 backgroundColor='transparent' 
                 translucent={true} 
                 barStyle="dark-content"
-                />
+            />
+        
+            <Text style={styles.setaEsq} onPress={() => navigation.navigate("Home")}>➱</Text>
 
             <ScrollView
                 showsVerticalScrollIndicator={false} 
-                contentContainerStyle={{ paddingBottom: 20}}
             >
+
                 <View>
                     <Image
                         source={require("../../images/imagemTeste.jpg")} 
@@ -41,44 +43,65 @@ export default function Sobre() {
                         <Text style={styles.title}> Desenvolvedores </Text>
 
                         <View style={styles.viewDev}>
-                            <View style={{flexDirection: 'row', width: '65%', justifyContent: 'center', alignItems: 'center', gap: 20}}>
-                                <Image style={styles.fotoPerfil}
-                                    source={require("../../images/Vinicius.jpg")}
-                                />
+                            <Image style={styles.fotoPerfil}
+                                source={require("../../images/Vinicius.jpg")}
+                            />
+                    
+                            <View style={styles.viewInfo}>
                                 <Text style={styles.nome}>Vínicius Gabriel Landgraff De Carli </Text>
-                            </View>
                                 <Text style={styles.text}>O líder do projeto e responsável pela parte de desenvolvimento e layout do aplicativo, buscando sempre uma melhor usabilidade para o usuário.</Text>
+                            </View>
                         </View>
                         
-                        <View style={{flexDirection: 'row', width: '100%', justifyContent: 'center', alignItems: 'center', gap: 10, marginVertical: 20
-                            }}>
-                            <Image style={{width: "30%", height: "100%", borderRadius: 10}}
+                        <View style={styles.viewContato}>
+                            <Text style={{...styles.text, fontWeight: 'bold'}}>Contato</Text>
+                            <Text style={styles.text}>@vinicius_de_carli</Text>
+                        </View>
+                        
+                        
+                        <View style={styles.viewDev}>
+                            <Image style={styles.fotoPerfil}
                                 source={require("../../images/Pedro.jpg")}
                             />
-                            <View style={{width: '70%', justifyContent: 'space-between'}}>
+                            
+                            <View style={styles.viewInfo}>
                                 <Text style={styles.nome}>Pedro Henrique de Lima Silveira </Text>
                                 <Text style={styles.text}>Responsável pela parte de desenvolvimento, fazendo a conexão com o banco de dados e funções, além de grantir a segurança do aplicativo. </Text>
                             </View>
                         </View>
                         
+                        <View style={styles.viewContato}>
+                            <Text style={{...styles.text, fontWeight: 'bold'}}>Contato</Text>
+                            <Text style={styles.text}>@lim4_z</Text>
+                        </View>
                         
-                        <View  style={{alignItems: "center", marginVertical: 25}}>
-                            <Image style={{width: 200,  height: 200, borderRadius: 10}}
+                        
+                        <View style={styles.viewDev}>
+                            <Image style={styles.fotoPerfil}
                                 source={require("../../images/Gabriel.jpeg")}
                             />
-                            <View  style={{width: '100%', alignItems: 'center'}}>
-
+                            
+                            <View style={styles.viewInfo}>
                                 <Text style={styles.nome}> Gabriel Pedro Ramos </Text>
                                 <Text style={styles.text}>Responsável pelo apoio moral, trazendo sempre o café quente e do gosto dos desenvolvedores </Text>
                             </View>
                         </View>
 
-                        <View>
-                            <Image style={styles.fotoPerfil}/>
-                            <View>
+                        
+                        <View style={styles.viewDev}>
+                            <Image style={styles.fotoPerfil}
+                                source={require("../../images/Bertin.jpg")}
+                            />
+                            
+                            <View style={styles.viewInfo}>
                                 <Text style={styles.nome}> Felipe Eduardo Bertin </Text>
                                 <Text style={styles.text}>Responsável pela pesquisa em saber o que é melhor para o usuário e quais são suas dificuldades, ajudando os desenvolvedores a criar um aplicativo mais fácil de usar e com uma melhor usabilidade. </Text>
                             </View>
+                        </View>
+                        
+                        <View style={styles.viewContato}>
+                            <Text style={{...styles.text, fontWeight: 'bold'}}>Contato</Text>
+                            <Text style={styles.text}>@bertinfelipe_</Text>
                         </View>
                     </View>
                 </View>

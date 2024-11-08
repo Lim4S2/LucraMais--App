@@ -9,21 +9,21 @@ const styles = StyleSheet.create({
 
     }, 
     form: {
-        marginTop: "10%",
+        marginTop: "15%",
         marginBottom: 20,
         backgroundColor: "white",
         borderRadius: 25,
         alignItems: "center",
-        //height: "56%",
         height: "auto",
-        width: "80%"
+        width: "80%",
+        paddingVertical: 5
     }, 
     textBox: {
         alignItems: "baseline",
         width: "100%",
     },
     logo: {
-        marginTop: "-30%",
+        marginTop: "-40%",
         width: "50%",
         height: 140
     },
