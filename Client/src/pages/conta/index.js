@@ -1,40 +1,56 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import * as ImagePicker from 'expo-image-picker'
-import { Feather } from "@expo/vector-icons"
+import { View, Text, TouchableOpacity, Image, Alert } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { Feather } from "@expo/vector-icons";
 import styles from './style';
+import AsyncStorage from '@react-native-async-storage/async-storage';  // Importando AsyncStorage
 
-export default function Conta({navigation}) {
+export default function Conta({ navigation }) {
 
-    // para que o usuário possa mudar a foto de perfil
-    const [imageUser, setImageUser] = useState("https://cdn-icons-png.flaticon.com/512/6596/6596121.png")
-    
+    const [imageUser, setImageUser] = useState("https://cdn-icons-png.flaticon.com/512/6596/6596121.png");
+
     const handleImageUser = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
             aspect: [4, 4],
             allowsEditing: true,
             base64: true,
             quality: 1
-        })
+        });
 
         if (!result.canceled) {
-            setImageUser(result.assets[0].uri)
+            setImageUser(result.assets[0].uri);
         }
-    }
+    };
 
+    // Função de logout
+    const handleLogout = async () => {
+        try {
+            // Remover o token de AsyncStorage
+            await AsyncStorage.removeItem('@token');
+
+            // Mostrar um alerta confirmando o logout
+            Alert.alert("Sucesso", "Você foi desconectado.");
+
+            // Redirecionar para a tela de login
+            navigation.navigate("Login");
+        } catch (error) {
+            console.error("Erro ao deslogar:", error);
+            Alert.alert("Erro", "Não foi possível realizar o logout.");
+        }
+    };
 
     return (
         <View style={styles.container}>
-            <View style={{alignItems: 'baseline', width: '100%'}}>
+            <View style={{ alignItems: 'baseline', width: '100%' }}>
                 <Text style={styles.setaEsq} onPress={() => navigation.navigate("Home")}>➱</Text>
             </View>
-            
+
             <View style={styles.profileContainer}>
 
                 <TouchableOpacity onPress={handleImageUser}>
                     <Image source={{
                         uri: imageUser
-                    }} 
+                    }}
                     style={styles.profileImage} />
                 </TouchableOpacity>
 
@@ -47,32 +63,32 @@ export default function Conta({navigation}) {
             <View style={styles.optionContainer}>
                 <View style={{ width: '100%' }}>
                     <TouchableOpacity style={styles.viewConta}>
-                        <Image source={require("../../images/infoPessoais.png")} style={{width:  30, height: 30}}/>
+                        <Image source={require("../../images/infoPessoais.png")} style={{ width: 30, height: 30 }} />
                         <Text>Conta e informações pessoais</Text>
                     </TouchableOpacity>
-                        
+
                     <TouchableOpacity style={styles.viewConta}>
-                        <Image source={require("../../images/configuracao.png")} style={{width:  30, height: 30}}/>
+                        <Image source={require("../../images/configuracao.png")} style={{ width: 30, height: 30 }} />
                         <Text>Configurações</Text>
                     </TouchableOpacity>
-                        
+
                     <TouchableOpacity style={styles.viewConta} onPress={() => navigation.navigate("Sobre")}>
-                        <Image source={require("../../images/sobre-nos.png")} style={{width:  30, height: 30}}/>
+                        <Image source={require("../../images/sobre-nos.png")} style={{ width: 30, height: 30 }} />
                         <Text>Sobre o aplicativo</Text>
                     </TouchableOpacity>
-                    
+
                     <TouchableOpacity style={styles.viewConta}>
-                        <Image source={require("../../images/apoio-suporte.png")} style={{width:  30, height: 30}}/>
+                        <Image source={require("../../images/apoio-suporte.png")} style={{ width: 30, height: 30 }} />
                         <Text>Suporte</Text>
                     </TouchableOpacity>
-                    
-                    <TouchableOpacity style={styles.viewConta}>
-                        <Image source={require("../../images/sair.png")} style={{width:  30, height: 30}}/>
+
+                    {/* Botão de logout */}
+                    <TouchableOpacity style={styles.viewConta} onPress={handleLogout}>
+                        <Image source={require("../../images/sair.png")} style={{ width: 30, height: 30 }} />
                         <Text>Sair</Text>
                     </TouchableOpacity>
                 </View>
             </View>
         </View>
-
-    )
+    );
 }

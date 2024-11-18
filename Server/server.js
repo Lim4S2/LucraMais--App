@@ -4,7 +4,10 @@ const cors = require('cors');
 const bcrypt = require('bcrypt');
 const mysql = require('mysql2/promise');
 const app = express();
+const jwt = require('jsonwebtoken');
 const port = 5000;
+
+const SECRET_KEY = '31072006';
 
 // Configurações do banco de dados
 const dbConfig = {
@@ -21,6 +24,23 @@ app.use(cors({
   methods: ['GET', 'POST', 'DELETE', 'PUT'],
   allowedHeaders: ['Content-Type']
 }));
+
+const verifyToken = (req, res, next) => {
+  const token = req.headers['authorization'];
+
+  if (!token) {
+    return res.status(403).json({ message: 'Token não fornecido.' });
+  }
+
+  try {
+    const decoded = jwt.verify(token.split(' ')[1], SECRET_KEY); // Ignore "Bearer"
+    req.user = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: 'Token inválido ou expirado.' });
+  }
+};
+
 
 // Conexão com o banco de dados
 const getDbConnection = async () => {
@@ -75,8 +95,17 @@ app.post('/api/login', async (req, res) => {
       return res.status(401).json({ message: 'Credenciais inválidas.' });
     }
 
+    // Gere o token JWT
+    const token = jwt.sign(
+      { id: user.id, email: user.email }, // Payload
+      SECRET_KEY,                       // Chave secreta
+      { expiresIn: '1h' }               // Tempo de expiração
+    );
+
     await connection.end();
-    res.status(200).json({ message: 'Login bem-sucedido!' });
+
+    // Retorne o token
+    res.status(200).json({ message: 'Login bem-sucedido!', token });
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     res.status(500).json({ message: 'Erro no servidor' });
