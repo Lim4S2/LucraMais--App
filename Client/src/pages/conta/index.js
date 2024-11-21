@@ -24,19 +24,8 @@ export default function Conta({ navigation }) {
 
     // Função de logout
     const handleLogout = async () => {
-        try {
-            // Remover o token de AsyncStorage
-            await AsyncStorage.removeItem('@token');
-
-            // Mostrar um alerta confirmando o logout
-            Alert.alert("Sucesso", "Você foi desconectado.");
-
-            // Redirecionar para a tela de login
-            navigation.navigate("Login");
-        } catch (error) {
-            console.error("Erro ao deslogar:", error);
-            Alert.alert("Erro", "Não foi possível realizar o logout.");
-        }
+        await AsyncStorage.removeItem('userToken');
+        navigation.navigate("Login");
     };
 
     return (

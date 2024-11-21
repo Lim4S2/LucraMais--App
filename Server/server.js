@@ -97,9 +97,9 @@ app.post('/api/login', async (req, res) => {
 
     // Gere o token JWT
     const token = jwt.sign(
-      { id: user.id, email: user.email }, // Payload
-      SECRET_KEY,                       // Chave secreta
-      { expiresIn: '1h' }               // Tempo de expiração
+      { id: user.id, email: user.email }, 
+      SECRET_KEY,                       
+      { expiresIn: '1h' }               
     );
 
     await connection.end();
