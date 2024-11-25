@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, TextInput, View, TouchableOpacity, Pressable, Keyboard, Image, BackHandler, Alert, StatusBar } from "react-native";
 import { loginUser } from '../login/logApi'; 
 import styles from "./style";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Login({ navigation }) {
     const [email, setEmail] = useState('');
@@ -20,6 +21,8 @@ export default function Login({ navigation }) {
         try {
             const result = await loginUser(email, senha);
             Alert.alert("Sucesso", "Login realizado com sucesso!");
+            await AsyncStorage.setItem('token', result.token);
+            await AsyncStorage.setItem('nome_comercio', result.nome_comercio);
             navigation.navigate("Home"); 
         } catch (error) {
             console.error("Erro ao fazer login:", error);

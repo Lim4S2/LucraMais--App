@@ -9,6 +9,7 @@ import { calculatePercent } from "../../components/randomGrafico/calculatePorcen
 import RenderItem from "./renderItem";
 import DonutChart from "../../components/randomGrafico/donutChart";
 import { useFont } from "@shopify/react-native-skia";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface Data {
     value: number;
@@ -36,6 +37,18 @@ export default function Home({navigation, props}) {
     const [selectButton,  setSelectButton] = useState(4)
     const [selectChart,  setSelectChart] = useState(1)
     const {width} = useWindowDimensions()
+    const [nomeComercio, setNomeComercio] = useState('');
+
+    useEffect(() => {
+        const fetchNomeComercio = async () => {
+            const nome = await AsyncStorage.getItem('nome_comercio');
+            if (nome) {
+                setNomeComercio(nome);
+            }
+        };
+
+        fetchNomeComercio();
+    }, []); 
 
 
     // PARÂMETROS PARA FAZER O GRÁFICO DE DUNET
@@ -274,7 +287,7 @@ export default function Home({navigation, props}) {
 
             <TouchableWithoutFeedback onPress={() => navigation.navigate("Conta")}>
                 <View style={styles.container}>
-                    <Text style={styles.text}>Nome do comércio</Text>
+                    <Text style={styles.text}>{nomeComercio}</Text>
                 </View>
             </TouchableWithoutFeedback>
 

@@ -104,8 +104,8 @@ app.post('/api/login', async (req, res) => {
 
     await connection.end();
 
-    // Retorne o token
-    res.status(200).json({ message: 'Login bem-sucedido!', token });
+    //o token e o nome lá do comercio
+    res.status(200).json({ message: 'Login bem-sucedido!', token, nome_comercio: user.comercio });
   } catch (error) {
     console.error('Erro ao fazer login:', error);
     res.status(500).json({ message: 'Erro no servidor' });
