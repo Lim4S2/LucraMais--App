@@ -83,7 +83,7 @@ export default function Sobre({navigation}) {
                             
                             <View style={styles.viewInfo}>
                                 <Text style={styles.nome}> Gabriel Pedro Ramos </Text>
-                                <Text style={styles.text}>Responsável pelo apoio moral, trazendo sempre o café quente e do gosto dos desenvolvedores </Text>
+                                <Text style={styles.text}>Responsável pela documentação e coleta de dados, identificando necessidades de adaptações e realizando correções para garantir a precisão e qualidade das informações.</Text>
                             </View>
                         </View>
 
